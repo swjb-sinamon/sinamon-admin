@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faUmbrella } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBook,
+  faSchool,
+  faSignOutAlt,
+  faTshirt,
+  faUmbrella,
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
 import MainSideBarItem from './MainSideBarItem';
 import SCREEN_SIZE from '../../styles/screen-size';
 import MainTitleBar from '../MainTitleBar';
@@ -47,12 +54,42 @@ const MainSideBar: React.FC = () => {
 
       <ItemList isOpen={isOpen}>
         <MainSideBarItem tabIndex={0}>
-          <FontAwesomeIcon icon={faUmbrella} size="lg" />
+          <FontAwesomeIcon icon={faUmbrella} />
           &nbsp;
-          <p>관리자메뉴</p>
+          <p>우산대여</p>
         </MainSideBarItem>
+        <MainSideBarItem tabIndex={0}>
+          <FontAwesomeIcon icon={faUmbrella} />
+          &nbsp;
+          <p>우산 목록 관리</p>
+        </MainSideBarItem>
+
+        <MainSideBarItem tabIndex={0}>
+          <FontAwesomeIcon icon={faBook} />
+          &nbsp;
+          <p>과목 관리</p>
+        </MainSideBarItem>
+
+        <MainSideBarItem tabIndex={0}>
+          <FontAwesomeIcon icon={faTshirt} />
+          &nbsp;
+          <p>교복데이 관리</p>
+        </MainSideBarItem>
+
+        <MainSideBarItem tabIndex={0}>
+          <FontAwesomeIcon icon={faSchool} />
+          &nbsp;
+          <p>방과후학교 신청현황</p>
+        </MainSideBarItem>
+
+        <MainSideBarItem tabIndex={0}>
+          <FontAwesomeIcon icon={faUser} />
+          &nbsp;
+          <p>사용자 관리</p>
+        </MainSideBarItem>
+
         <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
-          <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+          <FontAwesomeIcon icon={faSignOutAlt} />
           &nbsp;
           <p>로그아웃</p>
         </MainSideBarItem>
