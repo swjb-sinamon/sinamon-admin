@@ -6,7 +6,7 @@ const MainSideBarItem = styled.li`
   flex-direction: row;
   align-items: center;
 
-  padding: 1.2rem 2rem;
+  padding: 1.1rem 2rem;
   border-bottom: 1px solid var(--color-gray);
 
   cursor: pointer;
