@@ -4,6 +4,7 @@ import { Heading1 } from '../../atomics/Typography/Heading';
 import SCREEN_SIZE from '../../styles/screen-size';
 import MyInfoTitle from './MyInfoTitle';
 import MobileTitle from './MobileTitle';
+import NoStyleLink from '../../atomics/NoStyleLink';
 
 const SideBarTitle = styled.li`
   width: 100%;
@@ -50,9 +51,11 @@ const MainTitleBar: React.FC<MainTitleBarProps> = ({ setOpen }) => {
   return (
     <SideBarTitle>
       <div>
-        <TitleContainer tabIndex={0}>
-          <Heading1>수정과 관리자</Heading1>
-        </TitleContainer>
+        <NoStyleLink to="/">
+          <TitleContainer>
+            <Heading1>수정과 관리자</Heading1>
+          </TitleContainer>
+        </NoStyleLink>
 
         <MobileTitle setOpen={setOpen} />
         <MyInfoTitle />
