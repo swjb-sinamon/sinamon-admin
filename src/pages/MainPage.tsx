@@ -4,16 +4,7 @@ import MainSideBar from '../components/MainSideBar';
 import SCREEN_SIZE from '../styles/screen-size';
 import Card from '../components/Card';
 import CardTitle from '../atomics/Typography/CardTitle';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 280px 4fr;
-
-  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
+import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -37,7 +28,7 @@ const StyledContentGrid = styled.div`
 const MainPage: React.FC = () => {
   return (
     <>
-      <Container>
+      <MainSideBarContainer>
         <MainSideBar />
 
         <StyledContent>
@@ -62,7 +53,7 @@ const MainPage: React.FC = () => {
             </Card>
           </StyledContentGrid>
         </StyledContent>
-      </Container>
+      </MainSideBarContainer>
     </>
   );
 };
