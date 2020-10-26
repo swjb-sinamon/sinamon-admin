@@ -55,7 +55,7 @@ const LoginPage: React.FC = () => {
     }
 
     try {
-      await Api.post('/auth/login', {
+      await Api.post('/auth/login?admin=true', {
         email: input.email,
         password: input.password
       });
@@ -69,6 +69,11 @@ const LoginPage: React.FC = () => {
 
       if (error === ErrorMessage.USER_NOT_FOUND) {
         setInput({ email: '', password: '' });
+        return;
+      }
+
+      if (error === ErrorMessage.NO_PERMISSION) {
+        showToast('💡 관리자만 접근 가능한 페이지입니다.', 'warning');
       }
     }
   };
