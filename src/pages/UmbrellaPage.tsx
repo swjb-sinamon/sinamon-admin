@@ -113,7 +113,7 @@ const UmbrellaPage: React.FC = () => {
     if (!qr) return;
     Api.post('/qr/decode', {
       data: qr
-    }).then((res) => {
+    }).then(() => {
       console.log('success');
     });
   };
