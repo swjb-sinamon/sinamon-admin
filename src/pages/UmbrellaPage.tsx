@@ -33,7 +33,7 @@ const PreviewTitle = styled.b`
 
 const StyledInput = styled(Input)`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    width: calc(100% - 50px);
+    width: 100%;
   }
 `;
 
@@ -84,7 +84,7 @@ const UmbrellaPage: React.FC = () => {
   const [currentSelect, setCurrentSelect] = useState<UmbrellaType | undefined>(undefined);
 
   useEffect(() => {
-    Api.get('/umbrella').then((res) => {
+    Api.get('/umbrella?rental=false').then((res) => {
       setData(res.data.data);
       setShowData(res.data.data);
     });
@@ -94,7 +94,7 @@ const UmbrellaPage: React.FC = () => {
     setCurrentSelect(undefined);
 
     const searchText = e.target.value.toLowerCase();
-    const a = data.filter((i: any) => i.name.includes(searchText));
+    const a = data.filter((i) => i.name.includes(searchText));
     setShowData(a);
   };
 
@@ -124,10 +124,12 @@ const UmbrellaPage: React.FC = () => {
       <MainSideBar />
 
       <StyledContent>
-        <Heading1>우산 대여해주기</Heading1>
+        <Heading1>우산 대여 · 반납</Heading1>
         <Heading3>대여해줄 우산을 선택하고 QR코드를 스캔합니다.</Heading3>
+        <BlankLine gap={10} />
+        <MediumButton>반납신청</MediumButton>
 
-        <BlankLine gap={50} />
+        <BlankLine gap={30} />
 
         <Label>빌려줄 우산 선택하기</Label>
         <StyledInput type="text" placeholder="우산 이름 검색하기" onChange={onInputChange} />
