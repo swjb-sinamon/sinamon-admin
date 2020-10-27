@@ -3,6 +3,8 @@ import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import PermissionRoute from './utils/Route/PermissionRoute';
+import PermissionPage from './pages/PermissionPage';
+import UmbrellaPage from './pages/UmbrellaPage';
 
 const Router: React.FC = () => {
   return (
@@ -14,6 +16,7 @@ const Router: React.FC = () => {
           success={MainPage}
           failure={() => <Redirect to="/login" />}
         />
+        <PermissionRoute exact path="/umbrella" success={UmbrellaPage} failure={PermissionPage} />
         <PermissionRoute
           exact
           path="/login"

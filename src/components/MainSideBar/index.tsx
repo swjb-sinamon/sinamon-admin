@@ -14,6 +14,7 @@ import SCREEN_SIZE from '../../styles/screen-size';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
 import showToast from '../../utils/Toast';
+import NoStyleLink from '../../atomics/NoStyleLink';
 
 const Sidebar = styled.ul`
   min-height: 100vh;
@@ -53,11 +54,13 @@ const MainSideBar: React.FC = () => {
       <MainTitleBar setOpen={setOpen} />
 
       <ItemList isOpen={isOpen}>
-        <MainSideBarItem tabIndex={0}>
-          <FontAwesomeIcon icon={faUmbrella} />
-          &nbsp;
-          <p>우산대여</p>
-        </MainSideBarItem>
+        <NoStyleLink to="/umbrella">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faUmbrella} />
+            &nbsp;
+            <p>우산대여</p>
+          </MainSideBarItem>
+        </NoStyleLink>
         <MainSideBarItem tabIndex={0}>
           <FontAwesomeIcon icon={faUmbrella} />
           &nbsp;
