@@ -13,6 +13,7 @@ import SCREEN_SIZE from '../styles/screen-size';
 import Api from '../api';
 import Modal from '../components/Modal';
 import showToast from '../utils/Toast';
+import { BodyItem, HeaderItem, Table, TableHead } from '../atomics/Table';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -37,41 +38,6 @@ const PreviewTitle = styled.b`
 const StyledInput = styled(Input)`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
     width: 100%;
-  }
-`;
-
-const StyledTable = styled.table`
-  width: 100%;
-
-  border-collapse: collapse;
-
-  background-color: white;
-  border-radius: 3px;
-  border: 1px solid var(--color-gray);
-`;
-
-const TableHeader = styled.thead`
-  border-bottom: 1px solid var(--color-gray);
-`;
-
-const HeaderItem = styled.th`
-  padding: 1rem;
-`;
-
-const TableBody = styled.tbody``;
-
-const BodyItem = styled.tr`
-  text-align: center;
-  & td {
-    padding: 0.5rem;
-  }
-
-  &:last-child td {
-    padding-bottom: 1rem;
-  }
-
-  &:nth-child(even) {
-    background-color: #f5f5f5;
   }
 `;
 
@@ -181,16 +147,16 @@ const UmbrellaPage: React.FC = () => {
 
           <BlankLine gap={10} />
 
-          <StyledTable>
-            <TableHeader>
+          <Table>
+            <TableHead>
               <tr>
                 <HeaderItem>#</HeaderItem>
                 <HeaderItem>이름</HeaderItem>
                 <HeaderItem>상태</HeaderItem>
                 <HeaderItem>등록일</HeaderItem>
               </tr>
-            </TableHeader>
-            <TableBody>
+            </TableHead>
+            <tbody>
               {showData.map((item) => (
                 <BodyItem key={item.name}>
                   <td>
@@ -201,8 +167,8 @@ const UmbrellaPage: React.FC = () => {
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                 </BodyItem>
               ))}
-            </TableBody>
-          </StyledTable>
+            </tbody>
+          </Table>
 
           <BlankLine gap={30} />
 
