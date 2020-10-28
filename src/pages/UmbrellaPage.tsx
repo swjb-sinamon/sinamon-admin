@@ -16,7 +16,6 @@ import UmbrellaManualModal from '../components/Umbrella/UmbrellaManualModal';
 import { UmbrellaType } from '../types/Umbrella';
 import convertSchoolNumber from '../utils/Converter/SchoolNumber';
 import showToast from '../utils/Toast';
-import ErrorMessage from '../error/ErrorMessage';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -38,12 +37,14 @@ const UmbrellaPage: React.FC = () => {
   const manualName = useState<string>('');
   const manualSchoolNumber = useState<string>('');
 
-  useEffect(() => {
+  const fetchUmbrellaList = () => {
     Api.get('/umbrella?rental=false').then((res) => {
       setOriginData(res.data.data);
       setData(res.data.data);
     });
-  }, []);
+  };
+
+  useEffect(() => fetchUmbrellaList(), []);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentUmbrella(undefined);
@@ -83,6 +84,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       qrOpen[1](false);
       showToast('☂ 성공적으로 우산을 대여했습니다.', 'success');
+      fetchUmbrellaList();
     });
   };
 
