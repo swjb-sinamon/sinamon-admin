@@ -16,6 +16,7 @@ import UmbrellaManualModal from '../components/Umbrella/UmbrellaManualModal';
 import { UmbrellaType } from '../types/Umbrella';
 import convertSchoolNumber from '../utils/Converter/SchoolNumber';
 import showToast from '../utils/Toast';
+import ErrorMessage from '../error/ErrorMessage';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -56,12 +57,32 @@ const UmbrellaPage: React.FC = () => {
     setCurrentUmbrella(inputData);
   };
 
+  const onQRScanClick = () => {
+    if (!currentUmbrella) {
+      showToast('❗ 대여해줄 우산을 먼저 선택해주세요.', 'danger');
+      return;
+    }
+
+    qrOpen[1](true);
+  };
+
+  const onManualClick = () => {
+    if (!currentUmbrella) {
+      showToast('❗ 대여해줄 우산을 먼저 선택해주세요.', 'danger');
+      return;
+    }
+
+    manualOpen[1](true);
+  };
+
   const onScanSuccess = (qr: string | null) => {
-    if (!qr) return;
-    Api.post('/qr/decode', {
-      data: qr
+    if (!qr || !currentUmbrella) return;
+    Api.post('/umbrella/qr', {
+      data: qr,
+      umbrellaName: currentUmbrella.name
     }).then(() => {
-      console.log('success');
+      qrOpen[1](false);
+      showToast('☂ 성공적으로 우산을 대여했습니다.', 'success');
     });
   };
 
@@ -116,9 +137,9 @@ const UmbrellaPage: React.FC = () => {
 
           <BlankLine gap={30} />
 
-          <HugeButton onClick={() => qrOpen[1](true)}>QR코드 스캔</HugeButton>
+          <HugeButton onClick={onQRScanClick}>QR코드 스캔</HugeButton>
           <BlankLine gap={10} />
-          <MediumButton width={200} onClick={() => manualOpen[1](true)}>
+          <MediumButton width={200} onClick={onManualClick}>
             학생 정보 직접 입력하기
           </MediumButton>
         </StyledContent>
