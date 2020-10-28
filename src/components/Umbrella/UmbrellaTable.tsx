@@ -10,7 +10,7 @@ interface UmbrellaTableProps {
 
 const UmbrellaTable: React.FC<UmbrellaTableProps> = ({ umbrellaList, onRadioChange }) => {
   const getStatus = (status: 'good' | 'worse') =>
-    status.replace('good', '좋음').replace('wores', '나쁨');
+    status.replace('good', '좋음').replace('worse', '나쁨');
 
   return (
     <Table>
