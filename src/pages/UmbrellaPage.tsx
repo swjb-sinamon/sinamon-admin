@@ -14,7 +14,7 @@ import UmbrellaPreview from '../components/Umbrella/UmbrellaPreview';
 import UmbrellaQRModal from '../components/Umbrella/UmbrellaQRModal';
 import UmbrellaManualModal from '../components/Umbrella/UmbrellaManualModal';
 import { UmbrellaType } from '../types/Umbrella';
-import convertSchoolNumber from '../utils/Converter/SchoolNumber';
+import { convertClassToDepartment, convertSchoolNumber } from '../utils/Converter/SchoolNumber';
 import showToast from '../utils/Toast';
 
 const StyledContent = styled.div`
@@ -107,7 +107,21 @@ const UmbrellaPage: React.FC = () => {
       return;
     }
 
-    console.log(name, grade, clazz, number);
+    const [department, realClass] = convertClassToDepartment(clazz);
+    if (!currentUmbrella) return;
+
+    Api.post('/umbrella/info', {
+      name,
+      department,
+      grade,
+      class: realClass,
+      number,
+      umbrellaName: currentUmbrella.name
+    }).then(() => {
+      manualOpen[1](false);
+      showToast('☂ 성공적으로 우산을 대여했습니다.', 'success');
+      fetchUmbrellaList();
+    });
   };
 
   return (
