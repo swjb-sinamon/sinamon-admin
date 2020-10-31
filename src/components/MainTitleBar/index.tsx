@@ -4,6 +4,7 @@ import { Heading1 } from '../../atomics/Typography/Heading';
 import SCREEN_SIZE from '../../styles/screen-size';
 import MyInfoTitle from './MyInfoTitle';
 import MobileTitle from './MobileTitle';
+import Logo from '../../assets/logo.png';
 import NoStyleLink from '../../atomics/NoStyleLink';
 
 const SideBarTitle = styled.li`
@@ -43,6 +44,12 @@ const TitleContainer = styled.div`
   }
 `;
 
+const LogoTitle = styled(Heading1)`
+  font-size: 28px;
+  margin-top: 7px;
+  margin-left: 5px;
+`;
+
 interface MainTitleBarProps {
   readonly setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -53,7 +60,8 @@ const MainTitleBar: React.FC<MainTitleBarProps> = ({ setOpen }) => {
       <div>
         <NoStyleLink to="/">
           <TitleContainer>
-            <Heading1>수정과 관리자</Heading1>
+            <img src={Logo} alt="수정과 관리자" width={60} height={60} />
+            <LogoTitle>관리자</LogoTitle>
           </TitleContainer>
         </NoStyleLink>
 
