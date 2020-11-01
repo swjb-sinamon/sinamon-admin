@@ -65,8 +65,33 @@ const UmbrellaPage: React.FC = () => {
     setCurrentUmbrella(inputData);
   };
 
+  const onQRScanClick = () => {
+    if (!currentUmbrella) {
+      showToast('❗ 대여해줄 우산을 먼저 선택해주세요.', 'danger');
+      return;
+    }
+
+    qrOpen[1](true);
+  };
+
+  const onManualClick = () => {
+    if (!currentUmbrella) {
+      showToast('❗ 대여해줄 우산을 먼저 선택해주세요.', 'danger');
+      return;
+    }
+
+    manualOpen[1](true);
+  };
+
   const onReturnScanSuccess = (qr: string | null) => {
-    if (!qr || !currentUmbrella) return;
+    if (!qr) return;
+    Api.post('/umbrella/return/qr', {
+      data: qr
+    }).then(() => {
+      returnQrOpen[1](false);
+      showToast('☂ 성공적으로 우산을 반납했습니다.', 'success');
+      fetchUmbrellaList();
+    });
   };
 
   const onReturnManualSuccessClick = () => {
@@ -89,25 +114,21 @@ const UmbrellaPage: React.FC = () => {
     }
 
     const [department, realClass] = convertClassToDepartment(clazz);
-    if (!currentUmbrella) return;
-  };
 
-  const onQRScanClick = () => {
-    if (!currentUmbrella) {
-      showToast('❗ 대여해줄 우산을 먼저 선택해주세요.', 'danger');
-      return;
-    }
+    Api.post('/umbrella/return/info', {
+      name,
+      department,
+      grade,
+      class: realClass,
+      number
+    }).then(() => {
+      returnManualOpen[1](false);
+      showToast('☂ 성공적으로 우산을 반납했습니다.', 'success');
+      fetchUmbrellaList();
+    });
 
-    qrOpen[1](true);
-  };
-
-  const onManualClick = () => {
-    if (!currentUmbrella) {
-      showToast('❗ 대여해줄 우산을 먼저 선택해주세요.', 'danger');
-      return;
-    }
-
-    manualOpen[1](true);
+    returnManualName[1]('');
+    returnManualSchoolNumber[1]('');
   };
 
   const onScanSuccess = (qr: string | null) => {
@@ -156,6 +177,9 @@ const UmbrellaPage: React.FC = () => {
       showToast('☂ 성공적으로 우산을 대여했습니다.', 'success');
       fetchUmbrellaList();
     });
+
+    manualName[1]('');
+    manualSchoolNumber[1]('');
   };
 
   return (
