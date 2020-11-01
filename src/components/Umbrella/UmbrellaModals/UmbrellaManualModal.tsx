@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Heading2 } from '../../atomics/Typography/Heading';
-import Input from '../../atomics/Form/Input';
-import BlankLine from '../../utils/BlankLine';
-import Label from '../../atomics/Form/Label';
-import { MediumButton } from '../../atomics/Button';
-import Modal from '../../components/Modal';
+import { Heading2 } from '../../../atomics/Typography/Heading';
+import Input from '../../../atomics/Form/Input';
+import BlankLine from '../../../utils/BlankLine';
+import Label from '../../../atomics/Form/Label';
+import { MediumButton } from '../../../atomics/Button';
+import Modal from '../../Modal';
 
 const CenterHeading2 = styled(Heading2)`
   text-align: center;

@@ -11,11 +11,13 @@ import Api from '../api';
 import UmbrellaHeader from '../components/Umbrella/UmbrellaHeader';
 import UmbrellaTable from '../components/Umbrella/UmbrellaTable';
 import UmbrellaPreview from '../components/Umbrella/UmbrellaPreview';
-import UmbrellaQRModal from '../components/Umbrella/UmbrellaQRModal';
-import UmbrellaManualModal from '../components/Umbrella/UmbrellaManualModal';
+import UmbrellaQRModal from '../components/Umbrella/UmbrellaModals/UmbrellaQRModal';
+import UmbrellaManualModal from '../components/Umbrella/UmbrellaModals/UmbrellaManualModal';
 import { UmbrellaType } from '../types/Umbrella';
 import { convertClassToDepartment, convertSchoolNumber } from '../utils/Converter/SchoolNumber';
 import showToast from '../utils/Toast';
+import UmbrellaReturnQRModal from '../components/Umbrella/UmbrellaModals/UmbrellaReturnQRModal';
+import UmbrellaReturnManualModal from '../components/Umbrella/UmbrellaModals/UmbrellaReturnManualModal';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -31,6 +33,11 @@ const UmbrellaPage: React.FC = () => {
   const [originData, setOriginData] = useState<UmbrellaType[]>([]);
   const [data, setData] = useState<UmbrellaType[]>([]);
   const [currentUmbrella, setCurrentUmbrella] = useState<UmbrellaType | undefined>(undefined);
+
+  const returnQrOpen = useState<boolean>(false);
+  const returnManualOpen = useState<boolean>(false);
+  const returnManualName = useState<string>('');
+  const returnManualSchoolNumber = useState<string>('');
 
   const qrOpen = useState<boolean>(false);
   const manualOpen = useState<boolean>(false);
@@ -56,6 +63,33 @@ const UmbrellaPage: React.FC = () => {
 
   const onRadioChange = (inputData: UmbrellaType) => {
     setCurrentUmbrella(inputData);
+  };
+
+  const onReturnScanSuccess = (qr: string | null) => {
+    if (!qr || !currentUmbrella) return;
+  };
+
+  const onReturnManualSuccessClick = () => {
+    const [name] = returnManualName;
+    const { grade, class: clazz, number } = convertSchoolNumber(returnManualSchoolNumber[0]);
+
+    if (!name.trim()) {
+      showToast('❗ 이름 칸이 비어있습니다.', 'danger');
+      return;
+    }
+
+    if (!returnManualSchoolNumber[0].trim()) {
+      showToast('❗ 학번 칸이 비어있습니다.', 'danger');
+      return;
+    }
+
+    if (returnManualSchoolNumber[0].length !== 5) {
+      showToast('❗ 학번 형식이 잘못돼었습니다.', 'danger');
+      return;
+    }
+
+    const [department, realClass] = convertClassToDepartment(clazz);
+    if (!currentUmbrella) return;
   };
 
   const onQRScanClick = () => {
@@ -130,7 +164,10 @@ const UmbrellaPage: React.FC = () => {
         <MainSideBar />
 
         <StyledContent>
-          <UmbrellaHeader />
+          <UmbrellaHeader
+            onQRClick={() => returnQrOpen[1](true)}
+            onManualClick={() => returnManualOpen[1](true)}
+          />
 
           <BlankLine gap={30} />
 
@@ -160,6 +197,14 @@ const UmbrellaPage: React.FC = () => {
           </MediumButton>
         </StyledContent>
       </MainSideBarContainer>
+
+      <UmbrellaReturnQRModal open={returnQrOpen} onScanSuccess={onReturnScanSuccess} />
+      <UmbrellaReturnManualModal
+        open={returnManualOpen}
+        name={returnManualName}
+        schoolNumber={returnManualSchoolNumber}
+        onClick={onReturnManualSuccessClick}
+      />
 
       <UmbrellaQRModal open={qrOpen} onScanSuccess={onScanSuccess} />
       <UmbrellaManualModal
