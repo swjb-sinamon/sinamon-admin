@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage';
 import PermissionRoute from './utils/Route/PermissionRoute';
 import PermissionPage from './pages/PermissionPage';
 import UmbrellaPage from './pages/UmbrellaPage';
+import UmbrellaManagePage from './pages/UmbrellaManagePage';
 
 const Router: React.FC = () => {
   return (
@@ -17,6 +18,12 @@ const Router: React.FC = () => {
           failure={() => <Redirect to="/login" />}
         />
         <PermissionRoute exact path="/umbrella" success={UmbrellaPage} failure={PermissionPage} />
+        <PermissionRoute
+          exact
+          path="/umbrella/manage"
+          success={UmbrellaManagePage}
+          failure={PermissionPage}
+        />
         <PermissionRoute
           exact
           path="/login"

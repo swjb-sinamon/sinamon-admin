@@ -61,11 +61,13 @@ const MainSideBar: React.FC = () => {
             <p>우산대여</p>
           </MainSideBarItem>
         </NoStyleLink>
-        <MainSideBarItem tabIndex={0}>
-          <FontAwesomeIcon icon={faUmbrella} />
-          &nbsp;
-          <p>우산 목록 관리</p>
-        </MainSideBarItem>
+        <NoStyleLink to="/umbrella/manage">
+          <MainSideBarItem tabIndex={0}>
+            <FontAwesomeIcon icon={faUmbrella} />
+            &nbsp;
+            <p>우산 목록 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
 
         <MainSideBarItem tabIndex={0}>
           <FontAwesomeIcon icon={faBook} />
