@@ -12,7 +12,7 @@ const StyledContent = styled.div`
 `;
 
 const UmbrellaManagePage: React.FC = () => {
-  const [list, setList] = useState([]);
+  const [, setList] = useState([]);
 
   useEffect(() => {
     Api.get('/umbrella?rental=true').then((res) => setList(res.data.data));
