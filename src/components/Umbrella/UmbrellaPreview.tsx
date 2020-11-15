@@ -41,10 +41,6 @@ const UmbrellaPreview: React.FC<UmbrellaPreviewProps> = ({ umbrella }) => {
         <p>
           <PreviewTitle>우산 반납일: </PreviewTitle> {date.toLocaleDateString()}
         </p>
-        <p>
-          <PreviewTitle>우산 등록 날짜: </PreviewTitle>{' '}
-          {new Date(umbrella.createdAt || '').toLocaleDateString()}
-        </p>
       </>
     );
   };
