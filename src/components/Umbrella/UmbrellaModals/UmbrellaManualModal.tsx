@@ -1,15 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Heading2 } from '../../../atomics/Typography/Heading';
 import Input from '../../../atomics/Form/Input';
 import BlankLine from '../../../utils/BlankLine';
 import Label from '../../../atomics/Form/Label';
 import { MediumButton } from '../../../atomics/Button';
 import Modal from '../../Modal';
-
-const CenterHeading2 = styled(Heading2)`
-  text-align: center;
-`;
 
 interface UmbrellaManualModalProps {
   readonly open: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -26,7 +21,7 @@ const UmbrellaManualModal: React.FC<UmbrellaManualModalProps> = ({
 }) => {
   return (
     <Modal width={450} height={450} name="Manual" state={open}>
-      <CenterHeading2>학생 정보 수동 입력</CenterHeading2>
+      <Heading2>학생 정보 수동 입력</Heading2>
       <BlankLine gap={10} />
 
       <Label>이름</Label>
@@ -50,9 +45,7 @@ const UmbrellaManualModal: React.FC<UmbrellaManualModalProps> = ({
 
       <BlankLine gap={30} />
 
-      <div style={{ textAlign: 'center' }}>
-        <MediumButton onClick={onClick}>대여하기</MediumButton>
-      </div>
+      <MediumButton onClick={onClick}>대여하기</MediumButton>
     </Modal>
   );
 };
