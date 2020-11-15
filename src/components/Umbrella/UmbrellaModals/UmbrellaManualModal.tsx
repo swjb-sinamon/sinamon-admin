@@ -26,34 +26,32 @@ const UmbrellaManualModal: React.FC<UmbrellaManualModalProps> = ({
 }) => {
   return (
     <Modal width={450} height={450} name="Manual" state={open}>
-      <div>
-        <CenterHeading2>학생 정보 수동 입력</CenterHeading2>
-        <BlankLine gap={10} />
+      <CenterHeading2>학생 정보 수동 입력</CenterHeading2>
+      <BlankLine gap={10} />
 
-        <Label>이름</Label>
-        <Input
-          type="text"
-          value={name[0]}
-          onChange={(e) => name[1](e.target.value)}
-          placeholder="ex. 홍길동"
-        />
+      <Label>이름</Label>
+      <Input
+        type="text"
+        value={name[0]}
+        onChange={(e) => name[1](e.target.value)}
+        placeholder="ex. 홍길동"
+      />
 
-        <BlankLine gap={10} />
+      <BlankLine gap={10} />
 
-        <Label>학번</Label>
-        <Input
-          type="number"
-          value={schoolNumber[0]}
-          onChange={(e) => schoolNumber[1](e.target.value)}
-          placeholder="ex. 10101"
-          maxLength={5}
-        />
+      <Label>학번</Label>
+      <Input
+        type="number"
+        value={schoolNumber[0]}
+        onChange={(e) => schoolNumber[1](e.target.value)}
+        placeholder="ex. 10101"
+        maxLength={5}
+      />
 
-        <BlankLine gap={30} />
+      <BlankLine gap={30} />
 
-        <div style={{ textAlign: 'center' }}>
-          <MediumButton onClick={onClick}>대여하기</MediumButton>
-        </div>
+      <div style={{ textAlign: 'center' }}>
+        <MediumButton onClick={onClick}>대여하기</MediumButton>
       </div>
     </Modal>
   );
