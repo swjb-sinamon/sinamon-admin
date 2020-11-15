@@ -25,7 +25,7 @@ const UmbrellaManualModal: React.FC<UmbrellaManualModalProps> = ({
   onClick
 }) => {
   return (
-    <Modal width={500} height={500} name="Manual" state={open}>
+    <Modal width={450} height={450} name="Manual" state={open}>
       <div>
         <CenterHeading2>학생 정보 수동 입력</CenterHeading2>
         <BlankLine gap={10} />

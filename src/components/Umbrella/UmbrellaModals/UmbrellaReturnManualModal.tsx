@@ -29,7 +29,7 @@ const UmbrellaReturnManualModal: React.FC<UmbrellaReturnManualModalProps> = ({
   onClick
 }) => {
   return (
-    <Modal width={500} height={500} name="ReturnManual" state={open}>
+    <Modal width={450} height={450} name="ReturnManual" state={open}>
       <div>
         <CenterHeading2>학생 정보 수동 입력</CenterHeading2>
         <CenterHeading3>클릭 시 즉시 반납 처리합니다.</CenterHeading3>

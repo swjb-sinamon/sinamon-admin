@@ -3,6 +3,7 @@ import QrReader from 'react-qr-reader';
 import { Heading2, Heading3 } from '../../../atomics/Typography/Heading';
 import Modal from '../../Modal';
 import showToast from '../../../utils/Toast';
+import BlankLine from '../../../utils/BlankLine';
 
 interface UmbrellaQRModalProps {
   readonly open: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -11,15 +12,10 @@ interface UmbrellaQRModalProps {
 
 const UmbrellaQRModal: React.FC<UmbrellaQRModalProps> = ({ open, onScanSuccess }) => {
   return (
-    <Modal width={500} height={500} name="QRScan" state={open}>
-      <div
-        style={{
-          textAlign: 'center'
-        }}
-      >
-        <Heading2>스캔 대기 중...</Heading2>
-        <Heading3>학생 QR코드를 스캔해주세요.</Heading3>
-      </div>
+    <Modal width={450} height={450} name="QRScan" state={open}>
+      <Heading2>스캔 대기 중...</Heading2>
+      <Heading3>학생 QR코드를 스캔해주세요.</Heading3>
+      <BlankLine gap={10} />
       <QrReader
         onScan={onScanSuccess}
         onError={(e) => {
@@ -27,7 +23,7 @@ const UmbrellaQRModal: React.FC<UmbrellaQRModalProps> = ({ open, onScanSuccess }
             showToast('❗ 카메라 권한 허용이 필요합니다.', 'danger');
           }
         }}
-        style={{ width: '320px' }}
+        style={{ width: '250px' }}
       />
     </Modal>
   );
