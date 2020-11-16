@@ -5,6 +5,7 @@ import SCREEN_SIZE from '../styles/screen-size';
 import Card from '../components/Card';
 import CardTitle from '../atomics/Typography/CardTitle';
 import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
+import UmbrellaDashboardCard from '../components/Card/UmbrellaDashboardCard';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -33,11 +34,7 @@ const MainPage: React.FC = () => {
 
         <StyledContent>
           <StyledContentGrid>
-            <Card columnStart={1} columnEnd={3} rowStart={1} rowEnd={2}>
-              <CardTitle>우산 대여 현황</CardTitle>
-
-              <p>빌린 우산 / 남은 우산 / 연체 우산</p>
-            </Card>
+            <UmbrellaDashboardCard />
             <Card columnStart={3} columnEnd={5} rowStart={1} rowEnd={2}>
               <CardTitle>방과후신청 현황</CardTitle>
               <p>진행상태 / 신청 사람 숫자</p>
