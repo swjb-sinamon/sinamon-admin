@@ -28,18 +28,14 @@ const StyledBack = styled(Heading3)`
 const PermissionPage: React.FC = () => {
   const history = useHistory();
 
-  const onBackClick = () => {
-    history.goBack();
-  };
-
   return (
     <Container>
       <div>
         <StyledHeading>권한 없음</StyledHeading>
         <Heading2>해당 페이지에 접근할 권한이 없습니다.</Heading2>
         <BlankLine gap={8} />
-        <StyledBack tabIndex={0} onClick={onBackClick}>
-          뒤로가기
+        <StyledBack tabIndex={0} onClick={() => history.push('/login')}>
+          로그인하기
         </StyledBack>
       </div>
     </Container>
