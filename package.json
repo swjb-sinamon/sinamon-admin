@@ -26,6 +26,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "axios": "^0.20.0",
     "dotenv": "^8.2.0",
+    "framer-motion": "^2.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
