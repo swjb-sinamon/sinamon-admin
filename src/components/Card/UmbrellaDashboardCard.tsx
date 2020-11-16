@@ -99,8 +99,6 @@ const UmbrellaDashboardCard: React.FC = () => {
   useCountAnimation(nodeRef2, 0, dataLength.borrowUmbrella);
   useCountAnimation(nodeRef3, 0, dataLength.expiryUmbrella);
 
-  /* eslint-disable jsx-a11y/accessible-emoji */
-
   return (
     <Card columnStart={1} columnEnd={3} rowStart={1} rowEnd={2}>
       <CardTitle>우산 대여 현황</CardTitle>
@@ -109,8 +107,10 @@ const UmbrellaDashboardCard: React.FC = () => {
         <DashboardWrapper>
           <div>
             <UmbrellaDashboardTitle>
-              <StyledEmoji role="img" aria-label="umbrella">
-                🌂
+              <StyledEmoji>
+                <span role="img" aria-label="umbrella">
+                  🌂
+                </span>
               </StyledEmoji>
               남은 우산
             </UmbrellaDashboardTitle>
@@ -124,8 +124,10 @@ const UmbrellaDashboardCard: React.FC = () => {
         <DashboardWrapper>
           <div>
             <UmbrellaDashboardTitle>
-              <StyledEmoji role="img" aria-label="water drop">
-                💧
+              <StyledEmoji>
+                <span role="img" aria-label="water drop">
+                  💧
+                </span>
               </StyledEmoji>
               빌린 우산
             </UmbrellaDashboardTitle>
@@ -139,8 +141,10 @@ const UmbrellaDashboardCard: React.FC = () => {
         <DashboardWrapper>
           <div>
             <UmbrellaDashboardTitle>
-              <StyledEmoji role="img" aria-label="warning">
-                🚨
+              <StyledEmoji>
+                <span role="img" aria-label="warning">
+                  🚨
+                </span>
               </StyledEmoji>
               연체 우산
             </UmbrellaDashboardTitle>
