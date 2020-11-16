@@ -37,11 +37,11 @@ const MainPage: React.FC = () => {
             <UmbrellaDashboardCard />
             <Card columnStart={3} columnEnd={5} rowStart={1} rowEnd={2}>
               <CardTitle>방과후신청 현황</CardTitle>
-              <p>진행상태 / 신청 사람 숫자</p>
+              <p>준비중입니다.</p>
             </Card>
             <Card columnStart={1} columnEnd={3} rowStart={2} rowEnd={3}>
               <CardTitle>교복데이 현황</CardTitle>
-              <p>정보</p>
+              <p>준비중입니다.</p>
             </Card>
             <Card columnStart={3} columnEnd={5} rowStart={2} rowEnd={3}>
               <CardTitle>도움말</CardTitle>

@@ -61,34 +61,11 @@ const MainSideBar: React.FC = () => {
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
-        <MainSideBarItem tabIndex={0}>
+        <MainSideBarItem tabIndex={0} onClick={() => showToast('준비중입니다.', 'info')}>
           <FontAwesomeIcon icon={faTshirt} />
           &nbsp;
           <p>교복데이 관리</p>
         </MainSideBarItem>
-
-        {/* TODO: 추후 추가할 관리 기능 */}
-        {/* <MainSideBarItem tabIndex={0}> */}
-        {/*  <FontAwesomeIcon icon={faBook} /> */}
-        {/*  &nbsp; */}
-        {/*  <p>과목 관리</p> */}
-        {/* </MainSideBarItem> */}
-        {/* <MainSideBarItem tabIndex={0}> */}
-        {/*  <FontAwesomeIcon icon={faSchool} /> */}
-        {/*  &nbsp; */}
-        {/*  <p>방과후학교 신청현황</p> */}
-        {/* </MainSideBarItem> */}
-        {/* <MainSideBarItem tabIndex={0}> */}
-        {/*  <FontAwesomeIcon icon={faUser} /> */}
-        {/*  &nbsp; */}
-        {/*  <p>사용자 관리</p> */}
-        {/* </MainSideBarItem> */}
-        {/* <MainSideBarItem tabIndex={0}> */}
-        {/*  <FontAwesomeIcon icon={faKey} /> */}
-        {/*  &nbsp; */}
-        {/*  <p>인증코드 관리</p> */}
-        {/* </MainSideBarItem> */}
-
         <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
           <FontAwesomeIcon icon={faSignOutAlt} />
           &nbsp;
