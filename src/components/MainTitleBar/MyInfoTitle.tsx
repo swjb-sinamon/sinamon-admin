@@ -24,9 +24,16 @@ const MyInfoTitle: React.FC = () => {
     );
   }
 
+  let role = '알수없음';
+  if (profile.permission.isAdmin) role = '관리자';
+  if (profile.permission.isTeacher) role = '선생님';
+  if (profile.permission.isSchoolUnion) role = '학생회';
+
   return (
     <AboutContainer>
-      <Heading3>{profile.name} 관리자</Heading3>
+      <Heading3>
+        {profile.name} {role}
+      </Heading3>
     </AboutContainer>
   );
 };
