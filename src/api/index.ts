@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cacheAdapterEnhancer } from 'axios-extensions';
 import showToast from '../utils/Toast';
 import ErrorMessage from '../error/ErrorMessage';
 
@@ -6,7 +7,9 @@ const host = process.env.REACT_APP_API_HOST || 'http://localhost:8080';
 
 const Api = axios.create({
   baseURL: host,
-  withCredentials: true
+  withCredentials: true,
+  headers: { 'Cache-Control': 'no-cache' },
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter!, { enabledByDefault: false })
 });
 
 Api.interceptors.response.use(
