@@ -20,7 +20,12 @@ const PermissionRoute: React.FC<PermissionRouteProps> = ({
   const SuccessRoute = () => <Route exact={exact} path={path} component={Success} />;
   const FailureRoute = () => <Route exact={exact} path={path} component={Failure} />;
 
-  return profile !== undefined && profile.isPermission ? <SuccessRoute /> : <FailureRoute />;
+  if (!profile) return <FailureRoute />;
+
+  const able =
+    profile.permission.isAdmin || profile.permission.isTeacher || profile.permission.isSchoolUnion;
+
+  return able ? <SuccessRoute /> : <FailureRoute />;
 };
 
 export default PermissionRoute;
