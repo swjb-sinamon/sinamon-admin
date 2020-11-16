@@ -24,18 +24,9 @@ const MyInfoTitle: React.FC = () => {
     );
   }
 
-  let rule = '알수없음';
-  if (profile.isAdmin) {
-    rule = '관리자';
-  } else if (profile.isTeacher) {
-    rule = '선생님';
-  }
-
   return (
     <AboutContainer>
-      <Heading3>
-        {profile.name} {rule}
-      </Heading3>
+      <Heading3>{profile.name} 관리자</Heading3>
     </AboutContainer>
   );
 };
