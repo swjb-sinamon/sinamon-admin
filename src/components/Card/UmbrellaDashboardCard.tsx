@@ -79,18 +79,17 @@ const UmbrellaDashboardCard: React.FC = () => {
       .then((res) => {
         setDataLength((current) => ({
           ...current,
-          borrowUmbrella: res.data.data.length
+          expiryUmbrella: res.data.data.length
         }));
-
         return Api.get('/umbrella/expiry', { cache: true });
       })
       .then((res) => {
         setDataLength((current) => ({
           ...current,
-          expiryUmbrella: res.data.data.length
+          borrowUmbrella: res.data.data.length - dataLength.expiryUmbrella
         }));
       });
-  }, []);
+  }, [dataLength.expiryUmbrella]);
 
   const nodeRef1 = useRef<HTMLParagraphElement>(null);
   const nodeRef2 = useRef<HTMLParagraphElement>(null);
