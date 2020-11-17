@@ -89,7 +89,7 @@ const UmbrellaPage: React.FC = () => {
       data: qr
     }).then(() => {
       returnQrOpen[1](false);
-      showToast('☂ 성공적으로 우산을 반납했습니다.', 'success');
+      showToast('🌂 성공적으로 우산을 반납했습니다.', 'success');
       fetchUmbrellaList();
     });
   };
@@ -123,7 +123,7 @@ const UmbrellaPage: React.FC = () => {
       number
     }).then(() => {
       returnManualOpen[1](false);
-      showToast('☂ 성공적으로 우산을 반납했습니다.', 'success');
+      showToast('🌂 성공적으로 우산을 반납했습니다.', 'success');
       fetchUmbrellaList();
     });
 
@@ -138,7 +138,7 @@ const UmbrellaPage: React.FC = () => {
       umbrellaName: currentUmbrella.name
     }).then(() => {
       qrOpen[1](false);
-      showToast('☂ 성공적으로 우산을 대여했습니다.', 'success');
+      showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
       fetchUmbrellaList();
     });
   };
@@ -174,7 +174,7 @@ const UmbrellaPage: React.FC = () => {
       umbrellaName: currentUmbrella.name
     }).then(() => {
       manualOpen[1](false);
-      showToast('☂ 성공적으로 우산을 대여했습니다.', 'success');
+      showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
       fetchUmbrellaList();
     });
 

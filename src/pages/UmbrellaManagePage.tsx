@@ -71,7 +71,7 @@ const UmbrellaManagePage: React.FC = () => {
       name,
       status: type
     }).then(() => {
-      showToast('☂ 우산이 추가되었습니다.', 'success');
+      showToast('🌂 우산이 추가되었습니다.', 'success');
       open[1](false);
       setName('');
       setType('good');
