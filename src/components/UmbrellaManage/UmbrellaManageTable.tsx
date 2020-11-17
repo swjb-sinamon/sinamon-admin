@@ -18,6 +18,9 @@ interface UmbrellaManageTableProps {
 }
 
 const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list }) => {
+  const getStatus = (status: 'good' | 'worse') =>
+    status.replace('good', '좋음').replace('worse', '나쁨');
+
   return (
     <ScrollContainer>
       <Table>
@@ -37,7 +40,7 @@ const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list }) => {
             return (
               <BodyItem key={item.name}>
                 <td>{item.name}</td>
-                <td>{item.status}</td>
+                <td>{getStatus(item.status)}</td>
                 <td>{item.rental?.lender || '-'}</td>
                 <td>{date !== 'Invalid Date' ? date : '-'}</td>
                 <td>{item.rental?.isExpire.toString() || '-'}</td>
