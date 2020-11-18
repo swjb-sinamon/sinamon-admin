@@ -31,9 +31,12 @@ const PermissionPage: React.FC = () => {
   return (
     <Container>
       <div>
-        <StyledHeading>권한 없음</StyledHeading>
-        <Heading2>해당 페이지에 접근할 권한이 없습니다.</Heading2>
+        <StyledHeading>권한 없음!</StyledHeading>
+        <Heading2>로그인하지 않았거나 접근할 권한이 없습니다.</Heading2>
         <BlankLine gap={8} />
+        <StyledBack tabIndex={0} onClick={() => history.goBack()}>
+          뒤로가기
+        </StyledBack>
         <StyledBack tabIndex={0} onClick={() => history.push('/login')}>
           로그인하기
         </StyledBack>
