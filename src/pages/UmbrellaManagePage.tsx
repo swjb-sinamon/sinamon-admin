@@ -90,7 +90,6 @@ const UmbrellaManagePage: React.FC = () => {
           <Heading3>우산 목록과 대여 · 반납 상태를 관리합니다.</Heading3>
           <BlankLine gap={30} />
 
-          <Label>빌려줄 우산 선택하기</Label>
           <Header>
             <StyledInput
               type="text"
