@@ -16,19 +16,28 @@ const Router: React.FC = () => {
           path="/"
           success={MainPage}
           failure={() => <Redirect to="/login" />}
+          permissions={['admin', 'teacher', 'schoolunion']}
         />
-        <PermissionRoute exact path="/umbrella" success={UmbrellaPage} failure={PermissionPage} />
+        <PermissionRoute
+          exact
+          path="/umbrella"
+          success={UmbrellaPage}
+          failure={PermissionPage}
+          permissions={['admin', 'teacher', 'schoolunion']}
+        />
         <PermissionRoute
           exact
           path="/umbrella/manage"
           success={UmbrellaManagePage}
           failure={PermissionPage}
+          permissions={['admin', 'teacher', 'schoolunion']}
         />
         <PermissionRoute
           exact
           path="/login"
           success={() => <Redirect to="/" />}
           failure={LoginPage}
+          permissions={['admin', 'teacher', 'schoolunion']}
         />
       </Switch>
     </BrowserRouter>
