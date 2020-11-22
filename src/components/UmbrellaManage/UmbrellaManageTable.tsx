@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { BodyItem, HeaderItem, Table, TableHead } from '../../atomics/Table';
 import SCREEN_SIZE from '../../styles/screen-size';
 import { UmbrellaWithRentalType } from '../../types/Umbrella';
+import BlankLine from '../../utils/BlankLine';
+import usePagination from '../../hooks/usePagination';
+import Pagination from '../Pagination';
 
 const ScrollContainer = styled.div`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
@@ -21,36 +24,60 @@ const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list }) => {
   const getStatus = (status: 'good' | 'worse') =>
     status.replace('good', '좋음').replace('worse', '나쁨');
 
+  const { offset, setOffset, currentPageData, pageNumber } = usePagination(list, 10);
+
+  const onPrevClick = () => {
+    if (offset === 1) return;
+    setOffset((current) => current - 1);
+  };
+
+  const onNextClick = () => {
+    if (offset === pageNumber.length) return;
+    setOffset((current) => current + 1);
+  };
+
   return (
-    <ScrollContainer>
-      <Table>
-        <TableHead>
-          <tr>
-            <HeaderItem>이름</HeaderItem>
-            <HeaderItem>상태</HeaderItem>
-            <HeaderItem>대여자</HeaderItem>
-            <HeaderItem>반납일</HeaderItem>
-            <HeaderItem>연체여부</HeaderItem>
-            <HeaderItem>등록일</HeaderItem>
-          </tr>
-        </TableHead>
-        <tbody>
-          {list.map((item) => {
-            const date = new Date(item.rental?.expiryDate).toLocaleDateString();
-            return (
-              <BodyItem key={item.name}>
-                <td>{item.name}</td>
-                <td>{getStatus(item.status)}</td>
-                <td>{item.rental?.lender || '-'}</td>
-                <td>{date !== 'Invalid Date' ? date : '-'}</td>
-                <td>{item.rental?.isExpire.toString() || '-'}</td>
-                <td>{new Date(item.createdAt).toLocaleDateString()}</td>
-              </BodyItem>
-            );
-          })}
-        </tbody>
-      </Table>
-    </ScrollContainer>
+    <>
+      <ScrollContainer>
+        <Table>
+          <TableHead>
+            <tr>
+              <HeaderItem>이름</HeaderItem>
+              <HeaderItem>상태</HeaderItem>
+              <HeaderItem>대여자</HeaderItem>
+              <HeaderItem>반납일</HeaderItem>
+              <HeaderItem>연체여부</HeaderItem>
+              <HeaderItem>등록일</HeaderItem>
+            </tr>
+          </TableHead>
+          <tbody>
+            {currentPageData.map((item: UmbrellaWithRentalType) => {
+              const date = new Date(item.rental?.expiryDate).toLocaleDateString();
+              return (
+                <BodyItem key={item.name}>
+                  <td>{item.name}</td>
+                  <td>{getStatus(item.status)}</td>
+                  <td>{item.rental?.lender || '-'}</td>
+                  <td>{date !== 'Invalid Date' ? date : '-'}</td>
+                  <td>{item.rental?.isExpire.toString() || '-'}</td>
+                  <td>{new Date(item.createdAt).toLocaleDateString()}</td>
+                </BodyItem>
+              );
+            })}
+          </tbody>
+        </Table>
+      </ScrollContainer>
+
+      <BlankLine gap={30} />
+
+      <Pagination
+        onPrevClick={onPrevClick}
+        onNextClick={onNextClick}
+        pageNumber={pageNumber}
+        offset={offset}
+        setOffset={setOffset}
+      />
+    </>
   );
 };
 
