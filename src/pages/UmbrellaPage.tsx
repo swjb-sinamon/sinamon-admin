@@ -45,7 +45,7 @@ const UmbrellaPage: React.FC = () => {
   const manualSchoolNumber = useState<string>('');
 
   const fetchUmbrellaList = () => {
-    Api.get('/umbrella?rental=false').then((res) => {
+    Api.get('/umbrella').then((res) => {
       setOriginData(res.data.data);
       setData(res.data.data);
     });

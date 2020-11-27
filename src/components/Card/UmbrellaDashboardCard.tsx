@@ -67,21 +67,21 @@ const UmbrellaDashboardCard: React.FC = () => {
   });
 
   useEffect(() => {
-    Api.get('/umbrella?rental=false', { cache: true })
+    Api.get('/umbrella', { cache: true })
       .then((res) => {
         setDataLength((current) => ({
           ...current,
           leftUmbrella: res.data.data.length
         }));
 
-        return Api.get('/umbrella?rental=true', { cache: true });
+        return Api.get('/umbrella/expiry', { cache: true });
       })
       .then((res) => {
         setDataLength((current) => ({
           ...current,
           expiryUmbrella: res.data.data.length
         }));
-        return Api.get('/umbrella/expiry', { cache: true });
+        return Api.get('/umbrella/rental', { cache: true });
       })
       .then((res) => {
         setDataLength((current) => ({
