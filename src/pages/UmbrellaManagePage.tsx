@@ -41,7 +41,8 @@ const StyledCreateButton = styled(MediumButton)`
 const UmbrellaManagePage: React.FC = () => {
   const [list, setList] = useState<UmbrellaWithRentalType[]>([]);
   const [count, setCount] = useState<number>(0);
-  const [searchList, setSearchList] = useState<UmbrellaWithRentalType[]>([]);
+  const [search, setSearch] = useState<string>('');
+
   const open = useState<boolean>(false);
 
   const [name, setName] = useState<string>('');
@@ -50,17 +51,18 @@ const UmbrellaManagePage: React.FC = () => {
   const fetchUmbrellaList = (page: number) => {
     Api.get(`/umbrella/all?limit=10&offset=${page}`).then((res) => {
       setList(res.data.data);
-      setSearchList(res.data.data);
       setCount(res.data.count);
     });
   };
 
   useEffect(() => fetchUmbrellaList(1), []);
 
-  const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchText = e.target.value.toLowerCase();
-    const foundUmbrella = list.filter((i) => i.name.includes(searchText));
-    setSearchList(foundUmbrella);
+  const onSearchSubmit = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Enter') return;
+    Api.get(`/umbrella/all?limit=10&offset=1&search=${search}`).then((res) => {
+      setList(res.data.data);
+      setCount(res.data.count);
+    });
   };
 
   const onCreateButtonClick = () => {
@@ -95,8 +97,10 @@ const UmbrellaManagePage: React.FC = () => {
           <Header>
             <StyledInput
               type="text"
-              placeholder="우산 이름 검색하기"
-              onChange={onSearchInputChange}
+              placeholder="엔터를 눌러 우산 이름 검색하기"
+              onKeyPress={onSearchSubmit}
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
             />
             <StyledCreateButton onClick={() => open[1](true)}>우산 추가</StyledCreateButton>
           </Header>
@@ -104,7 +108,7 @@ const UmbrellaManagePage: React.FC = () => {
           <BlankLine gap={10} />
 
           <UmbrellaManageTable
-            list={searchList}
+            list={list}
             count={count}
             onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset)}
           />

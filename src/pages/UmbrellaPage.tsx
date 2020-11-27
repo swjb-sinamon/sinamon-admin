@@ -30,10 +30,11 @@ const StyledInput = styled(Input)`
 `;
 
 const UmbrellaPage: React.FC = () => {
-  const [originData, setOriginData] = useState<UmbrellaType[]>([]);
   const [data, setData] = useState<UmbrellaType[]>([]);
   const [count, setCount] = useState<number>(0);
   const [currentUmbrella, setCurrentUmbrella] = useState<UmbrellaType | undefined>(undefined);
+
+  const [search, setSearch] = useState<string>('');
 
   const returnQrOpen = useState<boolean>(false);
   const returnManualOpen = useState<boolean>(false);
@@ -47,7 +48,6 @@ const UmbrellaPage: React.FC = () => {
 
   const fetchUmbrellaList = (page: number) => {
     Api.get(`/umbrella?limit=10&offset=${page}`).then((res) => {
-      setOriginData(res.data.data);
       setData(res.data.data);
       setCount(res.data.count);
     });
@@ -55,16 +55,12 @@ const UmbrellaPage: React.FC = () => {
 
   useEffect(() => fetchUmbrellaList(1), []);
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentUmbrella(undefined);
-
-    const searchText = e.target.value.toLowerCase();
-    const foundUmbrella = originData.filter((i) => i.name.includes(searchText));
-    setData(foundUmbrella);
-  };
-
-  const onRadioChange = (inputData: UmbrellaType) => {
-    setCurrentUmbrella(inputData);
+  const onSearchSubmit = (e: React.KeyboardEvent) => {
+    if (e.key !== 'Enter') return;
+    Api.get(`/umbrella?limit=10&offset=1&search=${search}`).then((res) => {
+      setData(res.data.data);
+      setCount(res.data.count);
+    });
   };
 
   const onQRScanClick = () => {
@@ -198,13 +194,19 @@ const UmbrellaPage: React.FC = () => {
           <BlankLine gap={30} />
 
           <Label>빌려줄 우산 선택하기</Label>
-          <StyledInput type="text" placeholder="우산 이름 검색하기" onChange={onInputChange} />
+          <StyledInput
+            type="text"
+            placeholder="엔터를 눌러 우산 이름 검색하기"
+            onKeyPress={onSearchSubmit}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
 
           <BlankLine gap={10} />
 
           <UmbrellaTable
             umbrellaList={data}
-            onRadioChange={onRadioChange}
+            onRadioChange={(inputData) => setCurrentUmbrella(inputData)}
             count={count}
             onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset)}
           />
