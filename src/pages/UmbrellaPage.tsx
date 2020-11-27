@@ -32,6 +32,7 @@ const StyledInput = styled(Input)`
 const UmbrellaPage: React.FC = () => {
   const [originData, setOriginData] = useState<UmbrellaType[]>([]);
   const [data, setData] = useState<UmbrellaType[]>([]);
+  const [count, setCount] = useState<number>(0);
   const [currentUmbrella, setCurrentUmbrella] = useState<UmbrellaType | undefined>(undefined);
 
   const returnQrOpen = useState<boolean>(false);
@@ -44,14 +45,15 @@ const UmbrellaPage: React.FC = () => {
   const manualName = useState<string>('');
   const manualSchoolNumber = useState<string>('');
 
-  const fetchUmbrellaList = () => {
-    Api.get('/umbrella').then((res) => {
+  const fetchUmbrellaList = (page: number) => {
+    Api.get(`/umbrella?limit=10&offset=${page}`).then((res) => {
       setOriginData(res.data.data);
       setData(res.data.data);
+      setCount(res.data.count);
     });
   };
 
-  useEffect(() => fetchUmbrellaList(), []);
+  useEffect(() => fetchUmbrellaList(1), []);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentUmbrella(undefined);
@@ -90,7 +92,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       returnQrOpen[1](false);
       showToast('🌂 성공적으로 우산을 반납했습니다.', 'success');
-      fetchUmbrellaList();
+      fetchUmbrellaList(1);
     });
   };
 
@@ -124,7 +126,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       returnManualOpen[1](false);
       showToast('🌂 성공적으로 우산을 반납했습니다.', 'success');
-      fetchUmbrellaList();
+      fetchUmbrellaList(1);
     });
 
     returnManualName[1]('');
@@ -139,7 +141,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       qrOpen[1](false);
       showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
-      fetchUmbrellaList();
+      fetchUmbrellaList(1);
     });
   };
 
@@ -175,7 +177,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       manualOpen[1](false);
       showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
-      fetchUmbrellaList();
+      fetchUmbrellaList(1);
     });
 
     manualName[1]('');
@@ -200,7 +202,12 @@ const UmbrellaPage: React.FC = () => {
 
           <BlankLine gap={10} />
 
-          <UmbrellaTable umbrellaList={data} onRadioChange={onRadioChange} />
+          <UmbrellaTable
+            umbrellaList={data}
+            onRadioChange={onRadioChange}
+            count={count}
+            onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset)}
+          />
 
           <BlankLine gap={30} />
 

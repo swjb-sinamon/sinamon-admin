@@ -40,20 +40,22 @@ const StyledCreateButton = styled(MediumButton)`
 
 const UmbrellaManagePage: React.FC = () => {
   const [list, setList] = useState<UmbrellaWithRentalType[]>([]);
+  const [count, setCount] = useState<number>(0);
   const [searchList, setSearchList] = useState<UmbrellaWithRentalType[]>([]);
   const open = useState<boolean>(false);
 
   const [name, setName] = useState<string>('');
   const [type, setType] = useState<string>('good');
 
-  const fetchUmbrellaList = () => {
-    Api.get('/umbrella/all').then((res) => {
+  const fetchUmbrellaList = (page: number) => {
+    Api.get(`/umbrella/all?limit=10&offset=${page}`).then((res) => {
       setList(res.data.data);
       setSearchList(res.data.data);
+      setCount(res.data.count);
     });
   };
 
-  useEffect(() => fetchUmbrellaList(), []);
+  useEffect(() => fetchUmbrellaList(1), []);
 
   const onSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchText = e.target.value.toLowerCase();
@@ -76,7 +78,7 @@ const UmbrellaManagePage: React.FC = () => {
       setName('');
       setType('good');
 
-      fetchUmbrellaList();
+      fetchUmbrellaList(1);
     });
   };
 
@@ -101,7 +103,11 @@ const UmbrellaManagePage: React.FC = () => {
 
           <BlankLine gap={10} />
 
-          <UmbrellaManageTable list={searchList} />
+          <UmbrellaManageTable
+            list={searchList}
+            count={count}
+            onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset)}
+          />
         </StyledContent>
       </MainSideBarContainer>
 

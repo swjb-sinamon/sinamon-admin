@@ -8,24 +8,21 @@ import Pagination from '../Pagination';
 
 interface UmbrellaTableProps {
   readonly umbrellaList: UmbrellaType[];
+  readonly count: number;
+  readonly onPageChange: (currentOffset: number) => void;
   readonly onRadioChange: (item: UmbrellaType) => void;
 }
 
-const UmbrellaTable: React.FC<UmbrellaTableProps> = ({ umbrellaList, onRadioChange }) => {
+const UmbrellaTable: React.FC<UmbrellaTableProps> = ({
+  umbrellaList,
+  count,
+  onPageChange,
+  onRadioChange
+}) => {
   const getStatus = (status: 'good' | 'worse') =>
     status.replace('good', '좋음').replace('worse', '나쁨');
 
-  const { offset, setOffset, pageNumber, currentPageData } = usePagination(umbrellaList, 10);
-
-  const onPrevClick = () => {
-    if (offset === 1) return;
-    setOffset((current) => current - 1);
-  };
-
-  const onNextClick = () => {
-    if (offset === pageNumber.length) return;
-    setOffset((current) => current + 1);
-  };
+  const pageNumber = usePagination(count, 10);
 
   return (
     <>
@@ -39,7 +36,7 @@ const UmbrellaTable: React.FC<UmbrellaTableProps> = ({ umbrellaList, onRadioChan
           </tr>
         </TableHead>
         <tbody>
-          {currentPageData.map((item: UmbrellaType) => (
+          {umbrellaList.map((item: UmbrellaType) => (
             <BodyItem key={item.name}>
               <td>
                 <ScaleInput
@@ -56,13 +53,7 @@ const UmbrellaTable: React.FC<UmbrellaTableProps> = ({ umbrellaList, onRadioChan
         </tbody>
       </Table>
       <BlankLine gap={30} />
-      <Pagination
-        onPrevClick={onPrevClick}
-        onNextClick={onNextClick}
-        pageNumber={pageNumber}
-        offset={offset}
-        setOffset={setOffset}
-      />
+      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
@@ -40,20 +40,35 @@ const PaginationItem = styled.li<{ active?: boolean }>`
 `;
 
 interface PaginationProps {
-  readonly onPrevClick: React.MouseEventHandler;
-  readonly onNextClick: React.MouseEventHandler;
+  readonly onPageChange: (currentOffset: number) => void;
   readonly pageNumber: number[];
-  readonly offset: number;
-  readonly setOffset: Dispatch<SetStateAction<number>>;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
-  onPrevClick,
-  onNextClick,
-  pageNumber,
-  offset,
-  setOffset
-}) => {
+const Pagination: React.FC<PaginationProps> = ({ onPageChange, pageNumber }) => {
+  const [offset, setOffset] = useState<number>(1);
+
+  const onPrevClick = () => {
+    if (offset === 1) {
+      onPageChange(1);
+      return;
+    }
+    setOffset((current) => {
+      onPageChange(current - 1);
+      return current - 1;
+    });
+  };
+
+  const onNextClick = () => {
+    if (offset === pageNumber.length) {
+      onPageChange(pageNumber.length);
+      return;
+    }
+    setOffset((current) => {
+      onPageChange(current + 1);
+      return current + 1;
+    });
+  };
+
   return (
     <PaginationWrapper>
       <PaginationItem onClick={onPrevClick}>
@@ -62,7 +77,10 @@ const Pagination: React.FC<PaginationProps> = ({
       {pageNumber.map((pageNum) => (
         <PaginationItem
           key={pageNum}
-          onClick={() => setOffset(pageNum)}
+          onClick={() => {
+            setOffset(pageNum);
+            onPageChange(pageNum);
+          }}
           active={pageNum === offset}
         >
           {pageNum}

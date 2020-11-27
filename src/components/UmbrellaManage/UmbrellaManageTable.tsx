@@ -18,23 +18,15 @@ const ScrollContainer = styled.div`
 
 interface UmbrellaManageTableProps {
   readonly list: UmbrellaWithRentalType[];
+  readonly count: number;
+  readonly onPageChange: (currentOffset: number) => void;
 }
 
-const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list }) => {
+const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list, count, onPageChange }) => {
   const getStatus = (status: 'good' | 'worse') =>
     status.replace('good', '좋음').replace('worse', '나쁨');
 
-  const { offset, setOffset, currentPageData, pageNumber } = usePagination(list, 10);
-
-  const onPrevClick = () => {
-    if (offset === 1) return;
-    setOffset((current) => current - 1);
-  };
-
-  const onNextClick = () => {
-    if (offset === pageNumber.length) return;
-    setOffset((current) => current + 1);
-  };
+  const pageNumber = usePagination(count, 10);
 
   return (
     <>
@@ -51,7 +43,7 @@ const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list }) => {
             </tr>
           </TableHead>
           <tbody>
-            {currentPageData.map((item: UmbrellaWithRentalType) => {
+            {list.map((item: UmbrellaWithRentalType) => {
               const date = new Date(item.rental?.expiryDate).toLocaleDateString();
               return (
                 <BodyItem key={item.name}>
@@ -70,13 +62,7 @@ const UmbrellaManageTable: React.FC<UmbrellaManageTableProps> = ({ list }) => {
 
       <BlankLine gap={30} />
 
-      <Pagination
-        onPrevClick={onPrevClick}
-        onNextClick={onNextClick}
-        pageNumber={pageNumber}
-        offset={offset}
-        setOffset={setOffset}
-      />
+      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
     </>
   );
 };
