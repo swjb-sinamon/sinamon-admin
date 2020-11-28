@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import CsvDownload from 'react-json-to-csv';
 import MainSideBar from '../components/MainSideBar';
 import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
 import { Heading1, Heading3 } from '../atomics/Typography/Heading';
@@ -18,12 +19,35 @@ const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+
+  & > button {
+    margin-right: 10px;
+  }
+
+  & > button:last-child {
+    margin-right: 0;
+  }
 `;
 
 const StyledCreateButton = styled(MediumButton)`
   height: 40px;
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
     margin-left: 10px;
+  }
+`;
+
+const StyledDownloadButton = styled(CsvDownload)`
+  width: 100px;
+  height: 40px;
+  background-color: var(--color-button);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background-color: var(--color-button-hover);
   }
 `;
 
@@ -40,6 +64,9 @@ const CodePage: React.FC = () => {
 
   useEffect(() => fetchData(1), []);
 
+  const now = new Date();
+  const csvFileName = `${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}`;
+
   return (
     <>
       <MainSideBarContainer>
@@ -51,6 +78,10 @@ const CodePage: React.FC = () => {
           <BlankLine gap={30} />
 
           <Header>
+            <StyledDownloadButton data={data} filename={`${csvFileName}-code.csv`}>
+              CSV 다운로드
+            </StyledDownloadButton>
+            <br />
             <StyledCreateButton>인증코드 생성</StyledCreateButton>
           </Header>
 
