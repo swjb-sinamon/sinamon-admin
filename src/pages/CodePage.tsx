@@ -53,16 +53,22 @@ const StyledDownloadButton = styled(CsvDownload)`
 
 const CodePage: React.FC = () => {
   const [data, setData] = useState<CodeType[]>([]);
+  const [csvData, setCSVData] = useState<CodeType[]>([]);
   const [count, setCount] = useState<number>(0);
 
   const fetchData = (page: number) => {
-    Api.get(`/code?limit=10&offset=${page}`).then((res) => {
+    Api.get(`/code?limit=30&offset=${page}`).then((res) => {
       setData(res.data.data);
       setCount(res.data.count);
     });
   };
 
-  useEffect(() => fetchData(1), []);
+  useEffect(() => {
+    Api.get('/code').then((res) => {
+      setCSVData(res.data.data);
+      return fetchData(1);
+    });
+  }, []);
 
   const now = new Date();
   const csvFileName = `${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}`;
@@ -78,7 +84,7 @@ const CodePage: React.FC = () => {
           <BlankLine gap={30} />
 
           <Header>
-            <StyledDownloadButton data={data} filename={`${csvFileName}-code.csv`}>
+            <StyledDownloadButton data={csvData} filename={`${csvFileName}-code.csv`}>
               CSV 다운로드
             </StyledDownloadButton>
             <br />

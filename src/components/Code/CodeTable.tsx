@@ -23,7 +23,7 @@ interface CodeTableProps {
 }
 
 const CodeTable: React.FC<CodeTableProps> = ({ list, count, onPageChange }) => {
-  const pageNumber = usePagination(count, 10);
+  const pageNumber = usePagination(count, 30);
 
   return (
     <>
