@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CsvDownload from 'react-json-to-csv';
 import MainSideBar from '../components/MainSideBar';
@@ -10,6 +10,7 @@ import SCREEN_SIZE from '../styles/screen-size';
 import { MediumButton } from '../atomics/Button';
 import { CodeType } from '../types/Code';
 import CodeTable from '../components/Code/CodeTable';
+import showToast from '../utils/Toast';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -63,15 +64,26 @@ const CodePage: React.FC = () => {
     });
   };
 
-  useEffect(() => {
+  const fetchAllData = useCallback(() => {
     Api.get('/code').then((res) => {
       setCSVData(res.data.data);
       return fetchData(1);
     });
   }, []);
 
+  useEffect(() => {
+    fetchAllData();
+  }, [fetchAllData]);
+
   const now = new Date();
   const csvFileName = `${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}`;
+
+  const onCreateCodeClick = () => {
+    Api.post('/code').then((res) => {
+      showToast(`${res.data.data} 인증코드를 새로 만들었습니다.`, 'success');
+      fetchAllData();
+    });
+  };
 
   return (
     <>
@@ -88,7 +100,7 @@ const CodePage: React.FC = () => {
               CSV 다운로드
             </StyledDownloadButton>
             <br />
-            <StyledCreateButton>인증코드 생성</StyledCreateButton>
+            <StyledCreateButton onClick={onCreateCodeClick}>인증코드 생성</StyledCreateButton>
           </Header>
 
           <BlankLine gap={10} />
