@@ -30,6 +30,7 @@
     "framer-motion": "^2.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-json-to-csv": "^1.0.4",
     "react-modal": "^3.11.2",
     "react-notifications-component": "^2.4.1",
     "react-qr-reader": "^2.2.1",
