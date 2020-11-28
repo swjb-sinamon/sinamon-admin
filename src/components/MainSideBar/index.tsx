@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faTshirt, faUmbrella } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faSignOutAlt, faTshirt, faUmbrella } from '@fortawesome/free-solid-svg-icons';
 import MainSideBarItem from './MainSideBarItem';
 import SCREEN_SIZE from '../../styles/screen-size';
 import MainTitleBar from '../MainTitleBar';
@@ -66,6 +66,13 @@ const MainSideBar: React.FC = () => {
           &nbsp;
           <p>교복데이 관리</p>
         </MainSideBarItem>
+        <NoStyleLink to="/code">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faKey} />
+            &nbsp;
+            <p>인증코드 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
         <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
           <FontAwesomeIcon icon={faSignOutAlt} />
           &nbsp;
