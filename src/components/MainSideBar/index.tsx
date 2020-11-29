@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey, faSignOutAlt, faTshirt, faUmbrella } from '@fortawesome/free-solid-svg-icons';
+import {
+  faKey,
+  faSignOutAlt,
+  faTshirt,
+  faUmbrella,
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
 import MainSideBarItem from './MainSideBarItem';
 import SCREEN_SIZE from '../../styles/screen-size';
 import MainTitleBar from '../MainTitleBar';
@@ -54,6 +60,7 @@ const MainSideBar: React.FC = () => {
             <p>우산대여</p>
           </MainSideBarItem>
         </NoStyleLink>
+
         <NoStyleLink to="/umbrella/manage">
           <MainSideBarItem tabIndex={0}>
             <FontAwesomeIcon icon={faUmbrella} />
@@ -61,11 +68,13 @@ const MainSideBar: React.FC = () => {
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
+
         <MainSideBarItem tabIndex={0} onClick={() => showToast('준비중입니다.', 'info')}>
           <FontAwesomeIcon icon={faTshirt} />
           &nbsp;
           <p>교복데이 관리</p>
         </MainSideBarItem>
+
         <NoStyleLink to="/code">
           <MainSideBarItem>
             <FontAwesomeIcon icon={faKey} />
@@ -73,6 +82,15 @@ const MainSideBar: React.FC = () => {
             <p>인증코드 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
+
+        <NoStyleLink to="/user">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faUser} />
+            &nbsp;
+            <p>사용자 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
         <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
           <FontAwesomeIcon icon={faSignOutAlt} />
           &nbsp;
