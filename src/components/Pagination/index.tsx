@@ -10,10 +10,6 @@ const PaginationWrapper = styled.ul`
 
   justify-content: center;
   flex-wrap: wrap;
-
-  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    justify-content: normal;
-  }
 `;
 
 const PaginationItem = styled.li<{ active?: boolean }>`
