@@ -69,11 +69,13 @@ const MainSideBar: React.FC = () => {
           </MainSideBarItem>
         </NoStyleLink>
 
-        <MainSideBarItem tabIndex={0} onClick={() => showToast('준비중입니다.', 'info')}>
-          <FontAwesomeIcon icon={faTshirt} />
-          &nbsp;
-          <p>교복데이 관리</p>
-        </MainSideBarItem>
+        <NoStyleLink to="/uniform">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTshirt} />
+            &nbsp;
+            <p>교복데이 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
 
         <NoStyleLink to="/code">
           <MainSideBarItem>

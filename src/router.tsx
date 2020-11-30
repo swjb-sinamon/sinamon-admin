@@ -8,6 +8,7 @@ import UmbrellaPage from './pages/UmbrellaPage';
 import UmbrellaManagePage from './pages/UmbrellaManagePage';
 import CodePage from './pages/CodePage';
 import UserPage from './pages/UserPage';
+import UniformPage from './pages/UniformPage';
 
 const Router: React.FC = () => {
   return (
@@ -31,6 +32,13 @@ const Router: React.FC = () => {
           exact
           path="/umbrella/manage"
           success={UmbrellaManagePage}
+          failure={PermissionPage}
+          permissions={['admin', 'teacher', 'schoolunion']}
+        />
+        <PermissionRoute
+          exact
+          path="/uniform"
+          success={UniformPage}
           failure={PermissionPage}
           permissions={['admin', 'teacher', 'schoolunion']}
         />
