@@ -73,7 +73,7 @@ const MainSideBar: React.FC = () => {
           <MainSideBarItem>
             <FontAwesomeIcon icon={faTshirt} />
             &nbsp;
-            <p>교복데이 관리</p>
+            <p>교복데이 관리 (반)</p>
           </MainSideBarItem>
         </NoStyleLink>
 

@@ -71,7 +71,7 @@ const UniformPage: React.FC = () => {
         <MainSideBar />
 
         <StyledContent>
-          <Heading1>교복데이 관리</Heading1>
+          <Heading1>교복데이 관리 (반)</Heading1>
           <Heading3>반별 교복데이 점수를 올리거나 내립니다.</Heading3>
           <BlankLine gap={30} />
 
