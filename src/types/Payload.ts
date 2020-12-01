@@ -38,3 +38,11 @@ export interface UmbrellaWithRentalType extends UmbrellaType {
     readonly isExpire: string;
   };
 }
+
+export interface UniformType {
+  readonly id: number;
+  readonly grade: number;
+  readonly fullGrade: number;
+  readonly date: Date;
+  readonly score: number;
+}
