@@ -10,14 +10,28 @@ import SCREEN_SIZE from '../styles/screen-size';
 import Api from '../api';
 import { UniformType } from '../types/Payload';
 import showToast from '../utils/Toast';
+import { MediumButton } from '../atomics/Button';
 
 const StyledContent = styled.div`
   margin: 3rem;
 `;
 
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const StyledSelect = styled(Select)`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
     width: 100%;
+  }
+`;
+
+const StyledButton = styled(MediumButton)`
+  height: 40px;
+  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
+    margin-left: 10px;
   }
 `;
 
@@ -61,17 +75,20 @@ const UniformPage: React.FC = () => {
           <Heading3>반별 교복데이 점수를 올리거나 내립니다.</Heading3>
           <BlankLine gap={30} />
 
-          <StyledSelect value={clazz} onChange={(e) => setClazz(e.target.value)}>
-            {[1, 2].map((i) => {
-              return [1, 2, 3, 4, 5, 6, 7, 8, 9].map((j) => {
-                return (
-                  <option value={`${i}:${j}`}>
-                    {i}학년 {j}반
-                  </option>
-                );
-              });
-            })}
-          </StyledSelect>
+          <Header>
+            <StyledSelect value={clazz} onChange={(e) => setClazz(e.target.value)}>
+              {[1, 2].map((i) => {
+                return [1, 2, 3, 4, 5, 6, 7, 8, 9].map((j) => {
+                  return (
+                    <option value={`${i}:${j}`}>
+                      {i}학년 {j}반
+                    </option>
+                  );
+                });
+              })}
+            </StyledSelect>
+            <StyledButton onClick={fetchUniformData}>새로고침</StyledButton>
+          </Header>
           <BlankLine gap={10} />
 
           <UniformTable list={data} onPlusClick={onPlusClick} onMinusClick={onMinusClick} />
