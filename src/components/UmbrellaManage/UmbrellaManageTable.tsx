@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BodyItem, HeaderItem, Table, TableHead } from '../../atomics/Table';
 import SCREEN_SIZE from '../../styles/screen-size';
-import { UmbrellaWithRentalType } from '../../types/Umbrella';
+import { UmbrellaWithRentalType } from '../../types/Payload';
 import BlankLine from '../../utils/BlankLine';
 import usePagination from '../../hooks/usePagination';
 import Pagination from '../Pagination';

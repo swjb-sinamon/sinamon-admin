@@ -5,7 +5,7 @@ import SCREEN_SIZE from '../../styles/screen-size';
 import BlankLine from '../../utils/BlankLine';
 import usePagination from '../../hooks/usePagination';
 import Pagination from '../Pagination';
-import { UserType } from '../../types/User';
+import { ProfileType } from '../../types/Payload';
 import convertDepartmentIdToString from '../../utils/Converter/Department';
 
 const ScrollContainer = styled.div`
@@ -18,7 +18,7 @@ const ScrollContainer = styled.div`
 `;
 
 interface UserTableProps {
-  readonly list: UserType[];
+  readonly list: ProfileType[];
   readonly count: number;
   readonly onPageChange: (currentOffset: number) => void;
 }
@@ -42,7 +42,7 @@ const UserTable: React.FC<UserTableProps> = ({ list, count, onPageChange }) => {
             </tr>
           </TableHead>
           <tbody>
-            {list.map((item: UserType) => {
+            {list.map((item: ProfileType) => {
               return (
                 <BodyItem key={item.uuid}>
                   <td>{item.id}</td>
