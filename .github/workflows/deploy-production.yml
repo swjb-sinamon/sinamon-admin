@@ -1,12 +1,12 @@
-name: sinamon-admin-deploy
+name: sinamon-admin-deploy-production
 on:
   workflow_dispatch:
   push:
     branches:
-      - release@beta
+      - release
 
 jobs:
-  deploy:
+  deploy-production:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code.
@@ -24,21 +24,21 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-#      - name: Run ESLint
-#        run: yarn lint
+      #      - name: Run ESLint
+      #        run: yarn lint
 
       - name: Build
         env:
           GENERATE_SOURCEMAP: false
-          REACT_APP_API_HOST: ${{ secrets.API_HOST }}
+          REACT_APP_API_HOST: ${{ secrets.API_HOST_PRODUCTION }}
         run: yarn build:production
 
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          ftp-server: ${{ secrets.FTP_HOST }}
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          ftp-server: ${{ secrets.FTP_HOST_PRODUCTION }}
+          ftp-username: ${{ secrets.FTP_USERNAME_PRODUCTION }}
+          ftp-password: ${{ secrets.FTP_PASSWORD_PRODUCTION }}
           local-dir: ./build/
           git-ftp-args: --insecure
 
@@ -47,11 +47,11 @@ jobs:
         if: success()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: "🎉 개발버전 관리자 사이트가 배포되었습니다! https://dev-admin.sinamon.info"
+          description: "🎉 프로덕션 관리자 사이트가 배포되었습니다! https://admin.sinamon.info"
 
       - name: Discord Alert Failure
         uses: sarisia/actions-status-discord@v1
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: "🔥 개발버전 관리자 사이트 배포를 실패하였습니다."
+          description: "🔥 프로덕션 관리자 사이트 배포를 실패하였습니다."
