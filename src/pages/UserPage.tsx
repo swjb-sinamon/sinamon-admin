@@ -7,7 +7,7 @@ import BlankLine from '../utils/BlankLine';
 import Api from '../api';
 import Input from '../atomics/Form/Input';
 import SCREEN_SIZE from '../styles/screen-size';
-import { UserType } from '../types/User';
+import { ProfileType } from '../types/Payload';
 import UserTable from '../components/User/UserTable';
 
 const StyledContent = styled.div`
@@ -21,7 +21,7 @@ const StyledInput = styled(Input)`
 `;
 
 const UserPage: React.FC = () => {
-  const [data, setData] = useState<UserType[]>([]);
+  const [data, setData] = useState<ProfileType[]>([]);
   const [count, setCount] = useState<number>(0);
   const [search, setSearch] = useState<string>('');
 

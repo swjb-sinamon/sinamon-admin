@@ -6,7 +6,8 @@ import {
   faSignOutAlt,
   faTshirt,
   faUmbrella,
-  faUser
+  faUser,
+  faTrophy
 } from '@fortawesome/free-solid-svg-icons';
 import MainSideBarItem from './MainSideBarItem';
 import SCREEN_SIZE from '../../styles/screen-size';
@@ -73,7 +74,23 @@ const MainSideBar: React.FC = () => {
           <MainSideBarItem>
             <FontAwesomeIcon icon={faTshirt} />
             &nbsp;
-            <p>교복데이 관리</p>
+            <p>교복데이 관리 (반)</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/uniform/personal">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTshirt} />
+            &nbsp;
+            <p>교복데이 관리 (개인)</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/uniform/prank">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTrophy} />
+            &nbsp;
+            <p>교복데이 관리 (개인 순위)</p>
           </MainSideBarItem>
         </NoStyleLink>
 

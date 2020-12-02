@@ -8,7 +8,7 @@ import Api from '../api';
 import Input from '../atomics/Form/Input';
 import SCREEN_SIZE from '../styles/screen-size';
 import Label from '../atomics/Form/Label';
-import { UmbrellaWithRentalType } from '../types/Umbrella';
+import { UmbrellaWithRentalType } from '../types/Payload';
 import { MediumButton } from '../atomics/Button';
 import UmbrellaManageTable from '../components/UmbrellaManage/UmbrellaManageTable';
 import Modal from '../components/Modal';

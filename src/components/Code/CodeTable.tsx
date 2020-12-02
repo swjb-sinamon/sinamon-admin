@@ -5,7 +5,7 @@ import SCREEN_SIZE from '../../styles/screen-size';
 import BlankLine from '../../utils/BlankLine';
 import usePagination from '../../hooks/usePagination';
 import Pagination from '../Pagination';
-import { CodeType } from '../../types/Code';
+import { CodeType } from '../../types/Payload';
 
 const ScrollContainer = styled.div`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {

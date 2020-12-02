@@ -8,7 +8,7 @@ import BlankLine from '../utils/BlankLine';
 import Api from '../api';
 import SCREEN_SIZE from '../styles/screen-size';
 import { MediumButton } from '../atomics/Button';
-import { CodeType } from '../types/Code';
+import { CodeType } from '../types/Payload';
 import CodeTable from '../components/Code/CodeTable';
 import showToast from '../utils/Toast';
 

@@ -13,7 +13,7 @@ import UmbrellaTable from '../components/Umbrella/UmbrellaTable';
 import UmbrellaPreview from '../components/Umbrella/UmbrellaPreview';
 import UmbrellaQRModal from '../components/Umbrella/UmbrellaModals/UmbrellaQRModal';
 import UmbrellaManualModal from '../components/Umbrella/UmbrellaModals/UmbrellaManualModal';
-import { UmbrellaType } from '../types/Umbrella';
+import { UmbrellaType } from '../types/Payload';
 import { convertClassToDepartment, convertSchoolNumber } from '../utils/Converter/SchoolNumber';
 import showToast from '../utils/Toast';
 import UmbrellaReturnQRModal from '../components/Umbrella/UmbrellaModals/UmbrellaReturnQRModal';

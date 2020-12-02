@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UmbrellaType } from '../../types/Umbrella';
+import { UmbrellaType } from '../../types/Payload';
 
 const Preview = styled.div`
   width: 100%;
