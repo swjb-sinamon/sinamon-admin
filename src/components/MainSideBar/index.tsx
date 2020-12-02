@@ -77,6 +77,14 @@ const MainSideBar: React.FC = () => {
           </MainSideBarItem>
         </NoStyleLink>
 
+        <NoStyleLink to="/uniform/personal">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTshirt} />
+            &nbsp;
+            <p>교복데이 관리 (개인)</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
         <NoStyleLink to="/code">
           <MainSideBarItem>
             <FontAwesomeIcon icon={faKey} />
