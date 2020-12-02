@@ -47,11 +47,12 @@ export interface UniformType {
   readonly score: number;
 }
 
-export interface UniformPersonalDateType {
+export interface UniformPersonalType {
   readonly id: number;
   readonly uuid: string;
   readonly date: string;
-  readonly score: string;
+  readonly score: number;
+  readonly totalScore: number;
   readonly user: {
     readonly name: string;
     readonly department: number;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import MainSideBar from '../../components/MainSideBar';
 import MainSideBarContainer from '../../components/MainSideBar/MainSideBarContainer';
@@ -9,7 +9,7 @@ import SCREEN_SIZE from '../../styles/screen-size';
 import { MediumButton } from '../../atomics/Button';
 import Input from '../../atomics/Form/Input';
 import UniformPersonalTable from '../../components/Uniform/UniformPersonalTable';
-import { UniformPersonalDateType } from '../../types/Payload';
+import { UniformPersonalType } from '../../types/Payload';
 import Api from '../../api';
 import showToast from '../../utils/Toast';
 import { convertClassToDepartment, convertSchoolNumber } from '../../utils/Converter/SchoolNumber';
@@ -84,7 +84,7 @@ const StyledButton = styled(MediumButton)`
 `;
 
 const UniformPersonalPage: React.FC = () => {
-  const [data, setData] = useState<UniformPersonalDateType[]>([]);
+  const [data, setData] = useState<UniformPersonalType[]>([]);
   const [count, setCount] = useState<number>(0);
 
   const [date, setDate] = useState<string>('2020-12-9');
