@@ -80,7 +80,7 @@ const UniformPage: React.FC = () => {
               {[1, 2].map((i) => {
                 return [1, 2, 3, 4, 5, 6, 7, 8, 9].map((j) => {
                   return (
-                    <option value={`${i}:${j}`}>
+                    <option value={`${i}:${j}`} key={`${i}:${j}`}>
                       {i}학년 {j}반
                     </option>
                   );
