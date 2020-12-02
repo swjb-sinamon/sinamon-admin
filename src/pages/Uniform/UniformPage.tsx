@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import MainSideBar from '../components/MainSideBar';
-import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
-import { Heading1, Heading3 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
-import UniformTable from '../components/Uniform/UniformTable';
-import Select from '../atomics/Form/Select';
-import SCREEN_SIZE from '../styles/screen-size';
-import Api from '../api';
-import { UniformType } from '../types/Payload';
-import showToast from '../utils/Toast';
-import { MediumButton } from '../atomics/Button';
+import MainSideBar from '../../components/MainSideBar';
+import MainSideBarContainer from '../../components/MainSideBar/MainSideBarContainer';
+import { Heading1, Heading3 } from '../../atomics/Typography/Heading';
+import BlankLine from '../../utils/BlankLine';
+import UniformTable from '../../components/Uniform/UniformTable';
+import Select from '../../atomics/Form/Select';
+import SCREEN_SIZE from '../../styles/screen-size';
+import Api from '../../api';
+import { UniformType } from '../../types/Payload';
+import showToast from '../../utils/Toast';
+import { MediumButton } from '../../atomics/Button';
 
 const StyledContent = styled.div`
   margin: 3rem;

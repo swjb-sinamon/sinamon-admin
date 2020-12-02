@@ -8,7 +8,7 @@ import UmbrellaPage from './pages/UmbrellaPage';
 import UmbrellaManagePage from './pages/UmbrellaManagePage';
 import CodePage from './pages/CodePage';
 import UserPage from './pages/UserPage';
-import UniformPage from './pages/UniformPage';
+import UniformPage from './pages/Uniform/UniformPage';
 
 const Router: React.FC = () => {
   return (
