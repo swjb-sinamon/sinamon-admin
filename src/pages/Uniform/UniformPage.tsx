@@ -51,7 +51,7 @@ const UniformPage: React.FC = () => {
 
   const onPlusClick = async (date: string) => {
     const [grade, fullClass] = clazz.split(':');
-    await Api.put(`/uniform/${grade}/${fullClass}?date=${date}`);
+    await Api.put(`/uniform/up/${grade}/${fullClass}?date=${date}`);
     showToast(`${grade}학년 ${fullClass}반 점수를 올렸습니다.`, 'success');
 
     await fetchUniformData();
@@ -59,7 +59,7 @@ const UniformPage: React.FC = () => {
 
   const onMinusClick = async (date: string) => {
     const [grade, fullClass] = clazz.split(':');
-    await Api.delete(`/uniform/${grade}/${fullClass}?date=${date}`);
+    await Api.put(`/uniform/down/${grade}/${fullClass}?date=${date}`);
     showToast(`${grade}학년 ${fullClass}반 점수를 내렸습니다.`, 'success');
 
     await fetchUniformData();
