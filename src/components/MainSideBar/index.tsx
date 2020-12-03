@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faUmbrella } from '@fortawesome/free-solid-svg-icons';
+import {
+  faKey,
+  faSignOutAlt,
+  faTshirt,
+  faUmbrella,
+  faUser,
+  faTrophy
+} from '@fortawesome/free-solid-svg-icons';
 import MainSideBarItem from './MainSideBarItem';
 import SCREEN_SIZE from '../../styles/screen-size';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
 import showToast from '../../utils/Toast';
+import NoStyleLink from '../../atomics/NoStyleLink';
 
 const Sidebar = styled.ul`
   min-height: 100vh;
@@ -46,13 +54,64 @@ const MainSideBar: React.FC = () => {
       <MainTitleBar setOpen={setOpen} />
 
       <ItemList isOpen={isOpen}>
-        <MainSideBarItem tabIndex={0}>
-          <FontAwesomeIcon icon={faUmbrella} size="lg" />
-          &nbsp;
-          <p>관리자메뉴</p>
-        </MainSideBarItem>
+        <NoStyleLink to="/umbrella">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faUmbrella} />
+            &nbsp;
+            <p>우산대여</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/umbrella/manage">
+          <MainSideBarItem tabIndex={0}>
+            <FontAwesomeIcon icon={faUmbrella} />
+            &nbsp;
+            <p>우산 목록 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/uniform">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTshirt} />
+            &nbsp;
+            <p>교복데이 관리 (반)</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/uniform/personal">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTshirt} />
+            &nbsp;
+            <p>교복데이 관리 (개인)</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/uniform/prank">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faTrophy} />
+            &nbsp;
+            <p>교복데이 관리 (개인 순위)</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/code">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faKey} />
+            &nbsp;
+            <p>인증코드 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/user">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faUser} />
+            &nbsp;
+            <p>사용자 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
         <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
-          <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+          <FontAwesomeIcon icon={faSignOutAlt} />
           &nbsp;
           <p>로그아웃</p>
         </MainSideBarItem>
