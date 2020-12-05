@@ -9,7 +9,8 @@ import {
   SCREEN_SIZE,
   showToast,
   MediumButton,
-  Input
+  Input,
+  ButtonGroup
 } from 'sinamon-sikhye';
 import MainSideBar from '../../components/MainSideBar';
 import UniformPersonalTable from '../../components/Uniform/UniformPersonalTable';
@@ -54,19 +55,6 @@ const HeaderGroup = styled.div`
     & > *:last-child {
       margin-bottom: 0;
     }
-  }
-`;
-
-const HeaderButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  & > * {
-    margin-right: 10px;
-  }
-
-  & > *:last-child {
-    margin-right: 0;
   }
 `;
 
@@ -197,11 +185,11 @@ const UniformPersonalPage: React.FC = () => {
               </StyledSelect>
             </HeaderGroup>
 
-            <HeaderButtonGroup>
+            <ButtonGroup>
               <StyledButton onClick={onPlusClick}>올리기</StyledButton>
               <StyledButton onClick={onMinusClick}>내리기</StyledButton>
               <StyledButton onClick={() => fetchData(1)}>날짜별 조회</StyledButton>
-            </HeaderButtonGroup>
+            </ButtonGroup>
           </div>
 
           <BlankLine gap={30} />
