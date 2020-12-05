@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { MainSideBarContainer, Heading1, BlankLine, Input, SCREEN_SIZE } from 'sinamon-sikhye';
 import MainSideBar from '../components/MainSideBar';
-import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
-import { Heading1 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
 import Api from '../api';
-import Input from '../atomics/Form/Input';
-import SCREEN_SIZE from '../styles/screen-size';
 import { ProfileType } from '../types/Payload';
 import UserTable from '../components/User/UserTable';
 

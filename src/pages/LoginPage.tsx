@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Heading1 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
-import Label from '../atomics/Form/Label';
-import Input from '../atomics/Form/Input';
-import { MediumButton } from '../atomics/Button';
+import { Label, Heading1, Input, BlankLine, showToast, MediumButton } from 'sinamon-sikhye';
 import Api from '../api';
 import ErrorMessage from '../error/ErrorMessage';
-import showToast from '../utils/Toast';
 
 const Container = styled.div`
   display: flex;

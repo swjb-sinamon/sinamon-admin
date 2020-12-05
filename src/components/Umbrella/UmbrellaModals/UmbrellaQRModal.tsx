@@ -1,9 +1,6 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
-import { Heading2, Heading3 } from '../../../atomics/Typography/Heading';
-import Modal from '../../Modal';
-import showToast from '../../../utils/Toast';
-import BlankLine from '../../../utils/BlankLine';
+import { Heading2, Heading3, Modal, showToast, BlankLine } from 'sinamon-sikhye';
 
 interface UmbrellaQRModalProps {
   readonly open: [boolean, React.Dispatch<React.SetStateAction<boolean>>];

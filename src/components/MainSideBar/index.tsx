@@ -9,12 +9,9 @@ import {
   faUser,
   faTrophy
 } from '@fortawesome/free-solid-svg-icons';
-import MainSideBarItem from './MainSideBarItem';
-import SCREEN_SIZE from '../../styles/screen-size';
+import { NoStyleLink, showToast, SCREEN_SIZE, MainSideBarItem } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
-import showToast from '../../utils/Toast';
-import NoStyleLink from '../../atomics/NoStyleLink';
 
 const Sidebar = styled.ul`
   min-height: 100vh;
