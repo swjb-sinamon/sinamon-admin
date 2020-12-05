@@ -1,8 +1,5 @@
 import React from 'react';
-import { Heading1, Heading3 } from '../../atomics/Typography/Heading';
-import BlankLine from '../../utils/BlankLine';
-import { MediumButton } from '../../atomics/Button';
-import ButtonGroup from '../ButtonGroup';
+import { Heading1, Heading3, ButtonGroup, BlankLine, MediumButton } from 'sinamon-sikhye';
 
 interface UmbrellaHeaderProps {
   readonly onQRClick?: React.MouseEventHandler;

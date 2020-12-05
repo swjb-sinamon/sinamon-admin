@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BodyItem, HeaderItem, Table, TableHead } from '../../atomics/Table';
-import SCREEN_SIZE from '../../styles/screen-size';
+import { SCREEN_SIZE, BodyItem, HeaderItem, Table, TableHead } from 'sinamon-sikhye';
 import { UniformType } from '../../types/Payload';
 
 const ScrollContainer = styled.div`

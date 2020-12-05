@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BodyItem, HeaderItem, Table, TableHead } from '../../atomics/Table';
-import SCREEN_SIZE from '../../styles/screen-size';
-import BlankLine from '../../utils/BlankLine';
-import usePagination from '../../hooks/usePagination';
-import Pagination from '../Pagination';
+import {
+  SCREEN_SIZE,
+  usePagination,
+  BlankLine,
+  Pagination,
+  BodyItem,
+  HeaderItem,
+  Table,
+  TableHead
+} from 'sinamon-sikhye';
 import { ProfileType } from '../../types/Payload';
 import convertDepartmentIdToString from '../../utils/Converter/Department';
 

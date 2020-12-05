@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { SCREEN_SIZE, Card, CardTitle, MainSideBarContainer } from 'sinamon-sikhye';
 import MainSideBar from '../components/MainSideBar';
-import SCREEN_SIZE from '../styles/screen-size';
-import Card from '../components/Card';
-import CardTitle from '../atomics/Typography/CardTitle';
-import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
 import UmbrellaDashboardCard from '../components/Card/UmbrellaDashboardCard';
 
 const StyledContent = styled.div`

@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import SCREEN_SIZE from '../../styles/screen-size';
-import Card from '../../components/Card';
-import CardTitle from '../../atomics/Typography/CardTitle';
+import { CardTitle, SCREEN_SIZE, Card } from 'sinamon-sikhye';
 import useCountAnimation from '../../animations/useCountAnimation';
 import Api from '../../api';
 

@@ -1,17 +1,21 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
+import {
+  MainSideBarContainer,
+  Heading1,
+  Heading3,
+  BlankLine,
+  Select,
+  SCREEN_SIZE,
+  showToast,
+  MediumButton,
+  Input,
+  ButtonGroup
+} from 'sinamon-sikhye';
 import MainSideBar from '../../components/MainSideBar';
-import MainSideBarContainer from '../../components/MainSideBar/MainSideBarContainer';
-import { Heading1, Heading3 } from '../../atomics/Typography/Heading';
-import BlankLine from '../../utils/BlankLine';
-import Select from '../../atomics/Form/Select';
-import SCREEN_SIZE from '../../styles/screen-size';
-import { MediumButton } from '../../atomics/Button';
-import Input from '../../atomics/Form/Input';
 import UniformPersonalTable from '../../components/Uniform/UniformPersonalTable';
 import { UniformPersonalType } from '../../types/Payload';
 import Api from '../../api';
-import showToast from '../../utils/Toast';
 import { convertClassToDepartment, convertSchoolNumber } from '../../utils/Converter/SchoolNumber';
 
 const StyledContent = styled.div`
@@ -51,19 +55,6 @@ const HeaderGroup = styled.div`
     & > *:last-child {
       margin-bottom: 0;
     }
-  }
-`;
-
-const HeaderButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  & > * {
-    margin-right: 10px;
-  }
-
-  & > *:last-child {
-    margin-right: 0;
   }
 `;
 
@@ -194,11 +185,11 @@ const UniformPersonalPage: React.FC = () => {
               </StyledSelect>
             </HeaderGroup>
 
-            <HeaderButtonGroup>
+            <ButtonGroup>
               <StyledButton onClick={onPlusClick}>올리기</StyledButton>
               <StyledButton onClick={onMinusClick}>내리기</StyledButton>
               <StyledButton onClick={() => fetchData(1)}>날짜별 조회</StyledButton>
-            </HeaderButtonGroup>
+            </ButtonGroup>
           </div>
 
           <BlankLine gap={30} />

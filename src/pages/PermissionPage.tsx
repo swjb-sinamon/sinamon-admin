@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { Heading1, Heading2, Heading3 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
+import { Heading1, Heading2, Heading3, BlankLine } from 'sinamon-sikhye';
 
 const Container = styled.div`
   height: 100vh;
