@@ -1,17 +1,20 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
+import {
+  MainSideBarContainer,
+  Heading1,
+  Heading3,
+  BlankLine,
+  Select,
+  SCREEN_SIZE,
+  showToast,
+  MediumButton,
+  Input
+} from 'sinamon-sikhye';
 import MainSideBar from '../../components/MainSideBar';
-import MainSideBarContainer from '../../components/MainSideBar/MainSideBarContainer';
-import { Heading1, Heading3 } from '../../atomics/Typography/Heading';
-import BlankLine from '../../utils/BlankLine';
-import Select from '../../atomics/Form/Select';
-import SCREEN_SIZE from '../../styles/screen-size';
-import { MediumButton } from '../../atomics/Button';
-import Input from '../../atomics/Form/Input';
 import UniformPersonalTable from '../../components/Uniform/UniformPersonalTable';
 import { UniformPersonalType } from '../../types/Payload';
 import Api from '../../api';
-import showToast from '../../utils/Toast';
 import { convertClassToDepartment, convertSchoolNumber } from '../../utils/Converter/SchoolNumber';
 
 const StyledContent = styled.div`

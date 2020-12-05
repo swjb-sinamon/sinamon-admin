@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BodyItem, HeaderItem, Table, TableHead } from '../../atomics/Table';
-import SCREEN_SIZE from '../../styles/screen-size';
+import {
+  SCREEN_SIZE,
+  usePagination,
+  BlankLine,
+  Pagination,
+  BodyItem,
+  HeaderItem,
+  Table,
+  TableHead
+} from 'sinamon-sikhye';
 import { UniformPersonalType } from '../../types/Payload';
 import convertDepartmentIdToString from '../../utils/Converter/Department';
-import BlankLine from '../../utils/BlankLine';
-import Pagination from '../Pagination';
-import usePagination from '../../hooks/usePagination';
 
 const ScrollContainer = styled.div`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import {
+  MainSideBarContainer,
+  Heading1,
+  Heading3,
+  BlankLine,
+  Select,
+  SCREEN_SIZE,
+  showToast,
+  MediumButton,
+  Input,
+  Modal,
+  Heading2,
+  Label
+} from 'sinamon-sikhye';
 import MainSideBar from '../components/MainSideBar';
-import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
-import { Heading1, Heading2, Heading3 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
 import Api from '../api';
-import Input from '../atomics/Form/Input';
-import SCREEN_SIZE from '../styles/screen-size';
-import Label from '../atomics/Form/Label';
 import { UmbrellaWithRentalType } from '../types/Payload';
-import { MediumButton } from '../atomics/Button';
 import UmbrellaManageTable from '../components/UmbrellaManage/UmbrellaManageTable';
-import Modal from '../components/Modal';
-import Select from '../atomics/Form/Select';
-import showToast from '../utils/Toast';
 
 const StyledContent = styled.div`
   margin: 3rem;
