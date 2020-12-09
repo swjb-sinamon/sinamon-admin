@@ -175,7 +175,7 @@ const UniformPersonalPage: React.FC = () => {
                 onChange={(e) => setSchoolNumber(e.target.value)}
               />
               <StyledSelect value={date} onChange={(e) => setDate(e.target.value)}>
-                {[9, 10, 11, 12, 13, 14, 15, 16].map((i) => {
+                {[14, 15, 16, 17, 18].map((i) => {
                   return (
                     <option value={`2020-12-${i}`} key={`2020-12-${i}`}>
                       2020년 12월 {i}일
