@@ -46,6 +46,8 @@ const MainSideBar: React.FC = () => {
     window.location.reload();
   };
 
+  const onClickServiceStopMenu = () => showToast('교복데이 사업이 종료되었습니다.', 'info');
+
   return (
     <Sidebar>
       <MainTitleBar setOpen={setOpen} />
@@ -60,36 +62,30 @@ const MainSideBar: React.FC = () => {
         </NoStyleLink>
 
         <NoStyleLink to="/umbrella/manage">
-          <MainSideBarItem tabIndex={0}>
+          <MainSideBarItem>
             <FontAwesomeIcon icon={faUmbrella} />
             &nbsp;
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
-        <NoStyleLink to="/uniform">
-          <MainSideBarItem>
-            <FontAwesomeIcon icon={faTshirt} />
-            &nbsp;
-            <p>교복데이 관리 (반)</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+        <MainSideBarItem onClick={onClickServiceStopMenu} tabIndex={0}>
+          <FontAwesomeIcon icon={faTshirt} />
+          &nbsp;
+          <p>교복데이 관리 (반)</p>
+        </MainSideBarItem>
 
-        <NoStyleLink to="/uniform/personal">
-          <MainSideBarItem>
-            <FontAwesomeIcon icon={faTshirt} />
-            &nbsp;
-            <p>교복데이 관리 (개인)</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+        <MainSideBarItem onClick={onClickServiceStopMenu} tabIndex={0}>
+          <FontAwesomeIcon icon={faTshirt} />
+          &nbsp;
+          <p>교복데이 관리 (개인)</p>
+        </MainSideBarItem>
 
-        <NoStyleLink to="/uniform/prank">
-          <MainSideBarItem>
-            <FontAwesomeIcon icon={faTrophy} />
-            &nbsp;
-            <p>교복데이 관리 (개인 순위)</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+        <MainSideBarItem onClick={onClickServiceStopMenu} tabIndex={0}>
+          <FontAwesomeIcon icon={faTrophy} />
+          &nbsp;
+          <p>교복데이 관리 (개인 순위)</p>
+        </MainSideBarItem>
 
         <NoStyleLink to="/code">
           <MainSideBarItem>
