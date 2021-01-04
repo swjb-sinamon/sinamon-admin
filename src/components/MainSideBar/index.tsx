@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faKey,
-  faSignOutAlt,
-  faTshirt,
-  faUmbrella,
-  faUser,
-  faTrophy
-} from '@fortawesome/free-solid-svg-icons';
-import { NoStyleLink, showToast, SCREEN_SIZE, MainSideBarItem } from 'sinamon-sikhye';
+import { faKey, faSignOutAlt, faUmbrella, faUser } from '@fortawesome/free-solid-svg-icons';
+import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
 
@@ -46,8 +39,6 @@ const MainSideBar: React.FC = () => {
     window.location.reload();
   };
 
-  const onClickServiceStopMenu = () => showToast('교복데이 사업이 종료되었습니다.', 'info');
-
   return (
     <Sidebar>
       <MainTitleBar setOpen={setOpen} />
@@ -68,24 +59,6 @@ const MainSideBar: React.FC = () => {
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
-
-        <MainSideBarItem onClick={onClickServiceStopMenu} tabIndex={0}>
-          <FontAwesomeIcon icon={faTshirt} />
-          &nbsp;
-          <p>교복데이 관리 (반)</p>
-        </MainSideBarItem>
-
-        <MainSideBarItem onClick={onClickServiceStopMenu} tabIndex={0}>
-          <FontAwesomeIcon icon={faTshirt} />
-          &nbsp;
-          <p>교복데이 관리 (개인)</p>
-        </MainSideBarItem>
-
-        <MainSideBarItem onClick={onClickServiceStopMenu} tabIndex={0}>
-          <FontAwesomeIcon icon={faTrophy} />
-          &nbsp;
-          <p>교복데이 관리 (개인 순위)</p>
-        </MainSideBarItem>
 
         <NoStyleLink to="/code">
           <MainSideBarItem>
