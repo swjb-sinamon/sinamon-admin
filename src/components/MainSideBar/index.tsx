@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey, faSignOutAlt, faUmbrella, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAward,
+  faKey,
+  faSignOutAlt,
+  faUmbrella,
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
 import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
@@ -57,6 +63,14 @@ const MainSideBar: React.FC = () => {
             <FontAwesomeIcon icon={faUmbrella} />
             &nbsp;
             <p>우산 목록 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/contest">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faAward} />
+            &nbsp;
+            <p>공모전 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
