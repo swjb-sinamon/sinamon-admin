@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MainSideBarContainer, Heading1, BlankLine, Input, SCREEN_SIZE } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import { ProfileType } from '../types/Payload';
@@ -42,6 +43,10 @@ const UserPage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>사용자 관리 - 수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 

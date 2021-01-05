@@ -10,6 +10,7 @@ import {
   Input,
   Label
 } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import UmbrellaHeader from '../components/Umbrella/UmbrellaHeader';
@@ -185,6 +186,10 @@ const UmbrellaPage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>우산대여 - 수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 

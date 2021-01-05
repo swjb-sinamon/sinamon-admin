@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SCREEN_SIZE, Card, CardTitle, MainSideBarContainer } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import UmbrellaDashboardCard from '../components/Card/UmbrellaDashboardCard';
 
@@ -26,6 +27,10 @@ const StyledContentGrid = styled.div`
 const MainPage: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 

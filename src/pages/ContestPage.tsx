@@ -15,6 +15,7 @@ import {
   Select,
   showToast
 } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import { ContestType } from '../types/Payload';
@@ -150,6 +151,10 @@ const ContestPage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>공모전관리 - 수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 
