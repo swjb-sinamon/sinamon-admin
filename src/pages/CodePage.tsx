@@ -10,6 +10,7 @@ import {
   showToast,
   MediumButton
 } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import { CodeType } from '../types/Payload';
@@ -90,6 +91,10 @@ const CodePage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>인증코드 - 수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 

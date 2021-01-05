@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SCREEN_SIZE, Card, CardTitle, MainSideBarContainer } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import UmbrellaDashboardCard from '../components/Card/UmbrellaDashboardCard';
 
@@ -26,6 +27,10 @@ const StyledContentGrid = styled.div`
 const MainPage: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 
@@ -38,7 +43,7 @@ const MainPage: React.FC = () => {
             </Card>
             <Card columnStart={1} columnEnd={3} rowStart={2} rowEnd={3}>
               <CardTitle>교복데이 현황</CardTitle>
-              <p>준비중입니다.</p>
+              <p>사업 종료</p>
             </Card>
             <Card columnStart={3} columnEnd={5} rowStart={2} rowEnd={3}>
               <CardTitle>도움말</CardTitle>
