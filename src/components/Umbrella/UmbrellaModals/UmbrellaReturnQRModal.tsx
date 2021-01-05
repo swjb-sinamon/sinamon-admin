@@ -1,10 +1,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import styled from 'styled-components';
-import { Heading2, Heading3 } from '../../../atomics/Typography/Heading';
-import Modal from '../../Modal';
-import showToast from '../../../utils/Toast';
-import BlankLine from '../../../utils/BlankLine';
+import { Heading2, Heading3, Modal, BlankLine, showToast } from 'sinamon-sikhye';
 
 const ReaderWrapper = styled.div`
   display: flex;
@@ -12,12 +9,12 @@ const ReaderWrapper = styled.div`
   align-items: center;
 `;
 
-interface UmbrellaReturnQRModal {
+interface UmbrellaReturnQRModalProps {
   readonly open: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   readonly onScanSuccess: (qr: string | null) => void;
 }
 
-const UmbrellaReturnQRModal: React.FC<UmbrellaReturnQRModal> = ({ open, onScanSuccess }) => {
+const UmbrellaReturnQRModal: React.FC<UmbrellaReturnQRModalProps> = ({ open, onScanSuccess }) => {
   return (
     <Modal width={450} height={450} name="ReturnQRScan" state={open}>
       <Heading2>스캔 대기 중...</Heading2>

@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { MainSideBarContainer, Heading1, Heading3, BlankLine } from 'sinamon-sikhye';
 import MainSideBar from '../../components/MainSideBar';
-import MainSideBarContainer from '../../components/MainSideBar/MainSideBarContainer';
-import { Heading1, Heading3 } from '../../atomics/Typography/Heading';
-import BlankLine from '../../utils/BlankLine';
 import UniformPersonalTable from '../../components/Uniform/UniformPersonalTable';
 import { UniformPersonalType } from '../../types/Payload';
 import Api from '../../api';

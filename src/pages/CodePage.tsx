@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CsvDownload from 'react-json-to-csv';
+import {
+  MainSideBarContainer,
+  Heading1,
+  Heading3,
+  BlankLine,
+  SCREEN_SIZE,
+  showToast,
+  MediumButton
+} from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
-import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
-import { Heading1, Heading3 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
 import Api from '../api';
-import SCREEN_SIZE from '../styles/screen-size';
-import { MediumButton } from '../atomics/Button';
 import { CodeType } from '../types/Payload';
 import CodeTable from '../components/Code/CodeTable';
-import showToast from '../utils/Toast';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -87,6 +91,10 @@ const CodePage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>인증코드 - 수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 

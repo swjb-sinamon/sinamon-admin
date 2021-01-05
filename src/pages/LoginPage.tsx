@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Heading1 } from '../atomics/Typography/Heading';
-import BlankLine from '../utils/BlankLine';
-import Label from '../atomics/Form/Label';
-import Input from '../atomics/Form/Input';
-import { MediumButton } from '../atomics/Button';
+import { Label, Heading1, Input, BlankLine, showToast, MediumButton } from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import Api from '../api';
 import ErrorMessage from '../error/ErrorMessage';
-import showToast from '../utils/Toast';
 
 const Container = styled.div`
   display: flex;
@@ -78,38 +74,44 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Container>
-      <StyledForm>
-        <div>
-          <Heading1>수정과 관리자</Heading1>
+    <>
+      <Helmet>
+        <title>로그인 - 수정과 관리자</title>
+      </Helmet>
 
-          <BlankLine gap={30} />
+      <Container>
+        <StyledForm>
+          <div>
+            <Heading1>수정과 관리자</Heading1>
 
-          <Label>아이디</Label>
-          <Input
-            placeholder="아이디"
-            type="text"
-            value={input.id}
-            onChange={(e) => onInputChange(e, 'id')}
-          />
+            <BlankLine gap={30} />
 
-          <BlankLine gap={20} />
+            <Label>아이디</Label>
+            <Input
+              placeholder="아이디"
+              type="text"
+              value={input.id}
+              onChange={(e) => onInputChange(e, 'id')}
+            />
 
-          <Label>비밀번호</Label>
-          <Input
-            placeholder="비밀번호"
-            type="password"
-            value={input.password}
-            onChange={(e) => onInputChange(e, 'password')}
-            onKeyPress={onEnterKeyPress}
-          />
+            <BlankLine gap={20} />
 
-          <BlankLine gap={30} />
+            <Label>비밀번호</Label>
+            <Input
+              placeholder="비밀번호"
+              type="password"
+              value={input.password}
+              onChange={(e) => onInputChange(e, 'password')}
+              onKeyPress={onEnterKeyPress}
+            />
 
-          <MediumButton onClick={onLoginClick}>로그인</MediumButton>
-        </div>
-      </StyledForm>
-    </Container>
+            <BlankLine gap={30} />
+
+            <MediumButton onClick={onLoginClick}>로그인</MediumButton>
+          </div>
+        </StyledForm>
+      </Container>
+    </>
   );
 };
 

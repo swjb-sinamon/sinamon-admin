@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faAward,
   faKey,
   faSignOutAlt,
-  faTshirt,
   faUmbrella,
-  faUser,
-  faTrophy
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
-import MainSideBarItem from './MainSideBarItem';
-import SCREEN_SIZE from '../../styles/screen-size';
+import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
-import showToast from '../../utils/Toast';
-import NoStyleLink from '../../atomics/NoStyleLink';
 
 const Sidebar = styled.ul`
   min-height: 100vh;
@@ -63,34 +59,18 @@ const MainSideBar: React.FC = () => {
         </NoStyleLink>
 
         <NoStyleLink to="/umbrella/manage">
-          <MainSideBarItem tabIndex={0}>
+          <MainSideBarItem>
             <FontAwesomeIcon icon={faUmbrella} />
             &nbsp;
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
-        <NoStyleLink to="/uniform">
+        <NoStyleLink to="/contest">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faTshirt} />
+            <FontAwesomeIcon icon={faAward} />
             &nbsp;
-            <p>교복데이 관리 (반)</p>
-          </MainSideBarItem>
-        </NoStyleLink>
-
-        <NoStyleLink to="/uniform/personal">
-          <MainSideBarItem>
-            <FontAwesomeIcon icon={faTshirt} />
-            &nbsp;
-            <p>교복데이 관리 (개인)</p>
-          </MainSideBarItem>
-        </NoStyleLink>
-
-        <NoStyleLink to="/uniform/prank">
-          <MainSideBarItem>
-            <FontAwesomeIcon icon={faTrophy} />
-            &nbsp;
-            <p>교복데이 관리 (개인 순위)</p>
+            <p>공모전 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 

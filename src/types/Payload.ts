@@ -61,3 +61,11 @@ export interface UniformPersonalType {
     readonly studentNumber: number;
   };
 }
+
+export interface ContestType {
+  readonly uuid: string;
+  readonly name: string;
+  readonly role: number;
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+}

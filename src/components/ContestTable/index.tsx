@@ -10,8 +10,7 @@ import {
   Table,
   TableHead
 } from 'sinamon-sikhye';
-import { ProfileType } from '../../types/Payload';
-import convertDepartmentIdToString from '../../utils/Converter/Department';
+import { ContestType } from '../../types/Payload';
 
 const ScrollContainer = styled.div`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
@@ -22,13 +21,20 @@ const ScrollContainer = styled.div`
   overflow-x: auto;
 `;
 
-interface UserTableProps {
-  readonly list: ProfileType[];
+interface ContestTableProps {
+  readonly list: ContestType[];
   readonly count: number;
   readonly onPageChange: (currentOffset: number) => void;
 }
 
-const UserTable: React.FC<UserTableProps> = ({ list, count, onPageChange }) => {
+const ContestTable: React.FC<ContestTableProps> = ({ list, count, onPageChange }) => {
+  const convertRole = (role: number) => {
+    if (role === 0) return '기획';
+    if (role === 1) return '개발';
+    if (role === 2) return '디자인';
+    return '알수없음';
+  };
+
   const pageNumber = usePagination(count, 30);
 
   return (
@@ -37,25 +43,17 @@ const UserTable: React.FC<UserTableProps> = ({ list, count, onPageChange }) => {
         <Table>
           <TableHead>
             <tr>
-              <HeaderItem>ID</HeaderItem>
               <HeaderItem>이름</HeaderItem>
-              <HeaderItem>학과</HeaderItem>
-              <HeaderItem>학년</HeaderItem>
-              <HeaderItem>반</HeaderItem>
-              <HeaderItem>번호</HeaderItem>
-              <HeaderItem>가입일</HeaderItem>
+              <HeaderItem>역할</HeaderItem>
+              <HeaderItem>신청일</HeaderItem>
             </tr>
           </TableHead>
           <tbody>
-            {list.map((item: ProfileType) => {
+            {list.map((item: ContestType) => {
               return (
-                <BodyItem key={item.uuid}>
-                  <td>{item.id}</td>
+                <BodyItem key={item.name}>
                   <td>{item.name}</td>
-                  <td>{convertDepartmentIdToString(item.department)}</td>
-                  <td>{item.studentGrade}</td>
-                  <td>{item.studentClass}</td>
-                  <td>{item.studentNumber}</td>
+                  <td>{convertRole(item.role)}</td>
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                 </BodyItem>
               );
@@ -71,4 +69,4 @@ const UserTable: React.FC<UserTableProps> = ({ list, count, onPageChange }) => {
   );
 };
 
-export default UserTable;
+export default ContestTable;

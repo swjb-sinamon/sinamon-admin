@@ -1,10 +1,5 @@
 import React from 'react';
-import { Heading2 } from '../../../atomics/Typography/Heading';
-import Input from '../../../atomics/Form/Input';
-import BlankLine from '../../../utils/BlankLine';
-import Label from '../../../atomics/Form/Label';
-import { MediumButton } from '../../../atomics/Button';
-import Modal from '../../Modal';
+import { Heading2, Input, BlankLine, Label, MediumButton, Modal } from 'sinamon-sikhye';
 
 interface UmbrellaManualModalProps {
   readonly open: [boolean, React.Dispatch<React.SetStateAction<boolean>>];

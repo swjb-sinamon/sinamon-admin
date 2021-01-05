@@ -1,10 +1,15 @@
 import React from 'react';
-import ScaleInput from '../../atomics/Form/ScaleInput';
-import { BodyItem, HeaderItem, Table, TableHead } from '../../atomics/Table';
+import {
+  ScaleInput,
+  usePagination,
+  BlankLine,
+  Pagination,
+  BodyItem,
+  HeaderItem,
+  Table,
+  TableHead
+} from 'sinamon-sikhye';
 import { UmbrellaType } from '../../types/Payload';
-import usePagination from '../../hooks/usePagination';
-import BlankLine from '../../utils/BlankLine';
-import Pagination from '../Pagination';
 
 interface UmbrellaTableProps {
   readonly umbrellaList: UmbrellaType[];

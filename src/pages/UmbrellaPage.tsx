@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import {
+  MainSideBarContainer,
+  BlankLine,
+  SCREEN_SIZE,
+  showToast,
+  MediumButton,
+  HugeButton,
+  Input,
+  Label
+} from 'sinamon-sikhye';
+import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
-import MainSideBarContainer from '../components/MainSideBar/MainSideBarContainer';
-import Input from '../atomics/Form/Input';
-import BlankLine from '../utils/BlankLine';
-import Label from '../atomics/Form/Label';
-import { HugeButton, MediumButton } from '../atomics/Button';
-import SCREEN_SIZE from '../styles/screen-size';
 import Api from '../api';
 import UmbrellaHeader from '../components/Umbrella/UmbrellaHeader';
 import UmbrellaTable from '../components/Umbrella/UmbrellaTable';
@@ -15,7 +20,6 @@ import UmbrellaQRModal from '../components/Umbrella/UmbrellaModals/UmbrellaQRMod
 import UmbrellaManualModal from '../components/Umbrella/UmbrellaModals/UmbrellaManualModal';
 import { UmbrellaType } from '../types/Payload';
 import { convertClassToDepartment, convertSchoolNumber } from '../utils/Converter/SchoolNumber';
-import showToast from '../utils/Toast';
 import UmbrellaReturnQRModal from '../components/Umbrella/UmbrellaModals/UmbrellaReturnQRModal';
 import UmbrellaReturnManualModal from '../components/Umbrella/UmbrellaModals/UmbrellaReturnManualModal';
 
@@ -182,6 +186,10 @@ const UmbrellaPage: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>우산대여 - 수정과 관리자</title>
+      </Helmet>
+
       <MainSideBarContainer>
         <MainSideBar />
 

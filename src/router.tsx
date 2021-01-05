@@ -8,9 +8,7 @@ import UmbrellaPage from './pages/UmbrellaPage';
 import UmbrellaManagePage from './pages/UmbrellaManagePage';
 import CodePage from './pages/CodePage';
 import UserPage from './pages/UserPage';
-import UniformPage from './pages/Uniform/UniformPage';
-import UniformPersonalPage from './pages/Uniform/UniformPersonalPage';
-import UniformPRankPage from './pages/Uniform/UniformPRankPage';
+import ContestPage from './pages/ContestPage';
 
 const Router: React.FC = () => {
   return (
@@ -39,22 +37,8 @@ const Router: React.FC = () => {
         />
         <PermissionRoute
           exact
-          path="/uniform"
-          success={UniformPage}
-          failure={PermissionPage}
-          permissions={['admin', 'teacher', 'schoolunion']}
-        />
-        <PermissionRoute
-          exact
-          path="/uniform/personal"
-          success={UniformPersonalPage}
-          failure={PermissionPage}
-          permissions={['admin', 'teacher', 'schoolunion']}
-        />
-        <PermissionRoute
-          exact
-          path="/uniform/prank"
-          success={UniformPRankPage}
+          path="/contest"
+          success={ContestPage}
           failure={PermissionPage}
           permissions={['admin', 'teacher', 'schoolunion']}
         />
