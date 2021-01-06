@@ -35,7 +35,7 @@ const UserPage: React.FC = () => {
 
   const onSearchSubmit = (e: React.KeyboardEvent) => {
     if (e.key !== 'Enter') return;
-    Api.get(`/auth/user?limit=10&offset=1&search=${search}`).then((res) => {
+    Api.get(`/auth/user?limit=30&offset=1&search=${search}`).then((res) => {
       setData(res.data.data);
       setCount(res.data.count);
     });
