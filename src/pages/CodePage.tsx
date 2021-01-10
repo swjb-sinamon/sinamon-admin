@@ -6,9 +6,9 @@ import {
   Heading1,
   Heading3,
   BlankLine,
-  SCREEN_SIZE,
   showToast,
-  MediumButton
+  MediumButton,
+  Label
 } from 'sinamon-sikhye';
 import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
@@ -22,8 +22,12 @@ const StyledContent = styled.div`
 
 const Header = styled.div`
   display: flex;
+  justify-content: space-between;
+`;
+
+const RightHeader = styled.div`
+  display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 
   & > button {
     margin-right: 10px;
@@ -36,9 +40,6 @@ const Header = styled.div`
 
 const StyledCreateButton = styled(MediumButton)`
   height: 40px;
-  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    margin-left: 10px;
-  }
 `;
 
 const StyledDownloadButton = styled(CsvDownload)`
@@ -104,11 +105,15 @@ const CodePage: React.FC = () => {
           <BlankLine gap={30} />
 
           <Header>
-            <StyledDownloadButton data={csvData} filename={`${csvFileName}-code.csv`}>
-              CSV 다운로드
-            </StyledDownloadButton>
-            <br />
-            <StyledCreateButton onClick={onCreateCodeClick}>인증코드 생성</StyledCreateButton>
+            <Label>전체: {count}개</Label>
+
+            <RightHeader>
+              <StyledDownloadButton data={csvData} filename={`${csvFileName}-code.csv`}>
+                CSV 다운로드
+              </StyledDownloadButton>
+              <br />
+              <StyledCreateButton onClick={onCreateCodeClick}>인증코드 생성</StyledCreateButton>
+            </RightHeader>
           </Header>
 
           <BlankLine gap={10} />
