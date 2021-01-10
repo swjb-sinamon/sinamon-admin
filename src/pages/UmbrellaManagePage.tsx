@@ -116,6 +116,10 @@ const UmbrellaManagePage: React.FC = () => {
 
           <BlankLine gap={10} />
 
+          <Label>전체: {count}개</Label>
+
+          <BlankLine gap={10} />
+
           <UmbrellaManageTable
             list={list}
             count={count}
