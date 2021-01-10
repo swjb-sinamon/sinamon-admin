@@ -185,6 +185,10 @@ const ContestPage: React.FC = () => {
 
           <BlankLine gap={10} />
 
+          <Label>전체: {count}명</Label>
+
+          <BlankLine gap={10} />
+
           <ContestTable
             list={data}
             count={count}
