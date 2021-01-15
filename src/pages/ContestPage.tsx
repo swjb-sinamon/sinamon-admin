@@ -145,6 +145,8 @@ const ContestPage: React.FC = () => {
       setSchoolNumber('');
       setInputRole('');
 
+      open[1](false);
+
       fetchMemberList(1, role);
     });
   };
