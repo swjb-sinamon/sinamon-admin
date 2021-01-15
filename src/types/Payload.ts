@@ -69,3 +69,10 @@ export interface ContestType {
   readonly createdAt: Date;
   readonly updatedAt: Date;
 }
+
+export interface SubjectType {
+  readonly id: number;
+  readonly subject: string;
+  readonly teacher: string;
+  readonly url: string;
+}
