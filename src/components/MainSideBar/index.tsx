@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faAward,
+  faAward, faCalendar,
   faKey,
   faSignOutAlt,
   faUmbrella,
@@ -71,6 +71,14 @@ const MainSideBar: React.FC = () => {
             <FontAwesomeIcon icon={faAward} />
             &nbsp;
             <p>공모전 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/timetable">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faCalendar} />
+            &nbsp;
+            <p>시간표 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
