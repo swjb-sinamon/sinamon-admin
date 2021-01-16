@@ -119,7 +119,7 @@ const TimetablePage: React.FC = () => {
     setEditModal(false);
     open[1](true);
   };
-  const onCreateButtonClick = async () => {
+  const onCreateModalButtonClick = async () => {
     if (!modalInput.subjectName.trim()) {
       showToast('과목명이 비어있습니다.', 'danger');
       return;
@@ -157,7 +157,7 @@ const TimetablePage: React.FC = () => {
     open[1](true);
   };
 
-  const onEditButtonClick = async () => {
+  const onEditModalButtonClick = async () => {
     if (!editId) return;
 
     await Api.put(`/timetable/${editId}`, {
@@ -274,7 +274,7 @@ const TimetablePage: React.FC = () => {
 
         <BlankLine gap={30} />
 
-        <MediumButton onClick={isEditModal ? onEditButtonClick : onCreateButtonClick}>
+        <MediumButton onClick={isEditModal ? onEditModalButtonClick : onCreateModalButtonClick}>
           {isEditModal ? '수정하기' : '추가하기'}
         </MediumButton>
       </Modal>
