@@ -59,7 +59,7 @@ interface ContestTableProps {
   readonly list: SubjectType[];
   readonly count: number;
   readonly onPageChange: (currentOffset: number) => void;
-  readonly onEditClick: (id: number) => void;
+  readonly onEditClick: (id: number, currentData: SubjectType) => void;
   readonly onDeleteClick: (id: number) => void;
 }
 
@@ -97,7 +97,7 @@ const TimetableTable: React.FC<ContestTableProps> = ({
                   </td>
                   <td>
                     <StyledButtonGroup>
-                      <WorkButton onClick={() => onEditClick(item.id)}>
+                      <WorkButton onClick={() => onEditClick(item.id, item)}>
                         <FontAwesomeIcon icon={faEdit} />
                       </WorkButton>
                       <WorkButton onClick={() => onDeleteClick(item.id)}>

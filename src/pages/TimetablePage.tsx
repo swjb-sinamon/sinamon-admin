@@ -74,11 +74,13 @@ const TimetablePage: React.FC = () => {
   const [search, setSearch] = useState<string>('');
 
   const open = useState<boolean>(false);
+  const [isEditModal, setEditModal] = useState<boolean>(false);
   const [modalInput, setModalInput] = useState<ModalInputState>({
     subjectName: '',
     teacher: '',
     zoom: ''
   });
+  const [editId, setEditId] = useState<number | undefined>(undefined);
 
   const onModalInputChange = (type: keyof ModalInputState) => (
     e: React.ChangeEvent<HTMLInputElement>
@@ -108,6 +110,15 @@ const TimetablePage: React.FC = () => {
 
   useEffect(() => fetchTimetable(1, ''), [fetchTimetable]);
 
+  const onCreateClick = () => {
+    setModalInput({
+      subjectName: '',
+      teacher: '',
+      zoom: ''
+    });
+    setEditModal(false);
+    open[1](true);
+  };
   const onCreateButtonClick = async () => {
     if (!modalInput.subjectName.trim()) {
       showToast('과목명이 비어있습니다.', 'danger');
@@ -131,18 +142,34 @@ const TimetablePage: React.FC = () => {
     });
 
     showToast('시간표를 추가했습니다.', 'success');
-
-    setModalInput({
-      subjectName: '',
-      teacher: '',
-      zoom: ''
-    });
     open[1](false);
-
     fetchTimetable(1, search);
   };
 
-  const onEditClick = (id: number) => {};
+  const onEditClick = (id: number, currentData: SubjectType) => {
+    setModalInput({
+      subjectName: currentData.subject,
+      teacher: currentData.teacher,
+      zoom: currentData.url
+    });
+    setEditId(id);
+    setEditModal(true);
+    open[1](true);
+  };
+
+  const onEditButtonClick = async () => {
+    if (!editId) return;
+
+    await Api.put(`/timetable/${editId}`, {
+      subject: modalInput.subjectName,
+      teacher: modalInput.teacher,
+      url: modalInput.zoom
+    });
+
+    showToast('시간표를 수정했습니다.', 'success');
+    open[1](false);
+    fetchTimetable(1, search);
+  };
 
   const onDeleteClick = async (id: number) => {
     const state = await swal({
@@ -156,7 +183,7 @@ const TimetablePage: React.FC = () => {
     if (!state) return;
     await Api.delete(`/timetable/${id}`);
     fetchTimetable(1, search);
-    showToast('삭제되었습니다!', 'success');
+    showToast('시간표가 삭제되었습니다.', 'success');
   };
 
   return (
@@ -190,7 +217,7 @@ const TimetablePage: React.FC = () => {
               />
             </LeftHeader>
 
-            <StyledCreateButton onClick={() => open[1](true)}>추가하기</StyledCreateButton>
+            <StyledCreateButton onClick={onCreateClick}>추가하기</StyledCreateButton>
           </Header>
 
           <BlankLine gap={10} />
@@ -210,7 +237,7 @@ const TimetablePage: React.FC = () => {
       </MainSideBarContainer>
 
       <Modal width={450} height={450} name="AddTimetable" state={open}>
-        <Heading2>시간표 추가하기</Heading2>
+        <Heading2>시간표 {isEditModal ? '수정하기' : '추가하기'}</Heading2>
         <BlankLine gap={10} />
 
         <Label>
@@ -247,7 +274,9 @@ const TimetablePage: React.FC = () => {
 
         <BlankLine gap={30} />
 
-        <MediumButton onClick={onCreateButtonClick}>추가하기</MediumButton>
+        <MediumButton onClick={isEditModal ? onEditButtonClick : onCreateButtonClick}>
+          {isEditModal ? '수정하기' : '추가하기'}
+        </MediumButton>
       </Modal>
     </>
   );
