@@ -205,8 +205,8 @@ const TimetablePage: React.FC = () => {
           <Header>
             <LeftHeader>
               <StyledSelect value={searchType} onChange={(e) => setSearchType(e.target.value)}>
-                <option value="subject">과목명</option>
-                <option value="teacher">선생님</option>
+                <option value="subject">과목명으로 검색</option>
+                <option value="teacher">선생님으로 검색</option>
               </StyledSelect>
               <StyledInput
                 type="text"
