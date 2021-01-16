@@ -47,6 +47,14 @@ const WorkButton = styled.button`
   }
 `;
 
+const StyledButtonGroup = styled(ButtonGroup)`
+  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_MOBILE}) {
+    & button {
+      margin-right: 0;
+    }
+  }
+`;
+
 interface ContestTableProps {
   readonly list: SubjectType[];
   readonly count: number;
@@ -55,7 +63,13 @@ interface ContestTableProps {
   readonly onDeleteClick: (id: number) => void;
 }
 
-const TimetableTable: React.FC<ContestTableProps> = ({ list, count, onPageChange, onEditClick, onDeleteClick }) => {
+const TimetableTable: React.FC<ContestTableProps> = ({
+  list,
+  count,
+  onPageChange,
+  onEditClick,
+  onDeleteClick
+}) => {
   const pageNumber = usePagination(count, 30);
 
   return (
@@ -82,14 +96,14 @@ const TimetableTable: React.FC<ContestTableProps> = ({ list, count, onPageChange
                     </StyledA>
                   </td>
                   <td>
-                    <ButtonGroup>
+                    <StyledButtonGroup>
                       <WorkButton onClick={() => onEditClick(item.id)}>
                         <FontAwesomeIcon icon={faEdit} />
                       </WorkButton>
                       <WorkButton onClick={() => onDeleteClick(item.id)}>
                         <FontAwesomeIcon icon={faTrash} />
                       </WorkButton>
-                    </ButtonGroup>
+                    </StyledButtonGroup>
                   </td>
                 </BodyItem>
               );
