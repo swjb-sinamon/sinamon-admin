@@ -53,22 +53,14 @@ const UmbrellaManagePage: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [type, setType] = useState<string>('good');
 
-  const fetchUmbrellaList = (page: number) => {
-    Api.get(`/umbrella/all?limit=10&offset=${page}`).then((res) => {
+  const fetchUmbrellaList = (page: number, _search: string) => {
+    Api.get(`/umbrella/all?limit=10&offset=${page}&search=${_search}`).then((res) => {
       setList(res.data.data);
       setCount(res.data.count);
     });
   };
 
-  useEffect(() => fetchUmbrellaList(1), []);
-
-  const onSearchSubmit = (e: React.KeyboardEvent) => {
-    if (e.key !== 'Enter') return;
-    Api.get(`/umbrella/all?limit=10&offset=1&search=${search}`).then((res) => {
-      setList(res.data.data);
-      setCount(res.data.count);
-    });
-  };
+  useEffect(() => fetchUmbrellaList(1, ''), []);
 
   const onCreateButtonClick = () => {
     if (name.trim() === '' || type.trim() === '') {
@@ -85,7 +77,7 @@ const UmbrellaManagePage: React.FC = () => {
       setName('');
       setType('good');
 
-      fetchUmbrellaList(1);
+      fetchUmbrellaList(1, search);
     });
   };
 
@@ -107,7 +99,9 @@ const UmbrellaManagePage: React.FC = () => {
             <StyledInput
               type="text"
               placeholder="엔터를 눌러 우산 이름 검색하기"
-              onKeyPress={onSearchSubmit}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') fetchUmbrellaList(1, search);
+              }}
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
@@ -123,7 +117,7 @@ const UmbrellaManagePage: React.FC = () => {
           <UmbrellaManageTable
             list={list}
             count={count}
-            onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset)}
+            onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset, search)}
           />
         </StyledContent>
       </MainSideBarContainer>
