@@ -142,17 +142,17 @@ const UmbrellaPage: React.FC = () => {
     const { grade, class: clazz, number } = convertSchoolNumber(manualSchoolNumber[0]);
 
     if (!name.trim()) {
-      showToast('❗ 이름 칸이 비어있습니다.', 'danger');
+      showToast('이름 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (!manualSchoolNumber[0].trim()) {
-      showToast('❗ 학번 칸이 비어있습니다.', 'danger');
+      showToast('학번 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (manualSchoolNumber[0].length !== 5) {
-      showToast('❗ 학번 형식이 잘못돼었습니다.', 'danger');
+      showToast('학번 형식이 잘못돼었습니다.', 'danger');
       return;
     }
 
@@ -168,7 +168,7 @@ const UmbrellaPage: React.FC = () => {
       umbrellaName: currentUmbrella.name
     }).then(() => {
       manualOpen[1](false);
-      showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
+      showToast('성공적으로 우산을 대여했습니다.', 'success');
       fetchUmbrellaList(1, search);
     });
 

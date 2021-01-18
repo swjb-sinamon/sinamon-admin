@@ -25,7 +25,7 @@ const UmbrellaReturnQRModal: React.FC<UmbrellaReturnQRModalProps> = ({ open, onS
           onScan={onScanSuccess}
           onError={(e) => {
             if (e.message === 'Permission denied') {
-              showToast('❗ 카메라 권한 허용이 필요합니다.', 'danger');
+              showToast('카메라 권한 허용이 필요합니다.', 'danger');
             }
           }}
           style={{ width: '250px' }}

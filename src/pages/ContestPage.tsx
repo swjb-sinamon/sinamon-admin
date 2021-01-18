@@ -101,22 +101,22 @@ const ContestPage: React.FC = () => {
 
   const onCreateButtonClick = () => {
     if (!name.trim()) {
-      showToast('❗ 이름 칸이 비어있습니다.', 'danger');
+      showToast('이름 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (!schoolNumber.trim()) {
-      showToast('❗ 학번 칸이 비어있습니다.', 'danger');
+      showToast('학번 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (schoolNumber.length !== 5) {
-      showToast('❗ 학번 형식이 잘못돼었습니다.', 'danger');
+      showToast('학번 형식이 잘못돼었습니다.', 'danger');
       return;
     }
 
     if (!inputRole.trim()) {
-      showToast('❗ 역할을 선택해주세요.', 'danger');
+      showToast('역할을 선택해주세요.', 'danger');
       return;
     }
 
@@ -131,7 +131,7 @@ const ContestPage: React.FC = () => {
       number,
       role: inputRole
     }).then(() => {
-      showToast(`🏅 ${name}님의 참가 신청이 완료되었습니다!`, 'success');
+      showToast(`${name}님의 참가 신청이 완료되었습니다!`, 'success');
 
       setName('');
       setSchoolNumber('');
