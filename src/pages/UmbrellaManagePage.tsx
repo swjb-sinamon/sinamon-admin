@@ -64,7 +64,7 @@ const UmbrellaManagePage: React.FC = () => {
 
   const onCreateButtonClick = () => {
     if (name.trim() === '' || type.trim() === '') {
-      showToast('❗ 빈칸이 있습니다.', 'danger');
+      showToast('빈칸이 있습니다.', 'danger');
       return;
     }
 
@@ -72,7 +72,7 @@ const UmbrellaManagePage: React.FC = () => {
       name,
       status: type
     }).then(() => {
-      showToast('🌂 우산이 추가되었습니다.', 'success');
+      showToast('우산이 추가되었습니다.', 'success');
       open[1](false);
       setName('');
       setType('good');

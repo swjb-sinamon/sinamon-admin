@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
 
   const onLoginClick = async () => {
     if (input.id.trim() === '' || input.password.trim() === '') {
-      showToast('❗ 아이디 또는 비밀번호가 빈칸입니다.', 'danger');
+      showToast('아이디 또는 비밀번호가 빈칸입니다.', 'danger');
       return;
     }
 
@@ -50,7 +50,7 @@ const LoginPage: React.FC = () => {
         password: input.password
       });
 
-      showToast('🎉 로그인 성공! 메인 페이지로 이동합니다.', 'success');
+      showToast('로그인 성공! 메인 페이지로 이동합니다.', 'success');
       window.location.reload();
     } catch (e) {
       if (!e.response.data) return;
@@ -58,13 +58,13 @@ const LoginPage: React.FC = () => {
       if (success || !error) return;
 
       if (error === ErrorMessage.USER_NOT_FOUND) {
-        showToast('💡 존재하지 않는 아이디이거나 잘못된 비밀번호입니다.', 'warning');
+        showToast('존재하지 않는 아이디이거나 잘못된 비밀번호입니다.', 'warning');
         setInput({ id: '', password: '' });
         return;
       }
 
       if (error === ErrorMessage.NO_PERMISSION) {
-        showToast('💡 관리자만 접근 가능한 페이지입니다.', 'warning');
+        showToast('관리자만 접근 가능한 페이지입니다.', 'warning');
       }
     }
   };
