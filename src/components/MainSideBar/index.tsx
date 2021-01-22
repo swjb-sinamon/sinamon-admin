@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAward, faCalendar, faKey, faUmbrella, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAward,
+  faCalendarWeek,
+  faKey,
+  faUmbrella,
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
 import {
   MainSideBarItem,
   NoStyleLink,
   SCREEN_SIZE,
   showToast,
+  SideBarIconWrapper,
   SideBarItemList
 } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
@@ -69,48 +76,54 @@ const MainSideBar: React.FC = () => {
       <SideBarItemList isOpen={isOpen}>
         <NoStyleLink to="/umbrella">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faUmbrella} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faUmbrella} size="lg" />
+            </SideBarIconWrapper>
             <p>우산대여</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/umbrella/manage">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faUmbrella} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faUmbrella} size="lg" />
+            </SideBarIconWrapper>
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/contest">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faAward} />
-            &nbsp;
-            <p>공모전 관리</p>
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faAward} size="lg" />
+            </SideBarIconWrapper>
+            <p>학생협업공모전 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/timetable">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faCalendar} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faCalendarWeek} size="lg" />
+            </SideBarIconWrapper>
             <p>시간표 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/code">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faKey} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faKey} size="lg" />
+            </SideBarIconWrapper>
             <p>인증코드 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/user">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faUser} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faUser} size="lg" />
+            </SideBarIconWrapper>
             <p>사용자 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
