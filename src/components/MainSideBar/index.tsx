@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faCalendar, faKey, faUmbrella, faUser } from '@fortawesome/free-solid-svg-icons';
-import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
+import {
+  MainSideBarItem,
+  NoStyleLink,
+  SCREEN_SIZE,
+  showToast,
+  SideBarItemList
+} from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
 
@@ -18,13 +24,6 @@ const Sidebar = styled.ul`
 
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
     min-height: 4rem;
-  }
-`;
-
-const ItemList = styled.ul<{ isOpen: boolean }>`
-  display: block;
-  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    display: ${(props) => (props.isOpen ? 'block' : 'none')};
   }
 `;
 
@@ -67,7 +66,7 @@ const MainSideBar: React.FC = () => {
     <Sidebar>
       <MainTitleBar setOpen={setOpen} />
 
-      <ItemList isOpen={isOpen}>
+      <SideBarItemList isOpen={isOpen}>
         <NoStyleLink to="/umbrella">
           <MainSideBarItem>
             <FontAwesomeIcon icon={faUmbrella} />
@@ -119,7 +118,7 @@ const MainSideBar: React.FC = () => {
         <StyledFooterText>
           <FooterButton onClick={onLogoutClick}>로그아웃</FooterButton>
         </StyledFooterText>
-      </ItemList>
+      </SideBarItemList>
     </Sidebar>
   );
 };
