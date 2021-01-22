@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAward,
-  faCalendar,
-  faKey,
-  faSignOutAlt,
-  faUmbrella,
-  faUser
-} from '@fortawesome/free-solid-svg-icons';
+import { faAward, faCalendar, faKey, faUmbrella, faUser } from '@fortawesome/free-solid-svg-icons';
 import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
@@ -32,6 +25,30 @@ const ItemList = styled.ul<{ isOpen: boolean }>`
   display: block;
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
     display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  }
+`;
+
+const StyledFooterText = styled.p`
+  text-align: center;
+
+  margin: 1rem 0;
+
+  color: var(--color-subtext);
+`;
+
+const FooterButton = styled.button`
+  border: none;
+  background-color: transparent;
+
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--color-subtext);
+
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--color-button-hover);
   }
 `;
 
@@ -99,11 +116,9 @@ const MainSideBar: React.FC = () => {
           </MainSideBarItem>
         </NoStyleLink>
 
-        <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
-          <FontAwesomeIcon icon={faSignOutAlt} />
-          &nbsp;
-          <p>로그아웃</p>
-        </MainSideBarItem>
+        <StyledFooterText>
+          <FooterButton onClick={onLogoutClick}>로그아웃</FooterButton>
+        </StyledFooterText>
       </ItemList>
     </Sidebar>
   );
