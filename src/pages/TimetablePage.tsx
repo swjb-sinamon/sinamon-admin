@@ -136,8 +136,8 @@ const TimetablePage: React.FC = () => {
     }
 
     await Api.post('/timetable', {
-      subject: modalInput.subjectName,
-      teacher: modalInput.teacher,
+      subject: modalInput.subjectName.trim(),
+      teacher: modalInput.teacher.trim(),
       url: modalInput.zoom
     });
 
@@ -161,8 +161,8 @@ const TimetablePage: React.FC = () => {
     if (!editId) return;
 
     await Api.put(`/timetable/${editId}`, {
-      subject: modalInput.subjectName,
-      teacher: modalInput.teacher,
+      subject: modalInput.subjectName.trim(),
+      teacher: modalInput.teacher.trim(),
       url: modalInput.zoom
     });
 
