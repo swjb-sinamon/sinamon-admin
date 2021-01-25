@@ -16,6 +16,7 @@ import {
   SideBarIconWrapper,
   SideBarItemList
 } from 'sinamon-sikhye';
+import { useHistory } from 'react-router-dom';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
 
@@ -59,6 +60,7 @@ const FooterButton = styled.button`
 `;
 
 const MainSideBar: React.FC = () => {
+  const history = useHistory();
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const onLogoutClick = async () => {
@@ -66,6 +68,8 @@ const MainSideBar: React.FC = () => {
     if (!isLogout) return;
     await Api.delete('/auth/logout');
     showToast('다음에 또 찾아와주세요!', 'success');
+
+    history.push('/');
     window.location.reload();
   };
 
