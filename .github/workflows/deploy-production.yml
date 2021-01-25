@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - release
+      - main
 
 jobs:
   deploy-production:
@@ -47,11 +47,11 @@ jobs:
         if: success()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: "🎉 프로덕션 관리자 사이트가 배포되었습니다! https://admin.sinamon.info"
+          description: "🚀 수정과 관리자가 배포되었습니다! https://admin.sinamon.info"
 
       - name: Discord Alert Failure
         uses: sarisia/actions-status-discord@v1
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: "🔥 프로덕션 관리자 사이트 배포를 실패하였습니다."
+          description: "🔥 수정과 관리자 배포를 실패하였습니다."

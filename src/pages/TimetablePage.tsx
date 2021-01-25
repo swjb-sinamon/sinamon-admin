@@ -94,12 +94,14 @@ const TimetablePage: React.FC = () => {
 
   const fetchTimetable = useCallback(
     (page: number, _search: string) => {
-      Api.get(`/timetable?limit=30&page=${page}&key=${searchType}&query=${_search}`).then((res) => {
-        if (res.data && res.data.success) {
-          setData(res.data.data);
-          setCount(res.data.count);
+      Api.get(`/timetable?limit=30&page=${page}&key=${searchType}&search=${_search}`).then(
+        (res) => {
+          if (res.data && res.data.success) {
+            setData(res.data.data);
+            setCount(res.data.count);
+          }
         }
-      });
+      );
     },
     [searchType]
   );
@@ -136,8 +138,8 @@ const TimetablePage: React.FC = () => {
     }
 
     await Api.post('/timetable', {
-      subject: modalInput.subjectName,
-      teacher: modalInput.teacher,
+      subject: modalInput.subjectName.trim(),
+      teacher: modalInput.teacher.trim(),
       url: modalInput.zoom
     });
 
@@ -161,8 +163,8 @@ const TimetablePage: React.FC = () => {
     if (!editId) return;
 
     await Api.put(`/timetable/${editId}`, {
-      subject: modalInput.subjectName,
-      teacher: modalInput.teacher,
+      subject: modalInput.subjectName.trim(),
+      teacher: modalInput.teacher.trim(),
       url: modalInput.zoom
     });
 

@@ -3,13 +3,20 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faAward,
-  faCalendar,
+  faCalendarWeek,
   faKey,
-  faSignOutAlt,
   faUmbrella,
   faUser
 } from '@fortawesome/free-solid-svg-icons';
-import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
+import {
+  MainSideBarItem,
+  NoStyleLink,
+  SCREEN_SIZE,
+  showToast,
+  SideBarIconWrapper,
+  SideBarItemList
+} from 'sinamon-sikhye';
+import { useHistory } from 'react-router-dom';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
 
@@ -28,14 +35,32 @@ const Sidebar = styled.ul`
   }
 `;
 
-const ItemList = styled.ul<{ isOpen: boolean }>`
-  display: block;
-  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    display: ${(props) => (props.isOpen ? 'block' : 'none')};
+const StyledFooterText = styled.p`
+  text-align: center;
+
+  margin: 1rem 0;
+
+  color: var(--color-subtext);
+`;
+
+const FooterButton = styled.button`
+  border: none;
+  background-color: transparent;
+
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--color-subtext);
+
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--color-button-hover);
   }
 `;
 
 const MainSideBar: React.FC = () => {
+  const history = useHistory();
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const onLogoutClick = async () => {
@@ -43,6 +68,8 @@ const MainSideBar: React.FC = () => {
     if (!isLogout) return;
     await Api.delete('/auth/logout');
     showToast('다음에 또 찾아와주세요!', 'success');
+
+    history.push('/');
     window.location.reload();
   };
 
@@ -50,61 +77,65 @@ const MainSideBar: React.FC = () => {
     <Sidebar>
       <MainTitleBar setOpen={setOpen} />
 
-      <ItemList isOpen={isOpen}>
+      <SideBarItemList isOpen={isOpen}>
         <NoStyleLink to="/umbrella">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faUmbrella} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faUmbrella} size="lg" />
+            </SideBarIconWrapper>
             <p>우산대여</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/umbrella/manage">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faUmbrella} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faUmbrella} size="lg" />
+            </SideBarIconWrapper>
             <p>우산 목록 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/contest">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faAward} />
-            &nbsp;
-            <p>공모전 관리</p>
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faAward} size="lg" />
+            </SideBarIconWrapper>
+            <p>학생협업공모전 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/timetable">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faCalendar} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faCalendarWeek} size="lg" />
+            </SideBarIconWrapper>
             <p>시간표 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/code">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faKey} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faKey} size="lg" />
+            </SideBarIconWrapper>
             <p>인증코드 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
         <NoStyleLink to="/user">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faUser} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faUser} size="lg" />
+            </SideBarIconWrapper>
             <p>사용자 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
-        <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
-          <FontAwesomeIcon icon={faSignOutAlt} />
-          &nbsp;
-          <p>로그아웃</p>
-        </MainSideBarItem>
-      </ItemList>
+        <StyledFooterText>
+          <FooterButton onClick={onLogoutClick}>로그아웃</FooterButton>
+        </StyledFooterText>
+      </SideBarItemList>
     </Sidebar>
   );
 };
