@@ -6,7 +6,8 @@ import {
   faKey,
   faSignOutAlt,
   faUmbrella,
-  faUser
+  faUser,
+  faBullhorn
 } from '@fortawesome/free-solid-svg-icons';
 import { MainSideBarItem, NoStyleLink, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
 import MainTitleBar from '../MainTitleBar';
@@ -87,6 +88,14 @@ const MainSideBar: React.FC = () => {
             <FontAwesomeIcon icon={faUser} />
             &nbsp;
             <p>사용자 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/notice">
+          <MainSideBarItem>
+            <FontAwesomeIcon icon={faBullhorn} />
+            &nbsp;
+            <p>공지사항 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
