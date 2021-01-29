@@ -9,11 +9,19 @@ import UmbrellaManagePage from './pages/UmbrellaManagePage';
 import CodePage from './pages/CodePage';
 import UserPage from './pages/UserPage';
 import ContestPage from './pages/ContestPage';
+import NoticePage from './pages/NoticePage';
 
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <PermissionRoute
+          exact
+          path="/notice"
+          success={NoticePage}
+          failure={() => <Redirect to="/login" />}
+          permissions={['admin', 'teacher', 'schoolunion']}
+        />
         <PermissionRoute
           exact
           path="/"
