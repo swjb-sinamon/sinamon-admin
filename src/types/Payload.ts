@@ -8,7 +8,6 @@ export interface ProfileType {
   readonly studentNumber: number;
   readonly createdAt: string;
   readonly updatedAt: string;
-  readonly deletedAt?: string;
   readonly permission: {
     readonly isAdmin: boolean;
     readonly isTeacher: boolean;
@@ -68,4 +67,11 @@ export interface ContestType {
   readonly role: number;
   readonly createdAt: Date;
   readonly updatedAt: Date;
+}
+
+export interface SubjectType {
+  readonly id: number;
+  readonly subject: string;
+  readonly teacher: string;
+  readonly url: string;
 }

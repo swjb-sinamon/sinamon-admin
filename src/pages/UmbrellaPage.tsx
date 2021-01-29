@@ -50,22 +50,14 @@ const UmbrellaPage: React.FC = () => {
   const manualName = useState<string>('');
   const manualSchoolNumber = useState<string>('');
 
-  const fetchUmbrellaList = (page: number) => {
-    Api.get(`/umbrella?limit=10&offset=${page}`).then((res) => {
+  const fetchUmbrellaList = (page: number, _search: string) => {
+    Api.get(`/umbrella?limit=10&offset=${page}&search=${_search}`).then((res) => {
       setData(res.data.data);
       setCount(res.data.count);
     });
   };
 
-  useEffect(() => fetchUmbrellaList(1), []);
-
-  const onSearchSubmit = (e: React.KeyboardEvent) => {
-    if (e.key !== 'Enter') return;
-    Api.get(`/umbrella?limit=10&offset=1&search=${search}`).then((res) => {
-      setData(res.data.data);
-      setCount(res.data.count);
-    });
-  };
+  useEffect(() => fetchUmbrellaList(1, ''), []);
 
   const onQRScanClick = () => {
     if (!currentUmbrella) {
@@ -92,7 +84,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       returnQrOpen[1](false);
       showToast('🌂 성공적으로 우산을 반납했습니다.', 'success');
-      fetchUmbrellaList(1);
+      fetchUmbrellaList(1, search);
     });
   };
 
@@ -126,7 +118,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       returnManualOpen[1](false);
       showToast('🌂 성공적으로 우산을 반납했습니다.', 'success');
-      fetchUmbrellaList(1);
+      fetchUmbrellaList(1, search);
     });
 
     returnManualName[1]('');
@@ -141,7 +133,7 @@ const UmbrellaPage: React.FC = () => {
     }).then(() => {
       qrOpen[1](false);
       showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
-      fetchUmbrellaList(1);
+      fetchUmbrellaList(1, search);
     });
   };
 
@@ -150,17 +142,17 @@ const UmbrellaPage: React.FC = () => {
     const { grade, class: clazz, number } = convertSchoolNumber(manualSchoolNumber[0]);
 
     if (!name.trim()) {
-      showToast('❗ 이름 칸이 비어있습니다.', 'danger');
+      showToast('이름 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (!manualSchoolNumber[0].trim()) {
-      showToast('❗ 학번 칸이 비어있습니다.', 'danger');
+      showToast('학번 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (manualSchoolNumber[0].length !== 5) {
-      showToast('❗ 학번 형식이 잘못돼었습니다.', 'danger');
+      showToast('학번 형식이 잘못돼었습니다.', 'danger');
       return;
     }
 
@@ -176,8 +168,8 @@ const UmbrellaPage: React.FC = () => {
       umbrellaName: currentUmbrella.name
     }).then(() => {
       manualOpen[1](false);
-      showToast('🌂 성공적으로 우산을 대여했습니다.', 'success');
-      fetchUmbrellaList(1);
+      showToast('성공적으로 우산을 대여했습니다.', 'success');
+      fetchUmbrellaList(1, search);
     });
 
     manualName[1]('');
@@ -205,7 +197,9 @@ const UmbrellaPage: React.FC = () => {
           <StyledInput
             type="text"
             placeholder="엔터를 눌러 우산 이름 검색하기"
-            onKeyPress={onSearchSubmit}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') fetchUmbrellaList(1, search);
+            }}
             onChange={(e) => setSearch(e.target.value)}
             value={search}
           />
@@ -216,7 +210,7 @@ const UmbrellaPage: React.FC = () => {
             umbrellaList={data}
             onRadioChange={(inputData) => setCurrentUmbrella(inputData)}
             count={count}
-            onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset)}
+            onPageChange={(currentOffset) => fetchUmbrellaList(currentOffset, search)}
           />
 
           <BlankLine gap={30} />

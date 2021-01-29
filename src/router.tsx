@@ -9,6 +9,7 @@ import UmbrellaManagePage from './pages/UmbrellaManagePage';
 import CodePage from './pages/CodePage';
 import UserPage from './pages/UserPage';
 import ContestPage from './pages/ContestPage';
+import TimetablePage from './pages/TimetablePage';
 import NoticePage from './pages/NoticePage';
 
 const Router: React.FC = () => {
@@ -42,6 +43,13 @@ const Router: React.FC = () => {
           success={ContestPage}
           failure={PermissionPage}
           permissions={['admin', 'teacher', 'schoolunion']}
+        />
+        <PermissionRoute
+          exact
+          path="/timetable"
+          success={TimetablePage}
+          failure={PermissionPage}
+          permissions={['admin', 'teacher']}
         />
         <PermissionRoute
           exact

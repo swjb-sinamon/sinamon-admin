@@ -93,12 +93,12 @@ const UniformPersonalPage: React.FC = () => {
 
   const checkInput = () => {
     if (!name.trim()) {
-      showToast('❗ 이름 칸이 비어있습니다.', 'danger');
+      showToast('이름 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (!schoolNumber.trim()) {
-      showToast('❗ 학번 칸이 비어있습니다.', 'danger');
+      showToast('학번 칸이 비어있습니다.', 'danger');
     }
   };
 

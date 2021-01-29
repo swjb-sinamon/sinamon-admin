@@ -83,9 +83,9 @@ const ContestPage: React.FC = () => {
   const [schoolNumber, setSchoolNumber] = useState<string>('');
   const [inputRole, setInputRole] = useState<string>('');
 
-  const fetchMemberList = useCallback((page: number, _role: string) => {
+  const fetchMemberList = useCallback((page: number, _role: string, _search: string) => {
     const roleQuery = _role === '' ? '' : `role=${_role}`;
-    Api.get(`/contest?limit=30&page=${page}&${roleQuery}`).then((res) => {
+    Api.get(`/contest?limit=30&page=${page}&${roleQuery}&search=${_search}`).then((res) => {
       if (res.data && res.data.success) {
         setData(res.data.data);
         setCount(res.data.count);
@@ -93,38 +93,30 @@ const ContestPage: React.FC = () => {
     });
   }, []);
 
-  useEffect(() => fetchMemberList(1, role), [fetchMemberList, role]);
+  useEffect(() => fetchMemberList(1, role, ''), [fetchMemberList, role]);
 
   const onSearchSubmit = (e: React.KeyboardEvent) => {
-    if (e.key !== 'Enter') return;
-
-    const roleQuery = role === '' ? '' : `role=${role}`;
-    Api.get(`/contest?limit=30&page=1&${roleQuery}&search=${search}`).then((res) => {
-      if (res.data && res.data.success) {
-        setData(res.data.data);
-        setCount(res.data.count);
-      }
-    });
+    if (e.key === 'Enter') fetchMemberList(1, role, search);
   };
 
   const onCreateButtonClick = () => {
     if (!name.trim()) {
-      showToast('❗ 이름 칸이 비어있습니다.', 'danger');
+      showToast('이름 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (!schoolNumber.trim()) {
-      showToast('❗ 학번 칸이 비어있습니다.', 'danger');
+      showToast('학번 칸이 비어있습니다.', 'danger');
       return;
     }
 
     if (schoolNumber.length !== 5) {
-      showToast('❗ 학번 형식이 잘못돼었습니다.', 'danger');
+      showToast('학번 형식이 잘못돼었습니다.', 'danger');
       return;
     }
 
     if (!inputRole.trim()) {
-      showToast('❗ 역할을 선택해주세요.', 'danger');
+      showToast('역할을 선택해주세요.', 'danger');
       return;
     }
 
@@ -139,13 +131,15 @@ const ContestPage: React.FC = () => {
       number,
       role: inputRole
     }).then(() => {
-      showToast(`🏅 ${name}님의 참가 신청이 완료되었습니다!`, 'success');
+      showToast(`${name}님의 참가 신청이 완료되었습니다!`, 'success');
 
       setName('');
       setSchoolNumber('');
       setInputRole('');
 
-      fetchMemberList(1, role);
+      open[1](false);
+
+      fetchMemberList(1, role, search);
     });
   };
 
@@ -192,7 +186,7 @@ const ContestPage: React.FC = () => {
           <ContestTable
             list={data}
             count={count}
-            onPageChange={(currentOffset) => fetchMemberList(currentOffset, role)}
+            onPageChange={(currentOffset) => fetchMemberList(currentOffset, role, search)}
           />
         </StyledContent>
       </MainSideBarContainer>
