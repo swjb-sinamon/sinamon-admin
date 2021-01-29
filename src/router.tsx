@@ -17,13 +17,6 @@ const Router: React.FC = () => {
       <Switch>
         <PermissionRoute
           exact
-          path="/notice"
-          success={NoticePage}
-          failure={() => <Redirect to="/login" />}
-          permissions={['admin', 'teacher', 'schoolunion']}
-        />
-        <PermissionRoute
-          exact
           path="/"
           success={MainPage}
           failure={() => <Redirect to="/login" />}
@@ -63,6 +56,13 @@ const Router: React.FC = () => {
           success={UserPage}
           failure={PermissionPage}
           permissions={['admin', 'teacher']}
+        />
+        <PermissionRoute
+          exact
+          path="/notice"
+          success={NoticePage}
+          failure={() => <Redirect to="/login" />}
+          permissions={['admin', 'teacher', 'schoolunion']}
         />
         <PermissionRoute
           exact
