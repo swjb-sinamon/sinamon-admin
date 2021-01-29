@@ -61,7 +61,7 @@ const Router: React.FC = () => {
           exact
           path="/notice"
           success={NoticePage}
-          failure={() => <Redirect to="/login" />}
+          failure={PermissionPage}
           permissions={['admin', 'teacher', 'schoolunion']}
         />
         <PermissionRoute
