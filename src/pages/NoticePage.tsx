@@ -57,7 +57,7 @@ const NoticePage: React.FC = () => {
 
   const onModClick = () => {
     if (notice.trim() === '') {
-      showToast('❗ 내용을 채워주세요!', 'danger');
+      showToast('내용을 채워주세요!', 'danger');
       return;
     }
     Api.put('/notice', {

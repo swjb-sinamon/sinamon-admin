@@ -135,12 +135,13 @@ const MainSideBar: React.FC = () => {
 
         <NoStyleLink to="/notice">
           <MainSideBarItem>
-            <FontAwesomeIcon icon={faBullhorn} />
-            &nbsp;
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faBullhorn} />
+            </SideBarIconWrapper>
             <p>공지사항 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
-        
+
         <StyledFooterText>
           <FooterButton onClick={onLogoutClick}>로그아웃</FooterButton>
         </StyledFooterText>
