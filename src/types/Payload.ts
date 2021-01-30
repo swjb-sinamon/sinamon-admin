@@ -8,7 +8,6 @@ export interface ProfileType {
   readonly studentNumber: number;
   readonly createdAt: string;
   readonly updatedAt: string;
-  readonly deletedAt?: string;
   readonly permission: {
     readonly isAdmin: boolean;
     readonly isTeacher: boolean;
