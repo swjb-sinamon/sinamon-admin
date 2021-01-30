@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import {
   BlankLine,
   Heading1,
+  Heading2,
   Heading3,
   Label,
   MainSideBarContainer,
@@ -113,7 +114,7 @@ const NoticePage: React.FC = () => {
           
           <BlankLine gap={20} />
           
-          <Heading3>미리보기 (적용화면)</Heading3>
+          <Heading2>미리보기 (적용화면)</Heading2>
           <Label>모바일 버전에서는 정확한 미리보기가 불가능 할 수 있습니다.</Label>
           <BlankLine gap={10} />
           
