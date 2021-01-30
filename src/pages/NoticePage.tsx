@@ -14,6 +14,7 @@ import {
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import NoticePreview from '../components/Notice/NoticePreview';
+import ErrorMessage from '../error/ErrorMessage';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -53,18 +54,29 @@ const NoticePage: React.FC = () => {
       if (res.data && res.data.success) setNotice(res.data.data);
     });
   }, []);
-
-  const onModClick = () => {
+  
+  const onModClick = async () => {
     if (notice.trim() === '') {
       showToast('내용을 채워주세요!', 'danger');
       return;
     }
-    Api.put('/notice', {
-      notice
-    });
-    showToast('성공적으로 공지사항이 수정되었습니다!', 'success');
+    
+    try {
+      await Api.put('/notice', {
+        notice
+      });
+      showToast('성공적으로 공지사항이 수정되었습니다!', 'success');
+    } catch (e) {
+      if (!e.response.data) return;
+      const { success, error } = e.response.data;
+      if (success || !error) return;
+      
+      if (error === ErrorMessage.NO_PERMISSION) {
+        showToast('관리자만 접근 가능한 페이지입니다.', 'warning');
+      }
+    }
   };
-
+  
   return (
     <>
       <Helmet>
