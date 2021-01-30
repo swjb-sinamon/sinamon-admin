@@ -6,7 +6,8 @@ import {
   faCalendarWeek,
   faKey,
   faUmbrella,
-  faUser
+  faUser,
+  faBullhorn
 } from '@fortawesome/free-solid-svg-icons';
 import {
   MainSideBarItem,
@@ -129,6 +130,15 @@ const MainSideBar: React.FC = () => {
               <FontAwesomeIcon icon={faUser} size="lg" />
             </SideBarIconWrapper>
             <p>사용자 관리</p>
+          </MainSideBarItem>
+        </NoStyleLink>
+
+        <NoStyleLink to="/notice">
+          <MainSideBarItem>
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faBullhorn} />
+            </SideBarIconWrapper>
+            <p>공지사항 관리</p>
           </MainSideBarItem>
         </NoStyleLink>
 
