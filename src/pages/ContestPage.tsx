@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   BlankLine,
+  ButtonGroup,
   Heading1,
   Heading2,
   Heading3,
@@ -19,8 +20,9 @@ import { Helmet } from 'react-helmet';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import { ContestType } from '../types/Payload';
-import ContestTable from '../components/ContestTable';
+import ContestTable from '../components/Contest';
 import { convertClassToDepartment, convertSchoolNumber } from '../utils/Converter/SchoolNumber';
+import ContestPickModal from '../components/Contest/ContestPickModal';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -82,6 +84,8 @@ const ContestPage: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [schoolNumber, setSchoolNumber] = useState<string>('');
   const [inputRole, setInputRole] = useState<string>('');
+
+  const pickOpen = useState<boolean>(false);
 
   const fetchMemberList = useCallback((page: number, _role: string, _search: string) => {
     const roleQuery = _role === '' ? '' : `role=${_role}`;
@@ -174,7 +178,10 @@ const ContestPage: React.FC = () => {
               />
             </LeftHeader>
 
-            <StyledCreateButton onClick={() => open[1](true)}>수동 추가</StyledCreateButton>
+            <ButtonGroup>
+              <StyledCreateButton onClick={() => pickOpen[1](true)}>팀원 추첨</StyledCreateButton>
+              <StyledCreateButton onClick={() => open[1](true)}>수동 추가</StyledCreateButton>
+            </ButtonGroup>
           </Header>
 
           <BlankLine gap={10} />
@@ -244,6 +251,8 @@ const ContestPage: React.FC = () => {
 
         <MediumButton onClick={onCreateButtonClick}>추가하기</MediumButton>
       </Modal>
+
+      <ContestPickModal state={pickOpen} />
     </>
   );
 };
