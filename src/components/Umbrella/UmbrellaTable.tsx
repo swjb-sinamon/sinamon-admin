@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-  ScaleInput,
-  usePagination,
   BlankLine,
-  Pagination,
   BodyItem,
   HeaderItem,
+  Pagination,
+  ScaleInput,
   Table,
   TableHead
 } from 'sinamon-sikhye';
@@ -26,8 +25,6 @@ const UmbrellaTable: React.FC<UmbrellaTableProps> = ({
 }) => {
   const getStatus = (status: 'good' | 'worse') =>
     status.replace('good', '좋음').replace('worse', '나쁨');
-
-  const pageNumber = usePagination(count, 10);
 
   return (
     <>
@@ -58,7 +55,7 @@ const UmbrellaTable: React.FC<UmbrellaTableProps> = ({
         </tbody>
       </Table>
       <BlankLine gap={30} />
-      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
+      <Pagination onPageChange={onPageChange} dataCount={count} pageLimit={10} />
     </>
   );
 };

@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  SCREEN_SIZE,
-  usePagination,
   BlankLine,
-  Pagination,
   BodyItem,
   HeaderItem,
+  Pagination,
+  SCREEN_SIZE,
   Table,
   TableHead
 } from 'sinamon-sikhye';
@@ -29,8 +28,6 @@ interface UserTableProps {
 }
 
 const UserTable: React.FC<UserTableProps> = ({ list, count, onPageChange }) => {
-  const pageNumber = usePagination(count, 30);
-
   return (
     <>
       <ScrollContainer>
@@ -66,7 +63,7 @@ const UserTable: React.FC<UserTableProps> = ({ list, count, onPageChange }) => {
 
       <BlankLine gap={30} />
 
-      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
+      <Pagination onPageChange={onPageChange} dataCount={count} pageLimit={30} />
     </>
   );
 };

@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  SCREEN_SIZE,
-  usePagination,
   BlankLine,
-  Pagination,
   BodyItem,
   HeaderItem,
+  Pagination,
+  SCREEN_SIZE,
   Table,
   TableHead
 } from 'sinamon-sikhye';
@@ -35,8 +34,6 @@ const UniformPersonalTable: React.FC<UniformPersonalTableProps> = ({
   onPageChange,
   isRank
 }) => {
-  const pageNumber = usePagination(count, 10);
-
   return (
     <>
       <ScrollContainer>
@@ -80,7 +77,7 @@ const UniformPersonalTable: React.FC<UniformPersonalTableProps> = ({
 
       <BlankLine gap={30} />
 
-      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
+      <Pagination onPageChange={onPageChange} dataCount={count} pageLimit={10} />
     </>
   );
 };

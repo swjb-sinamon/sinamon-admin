@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  SCREEN_SIZE,
-  usePagination,
   BlankLine,
-  Pagination,
   BodyItem,
   HeaderItem,
+  Pagination,
+  SCREEN_SIZE,
   Table,
   TableHead
 } from 'sinamon-sikhye';
@@ -35,8 +34,6 @@ const ContestTable: React.FC<ContestTableProps> = ({ list, count, onPageChange }
     return '알수없음';
   };
 
-  const pageNumber = usePagination(count, 30);
-
   return (
     <>
       <ScrollContainer>
@@ -64,7 +61,7 @@ const ContestTable: React.FC<ContestTableProps> = ({ list, count, onPageChange }
 
       <BlankLine gap={30} />
 
-      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
+      <Pagination onPageChange={onPageChange} dataCount={count} pageLimit={30} />
     </>
   );
 };
