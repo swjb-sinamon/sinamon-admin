@@ -8,8 +8,7 @@ import {
   Pagination,
   SCREEN_SIZE,
   Table,
-  TableHead,
-  usePagination
+  TableHead
 } from 'sinamon-sikhye';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -70,8 +69,6 @@ const TimetableTable: React.FC<ContestTableProps> = ({
   onEditClick,
   onDeleteClick
 }) => {
-  const pageNumber = usePagination(count, 30);
-
   return (
     <>
       <ScrollContainer>
@@ -114,7 +111,7 @@ const TimetableTable: React.FC<ContestTableProps> = ({
 
       <BlankLine gap={30} />
 
-      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
+      <Pagination onPageChange={onPageChange} dataCount={count} pageLimit={30} />
     </>
   );
 };

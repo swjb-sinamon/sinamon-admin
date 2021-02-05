@@ -7,8 +7,7 @@ import {
   Pagination,
   SCREEN_SIZE,
   Table,
-  TableHead,
-  usePagination
+  TableHead
 } from 'sinamon-sikhye';
 import { CodeType } from '../../types/Payload';
 
@@ -28,8 +27,6 @@ interface CodeTableProps {
 }
 
 const CodeTable: React.FC<CodeTableProps> = ({ list, count, onPageChange }) => {
-  const pageNumber = usePagination(count, 30);
-
   return (
     <>
       <ScrollContainer>
@@ -61,7 +58,7 @@ const CodeTable: React.FC<CodeTableProps> = ({ list, count, onPageChange }) => {
 
       <BlankLine gap={30} />
 
-      <Pagination onPageChange={onPageChange} pageNumber={pageNumber} />
+      <Pagination onPageChange={onPageChange} dataCount={count} pageLimit={30} />
     </>
   );
 };
