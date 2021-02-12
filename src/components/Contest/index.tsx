@@ -43,7 +43,7 @@ const ContestTable: React.FC<ContestTableProps> = ({ list, count, onPageChange }
               <HeaderItem>이름</HeaderItem>
               <HeaderItem>역할</HeaderItem>
               <HeaderItem>신청일</HeaderItem>
-              <HeaderItem>팀 결성</HeaderItem>
+              <HeaderItem>팀 확정</HeaderItem>
             </tr>
           </TableHead>
           <tbody>
