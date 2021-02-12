@@ -24,6 +24,6 @@
 
 - 백엔드 API 서버 주소
 
-## 📑 Commit Convention
+## ✨ 기여하기
 
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [수정과 컨벤션에 대해 알아보기](https://www.notion.so/430ec87ea80e469a8bcbdb26142cc32c)
