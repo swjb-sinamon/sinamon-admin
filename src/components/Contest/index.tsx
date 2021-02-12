@@ -43,6 +43,7 @@ const ContestTable: React.FC<ContestTableProps> = ({ list, count, onPageChange }
               <HeaderItem>이름</HeaderItem>
               <HeaderItem>역할</HeaderItem>
               <HeaderItem>신청일</HeaderItem>
+              <HeaderItem>팀 확정</HeaderItem>
             </tr>
           </TableHead>
           <tbody>
@@ -52,6 +53,7 @@ const ContestTable: React.FC<ContestTableProps> = ({ list, count, onPageChange }
                   <td>{item.name}</td>
                   <td>{convertRole(item.role)}</td>
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
+                  <td>{item.isJoin ? '예' : '아니오'}</td>
                 </BodyItem>
               );
             })}

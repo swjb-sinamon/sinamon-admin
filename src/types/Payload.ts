@@ -65,6 +65,7 @@ export interface ContestType {
   readonly uuid: string;
   readonly name: string;
   readonly role: number;
+  readonly isJoin: boolean;
   readonly createdAt: Date;
   readonly updatedAt: Date;
 }
