@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { BlankLine, Heading2, Heading3, Label, MediumButton, Modal } from 'sinamon-sikhye';
-import Api from '../../api';
+import { BlankLine, Heading2, Heading3, Label, MediumButton, Modal, showToast } from 'sinamon-sikhye';
+import swal from 'sweetalert';
 import { ContestType } from '../../types/Payload';
+import Api from '../../api';
 
 interface ContestPickModalProps {
   readonly state: [boolean, Dispatch<SetStateAction<boolean>>];
@@ -27,7 +28,7 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
   const [result, setResult] = useState<[ContestType, ContestType, ContestType][]>([]);
 
   useEffect(() => {
-    Api.get('/contest?limit=30&page=1&role=IDEA')
+    Api.get('/contest?limit=30&page=1&role=IDEA&filters[isJoin]=0')
       .then((res) => {
         if (res.data && res.data.success) {
           setCount((current) => ({
@@ -39,7 +40,7 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
             idea: res.data.data
           }));
 
-          return Api.get('/contest?limit=30&page=1&role=DEVELOP');
+          return Api.get('/contest?limit=30&page=1&role=DEVELOP&filters[isJoin]=0');
         }
 
         return null;
@@ -55,7 +56,7 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
             dev: res.data.data
           }));
 
-          return Api.get('/contest?limit=30&page=1&role=DESIGN');
+          return Api.get('/contest?limit=30&page=1&role=DESIGN&filters[isJoin]=0');
         }
 
         return null;
@@ -94,6 +95,11 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
       return Math.min(a, b);
     });
 
+    if (teams === 0) {
+      showToast('추첨을 위한 참여자가 부족합니다.', 'warning');
+      return;
+    }
+
     const idea = data.idea.slice();
     const dev = data.dev.slice();
     const design = data.design.slice();
@@ -107,10 +113,38 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
     }
   };
 
+  const onApplyClick = async () => {
+    if (result.length === 0) {
+      showToast('먼저 추첨하기를 통해 팀 구성을 해주세요.', 'warning');
+      return;
+    }
+
+    const confirm = await swal({
+      title: '정말로 확정하시겠습니까?',
+      text: '확정 후에는 변경이 불가능합니다.',
+      icon: 'success',
+      buttons: ['취소', '삭제']
+    });
+
+    if (!confirm) return;
+
+    const promise = result.map(async (item) => {
+      await Api.patch('/contest', { uuid: item[0].uuid });
+      await Api.patch('/contest', { uuid: item[1].uuid });
+      await Api.patch('/contest', { uuid: item[2].uuid });
+    });
+
+    await Promise.all(promise);
+
+    showToast('팀 구성이 확정되었습니다.', 'success');
+
+    window.location.reload();
+  };
+
   return (
     <Modal width={500} height={500} name="PickMember" state={state}>
       <Heading2>공모전 팀 추첨</Heading2>
-      <Heading3>아래 추첨하기 버튼을 눌러 팀 추첨을 시작하세요.</Heading3>
+      <Heading3>추첨 후 팀 목록을 확정해주세요.</Heading3>
       <BlankLine gap={10} />
 
       <div>
@@ -132,6 +166,10 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
       <BlankLine gap={20} />
 
       <MediumButton onClick={onPickClick}>추첨하기</MediumButton>
+
+      <BlankLine gap={10} />
+
+      <MediumButton onClick={onApplyClick}>확정하기</MediumButton>
     </Modal>
   );
 };
