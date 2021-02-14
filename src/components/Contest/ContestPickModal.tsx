@@ -123,7 +123,7 @@ const ContestPickModal: React.FC<ContestPickModalProps> = ({ state }) => {
       title: '정말로 확정하시겠습니까?',
       text: '확정 후에는 변경이 불가능합니다.',
       icon: 'success',
-      buttons: ['취소', '삭제']
+      buttons: ['취소', '확정']
     });
 
     if (!confirm) return;
