@@ -19,7 +19,7 @@ import swal from 'sweetalert';
 import MainSideBar from '../components/MainSideBar';
 import { SubjectType } from '../types/Payload';
 import Api from '../api';
-import TimetableTable from '../components/TimetableTable';
+import TimetableTable from '../components/Timetable/TimetableTable';
 
 const StyledContent = styled.div`
   margin: 3rem;
