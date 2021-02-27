@@ -16,6 +16,8 @@ interface TimetableModalProps {
   readonly fetchTimetable: (page: number, _search: string) => void;
 }
 
+const SUBJECT_REGEX = /[^(ㄱ-ㅎ가-힣a-zA-Z0-9)]/g;
+
 const TimetableModal: React.FC<TimetableModalProps> = ({
   open,
   isEditModal,
@@ -52,7 +54,7 @@ const TimetableModal: React.FC<TimetableModalProps> = ({
     }
 
     await Api.post('/timetable', {
-      subject: modalInput.subjectName.trim(),
+      subject: modalInput.subjectName.replace(SUBJECT_REGEX, ''),
       teacher: modalInput.teacher.trim(),
       url: modalInput.zoom
     });
@@ -66,7 +68,7 @@ const TimetableModal: React.FC<TimetableModalProps> = ({
     if (!editId) return;
 
     await Api.put(`/timetable/${editId}`, {
-      subject: modalInput.subjectName.trim(),
+      subject: modalInput.subjectName.replace(SUBJECT_REGEX, ''),
       teacher: modalInput.teacher.trim(),
       url: modalInput.zoom
     });
