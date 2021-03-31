@@ -38,38 +38,6 @@ export interface UmbrellaWithRentalType extends UmbrellaType {
   };
 }
 
-export interface UniformType {
-  readonly id: number;
-  readonly grade: number;
-  readonly fullGrade: number;
-  readonly date: Date;
-  readonly score: number;
-}
-
-export interface UniformPersonalType {
-  readonly id: number;
-  readonly uuid: string;
-  readonly date: string;
-  readonly score: number;
-  readonly totalScore: number;
-  readonly user: {
-    readonly name: string;
-    readonly department: number;
-    readonly studentGrade: number;
-    readonly studentClass: number;
-    readonly studentNumber: number;
-  };
-}
-
-export interface ContestType {
-  readonly uuid: string;
-  readonly name: string;
-  readonly role: number;
-  readonly isJoin: boolean;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
-}
-
 export interface SubjectType {
   readonly id: number;
   readonly subject: string;
