@@ -38,12 +38,10 @@ const MainPage: React.FC = () => {
           <StyledContentGrid>
             <UmbrellaDashboardCard />
             <Card columnStart={3} columnEnd={5} rowStart={1} rowEnd={2}>
-              <CardTitle>방과후신청 현황</CardTitle>
-              <p>준비중입니다.</p>
+              <p>준비중</p>
             </Card>
             <Card columnStart={1} columnEnd={3} rowStart={2} rowEnd={3}>
-              <CardTitle>교복데이 현황</CardTitle>
-              <p>사업 종료</p>
+              <p>준비중</p>
             </Card>
             <Card columnStart={3} columnEnd={5} rowStart={2} rowEnd={3}>
               <CardTitle>도움말</CardTitle>

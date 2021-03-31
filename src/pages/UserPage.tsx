@@ -107,7 +107,7 @@ const UserPage: React.FC = () => {
             >
               <option value="0">학과 전체</option>
               <option value="1">컴퓨터전자과</option>
-              <option value="2">스마트자동학과</option>
+              <option value="2">스마트자동화과</option>
               <option value="3">IT산업디자인과</option>
               <option value="4">IT경영정보과</option>
               <option value="5">IT소프트웨어과</option>
