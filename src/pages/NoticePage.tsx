@@ -96,8 +96,8 @@ const NoticePage: React.FC = () => {
       dangerMode: true
     }).then(async (confirm) => {
       if (confirm) {
-        await postNotice('reset');
         swal('공지사항이 초기화 되었습니다!', { icon: 'success' });
+        await postNotice('reset');
       }
     });
   };
