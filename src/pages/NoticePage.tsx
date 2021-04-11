@@ -57,7 +57,11 @@ const NoticePage: React.FC = () => {
     });
   }, []);
 
-  const postNotice = async () => {
+  const postNotice = async (type?: string) => {
+    if (type === 'reset') {
+      setNotice('');
+    }
+
     try {
       await Api.put('/notice', {
         notice: notice.trim()
@@ -79,7 +83,7 @@ const NoticePage: React.FC = () => {
       showToast('내용을 채워주세요!', 'danger');
       return;
     }
-    postNotice();
+    await postNotice();
   };
 
   const onResetClick = async () => {
@@ -89,6 +93,9 @@ const NoticePage: React.FC = () => {
     }
     setNotice('');
     postNotice();
+    }).then(async (confirm) => {
+      if (confirm) {
+        await postNotice('reset');
   };
 
   return (
