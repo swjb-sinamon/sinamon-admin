@@ -56,12 +56,7 @@ const NoticePage: React.FC = () => {
     });
   }, []);
 
-  const onModClick = async () => {
-    if (notice.trim() === '') {
-      showToast('내용을 채워주세요!', 'danger');
-      return;
-    }
-
+  const postNotice = async () => {
     try {
       await Api.put('/notice', {
         notice: notice.trim()
@@ -78,6 +73,13 @@ const NoticePage: React.FC = () => {
     }
   };
 
+  const onModClick = async () => {
+    if (notice.trim() === '') {
+      showToast('내용을 채워주세요!', 'danger');
+      return;
+    }
+    postNotice();
+  };
   return (
     <>
       <Helmet>
