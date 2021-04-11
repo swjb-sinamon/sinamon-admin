@@ -10,7 +10,8 @@ import {
   MainSideBarContainer,
   MediumButton,
   SCREEN_SIZE,
-  showToast
+  showToast,
+  ButtonGroup
 } from 'sinamon-sikhye';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
@@ -80,6 +81,16 @@ const NoticePage: React.FC = () => {
     }
     postNotice();
   };
+
+  const onResetClick = async () => {
+    const msg = '정말 초기화 하시겠습니까? \n( 공지사항의 내용이 모두 지워진 채로 저장됩니다. )';
+    if (!window.confirm(msg)) {
+      return;
+    }
+    setNotice('');
+    postNotice();
+  };
+
   return (
     <>
       <Helmet>
@@ -111,7 +122,10 @@ const NoticePage: React.FC = () => {
 
             <BlankLine gap={10} />
 
-            <MediumButton onClick={onModClick}>수정하기</MediumButton>
+            <ButtonGroup>
+              <MediumButton onClick={onModClick}>수정하기</MediumButton>
+              <MediumButton onClick={onResetClick}>초기화</MediumButton>
+            </ButtonGroup>
           </ModNoticeForm>
 
           <BlankLine gap={20} />
