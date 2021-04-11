@@ -89,6 +89,7 @@ const NoticePage: React.FC = () => {
     }).then(async (confirm) => {
       if (confirm) {
         try {
+          setNotice('');
           await Api.put('/notice', {
             notice: ''
           });
