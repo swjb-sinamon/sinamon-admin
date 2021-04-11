@@ -13,6 +13,7 @@ import {
   showToast,
   ButtonGroup
 } from 'sinamon-sikhye';
+import swal from 'sweetalert';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import NoticePreview from '../components/Notice/NoticePreview';
@@ -87,15 +88,18 @@ const NoticePage: React.FC = () => {
   };
 
   const onResetClick = async () => {
-    const msg = '정말 초기화 하시겠습니까? \n( 공지사항의 내용이 모두 지워진 채로 저장됩니다. )';
-    if (!window.confirm(msg)) {
-      return;
-    }
-    setNotice('');
-    postNotice();
+    swal({
+      title: '정말 초기화 하시겠습니까?',
+      text: '( 공지사항의 내용이 모두 지워진 채로 저장됩니다. )',
+      icon: 'warning',
+      buttons: ['취소', '확인'],
+      dangerMode: true
     }).then(async (confirm) => {
       if (confirm) {
         await postNotice('reset');
+        swal('공지사항이 초기화 되었습니다!', { icon: 'success' });
+      }
+    });
   };
 
   return (
