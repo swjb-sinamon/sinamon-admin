@@ -58,11 +58,11 @@ const NoticePage: React.FC = () => {
     });
   }, []);
 
-  const postNotice = async (type?: string) => {
-    if (type === 'reset') {
-      setNotice('');
+  const onModClick = async () => {
+    if (notice.trim() === '') {
+      showToast('내용을 채워주세요!', 'danger');
+      return;
     }
-
     try {
       await Api.put('/notice', {
         notice: notice.trim()
@@ -79,25 +79,29 @@ const NoticePage: React.FC = () => {
     }
   };
 
-  const onModClick = async () => {
-    if (notice.trim() === '') {
-      showToast('내용을 채워주세요!', 'danger');
-      return;
-    }
-    await postNotice();
-  };
-
-  const onResetClick = async () => {
+  const onResetClick = () => {
     swal({
       title: '정말 초기화 하시겠습니까?',
-      text: '( 공지사항의 내용이 모두 지워진 채로 저장됩니다. )',
+      text: '( 공지사항의 내용이 모두 지워진 채로 저장됩니다! )',
       icon: 'warning',
       buttons: ['취소', '확인'],
       dangerMode: true
     }).then(async (confirm) => {
       if (confirm) {
-        swal('공지사항이 초기화 되었습니다!', { icon: 'success' });
-        await postNotice('reset');
+        try {
+          await Api.put('/notice', {
+            notice: ''
+          });
+          showToast('성공적으로 공지사항이 초기화되었습니다!', 'success');
+        } catch (e) {
+          if (!e.response.data) return;
+          const { success, error } = e.response.data;
+          if (success || !error) return;
+
+          if (error === ErrorMessage.NO_PERMISSION) {
+            showToast('관리자만 접근 가능한 페이지입니다.', 'warning');
+          }
+        }
       }
     });
   };
