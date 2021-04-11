@@ -103,7 +103,7 @@ const NoticePage: React.FC = () => {
           <ModNoticeForm>
             <ModTextArea
               placeholder="수정할 내용을 입력하세요"
-              onChange={(e) => setNotice(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setNotice(e.target.value)}
               value={notice}
             />
 
