@@ -92,6 +92,7 @@ const LoginPage: React.FC = () => {
               type="text"
               value={input.id}
               onChange={(e) => onInputChange(e, 'id')}
+              autoFocus
             />
 
             <BlankLine gap={20} />
