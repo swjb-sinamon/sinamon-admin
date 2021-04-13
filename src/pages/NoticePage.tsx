@@ -10,8 +10,10 @@ import {
   MainSideBarContainer,
   MediumButton,
   SCREEN_SIZE,
-  showToast
+  showToast,
+  ButtonGroup
 } from 'sinamon-sikhye';
+import swal from 'sweetalert';
 import MainSideBar from '../components/MainSideBar';
 import Api from '../api';
 import NoticePreview from '../components/Notice/NoticePreview';
@@ -61,7 +63,6 @@ const NoticePage: React.FC = () => {
       showToast('내용을 채워주세요!', 'danger');
       return;
     }
-
     try {
       await Api.put('/notice', {
         notice: notice.trim()
@@ -76,6 +77,34 @@ const NoticePage: React.FC = () => {
         showToast('관리자만 접근 가능한 페이지입니다.', 'warning');
       }
     }
+  };
+
+  const onResetClick = () => {
+    swal({
+      title: '정말 초기화 하시겠습니까?',
+      text: '( 공지사항의 내용이 모두 지워진 채로 저장됩니다! )',
+      icon: 'warning',
+      buttons: ['취소', '확인'],
+      dangerMode: true
+    }).then(async (confirm) => {
+      if (confirm) {
+        try {
+          setNotice('');
+          await Api.put('/notice', {
+            notice: ''
+          });
+          showToast('성공적으로 공지사항이 초기화되었습니다!', 'success');
+        } catch (e) {
+          if (!e.response.data) return;
+          const { success, error } = e.response.data;
+          if (success || !error) return;
+
+          if (error === ErrorMessage.NO_PERMISSION) {
+            showToast('관리자만 접근 가능한 페이지입니다.', 'warning');
+          }
+        }
+      }
+    });
   };
 
   return (
@@ -103,13 +132,16 @@ const NoticePage: React.FC = () => {
           <ModNoticeForm>
             <ModTextArea
               placeholder="수정할 내용을 입력하세요"
-              onChange={(e) => setNotice(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setNotice(e.target.value)}
               value={notice}
             />
 
             <BlankLine gap={10} />
 
-            <MediumButton onClick={onModClick}>수정하기</MediumButton>
+            <ButtonGroup>
+              <MediumButton onClick={onModClick}>수정하기</MediumButton>
+              <MediumButton onClick={onResetClick}>초기화</MediumButton>
+            </ButtonGroup>
           </ModNoticeForm>
 
           <BlankLine gap={20} />
