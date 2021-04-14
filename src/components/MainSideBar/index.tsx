@@ -11,14 +11,25 @@ import {
 import {
   MainSidebar,
   MainSideBarItem,
-  NoStyleLink,
   showToast,
   SideBarIconWrapper,
   SideBarItemList
 } from 'sinamon-sikhye';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
+
+const StyledLink = styled(NavLink).attrs({
+  activeClassName: 'nav-item-active'
+})`
+  &.nav-item-active {
+    & > li {
+      color: white;
+      background-color: var(--color-button);
+    }
+  }
+`;
 
 const MainSideBar: React.FC = () => {
   const history = useHistory();
@@ -40,59 +51,59 @@ const MainSideBar: React.FC = () => {
 
       <SideBarItemList isOpen={isOpen}>
         <div>
-          <NoStyleLink to="/umbrella">
+          <StyledLink to="/umbrella">
             <MainSideBarItem>
               <SideBarIconWrapper>
                 <FontAwesomeIcon icon={faUmbrella} size="lg" />
               </SideBarIconWrapper>
               <p>우산대여</p>
             </MainSideBarItem>
-          </NoStyleLink>
+          </StyledLink>
 
-          <NoStyleLink to="/umbrella/manage">
+          <StyledLink to="/umbrella/manage">
             <MainSideBarItem>
               <SideBarIconWrapper>
                 <FontAwesomeIcon icon={faUmbrella} size="lg" />
               </SideBarIconWrapper>
               <p>우산 목록 관리</p>
             </MainSideBarItem>
-          </NoStyleLink>
+          </StyledLink>
 
-          <NoStyleLink to="/timetable">
+          <StyledLink to="/timetable">
             <MainSideBarItem>
               <SideBarIconWrapper>
                 <FontAwesomeIcon icon={faCalendarWeek} size="lg" />
               </SideBarIconWrapper>
               <p>시간표 관리</p>
             </MainSideBarItem>
-          </NoStyleLink>
+          </StyledLink>
 
-          <NoStyleLink to="/code">
+          <StyledLink to="/code">
             <MainSideBarItem>
               <SideBarIconWrapper>
                 <FontAwesomeIcon icon={faKey} size="lg" />
               </SideBarIconWrapper>
               <p>인증코드 관리</p>
             </MainSideBarItem>
-          </NoStyleLink>
+          </StyledLink>
 
-          <NoStyleLink to="/user">
+          <StyledLink to="/user">
             <MainSideBarItem>
               <SideBarIconWrapper>
                 <FontAwesomeIcon icon={faUser} size="lg" />
               </SideBarIconWrapper>
               <p>사용자 관리</p>
             </MainSideBarItem>
-          </NoStyleLink>
+          </StyledLink>
 
-          <NoStyleLink to="/notice">
+          <StyledLink to="/notice">
             <MainSideBarItem>
               <SideBarIconWrapper>
                 <FontAwesomeIcon icon={faBullhorn} />
               </SideBarIconWrapper>
               <p>공지사항 관리</p>
             </MainSideBarItem>
-          </NoStyleLink>
+          </StyledLink>
 
           <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
             <SideBarIconWrapper>
