@@ -57,7 +57,7 @@ const MainTitleBar: React.FC<MainTitleBarProps> = ({ setOpen }) => {
         <NoStyleLink to="/">
           <TitleContainer>
             <img src={Logo} alt="수정과 관리자" width={60} height={60} />
-            <LogoTitle>관리자</LogoTitle>
+            <LogoTitle>수정과</LogoTitle>
           </TitleContainer>
         </NoStyleLink>
 
