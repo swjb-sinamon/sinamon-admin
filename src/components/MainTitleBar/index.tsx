@@ -23,6 +23,7 @@ const SideBarTitle = styled.li`
 
 const TitleContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
