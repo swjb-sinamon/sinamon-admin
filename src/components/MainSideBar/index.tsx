@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faBullhorn,
   faCalendarWeek,
   faKey,
+  faSignOutAlt,
   faUmbrella,
-  faUser,
-  faBullhorn
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 import {
+  MainSidebar,
   MainSideBarItem,
   NoStyleLink,
-  SCREEN_SIZE,
   showToast,
   SideBarIconWrapper,
   SideBarItemList
@@ -19,45 +19,6 @@ import {
 import { useHistory } from 'react-router-dom';
 import MainTitleBar from '../MainTitleBar';
 import Api from '../../api';
-
-const Sidebar = styled.ul`
-  min-height: 100vh;
-  background-color: white;
-  box-shadow: 0 0 30px rgba(169, 169, 169, 0.2);
-
-  display: flex;
-  flex-direction: column;
-
-  list-style: none;
-
-  @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
-    min-height: 4rem;
-  }
-`;
-
-const StyledFooterText = styled.p`
-  text-align: center;
-
-  margin: 1rem 0;
-
-  color: var(--color-subtext);
-`;
-
-const FooterButton = styled.button`
-  border: none;
-  background-color: transparent;
-
-  font-size: 14px;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: var(--color-subtext);
-
-  cursor: pointer;
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: var(--color-button-hover);
-  }
-`;
 
 const MainSideBar: React.FC = () => {
   const history = useHistory();
@@ -74,69 +35,74 @@ const MainSideBar: React.FC = () => {
   };
 
   return (
-    <Sidebar>
+    <MainSidebar>
       <MainTitleBar setOpen={setOpen} />
 
       <SideBarItemList isOpen={isOpen}>
-        <NoStyleLink to="/umbrella">
-          <MainSideBarItem>
-            <SideBarIconWrapper>
-              <FontAwesomeIcon icon={faUmbrella} size="lg" />
-            </SideBarIconWrapper>
-            <p>우산대여</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+        <div>
+          <NoStyleLink to="/umbrella">
+            <MainSideBarItem>
+              <SideBarIconWrapper>
+                <FontAwesomeIcon icon={faUmbrella} size="lg" />
+              </SideBarIconWrapper>
+              <p>우산대여</p>
+            </MainSideBarItem>
+          </NoStyleLink>
 
-        <NoStyleLink to="/umbrella/manage">
-          <MainSideBarItem>
-            <SideBarIconWrapper>
-              <FontAwesomeIcon icon={faUmbrella} size="lg" />
-            </SideBarIconWrapper>
-            <p>우산 목록 관리</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+          <NoStyleLink to="/umbrella/manage">
+            <MainSideBarItem>
+              <SideBarIconWrapper>
+                <FontAwesomeIcon icon={faUmbrella} size="lg" />
+              </SideBarIconWrapper>
+              <p>우산 목록 관리</p>
+            </MainSideBarItem>
+          </NoStyleLink>
 
-        <NoStyleLink to="/timetable">
-          <MainSideBarItem>
-            <SideBarIconWrapper>
-              <FontAwesomeIcon icon={faCalendarWeek} size="lg" />
-            </SideBarIconWrapper>
-            <p>시간표 관리</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+          <NoStyleLink to="/timetable">
+            <MainSideBarItem>
+              <SideBarIconWrapper>
+                <FontAwesomeIcon icon={faCalendarWeek} size="lg" />
+              </SideBarIconWrapper>
+              <p>시간표 관리</p>
+            </MainSideBarItem>
+          </NoStyleLink>
 
-        <NoStyleLink to="/code">
-          <MainSideBarItem>
-            <SideBarIconWrapper>
-              <FontAwesomeIcon icon={faKey} size="lg" />
-            </SideBarIconWrapper>
-            <p>인증코드 관리</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+          <NoStyleLink to="/code">
+            <MainSideBarItem>
+              <SideBarIconWrapper>
+                <FontAwesomeIcon icon={faKey} size="lg" />
+              </SideBarIconWrapper>
+              <p>인증코드 관리</p>
+            </MainSideBarItem>
+          </NoStyleLink>
 
-        <NoStyleLink to="/user">
-          <MainSideBarItem>
-            <SideBarIconWrapper>
-              <FontAwesomeIcon icon={faUser} size="lg" />
-            </SideBarIconWrapper>
-            <p>사용자 관리</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+          <NoStyleLink to="/user">
+            <MainSideBarItem>
+              <SideBarIconWrapper>
+                <FontAwesomeIcon icon={faUser} size="lg" />
+              </SideBarIconWrapper>
+              <p>사용자 관리</p>
+            </MainSideBarItem>
+          </NoStyleLink>
 
-        <NoStyleLink to="/notice">
-          <MainSideBarItem>
-            <SideBarIconWrapper>
-              <FontAwesomeIcon icon={faBullhorn} />
-            </SideBarIconWrapper>
-            <p>공지사항 관리</p>
-          </MainSideBarItem>
-        </NoStyleLink>
+          <NoStyleLink to="/notice">
+            <MainSideBarItem>
+              <SideBarIconWrapper>
+                <FontAwesomeIcon icon={faBullhorn} />
+              </SideBarIconWrapper>
+              <p>공지사항 관리</p>
+            </MainSideBarItem>
+          </NoStyleLink>
 
-        <StyledFooterText>
-          <FooterButton onClick={onLogoutClick}>로그아웃</FooterButton>
-        </StyledFooterText>
+          <MainSideBarItem onClick={onLogoutClick} tabIndex={0}>
+            <SideBarIconWrapper>
+              <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+            </SideBarIconWrapper>
+            <p>로그아웃</p>
+          </MainSideBarItem>
+        </div>
       </SideBarItemList>
-    </Sidebar>
+    </MainSidebar>
   );
 };
 

@@ -27,7 +27,7 @@ const TitleContainer = styled.div`
   align-items: center;
 
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.3s ease-out;
 
   margin-bottom: 1.2rem;
 
