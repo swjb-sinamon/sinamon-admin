@@ -27,7 +27,7 @@ const TitleContainer = styled.div`
   align-items: center;
 
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.3s ease-out;
 
   margin-bottom: 1.2rem;
 
@@ -57,7 +57,7 @@ const MainTitleBar: React.FC<MainTitleBarProps> = ({ setOpen }) => {
         <NoStyleLink to="/">
           <TitleContainer>
             <img src={Logo} alt="수정과 관리자" width={60} height={60} />
-            <LogoTitle>관리자</LogoTitle>
+            <LogoTitle>수정과</LogoTitle>
           </TitleContainer>
         </NoStyleLink>
 
