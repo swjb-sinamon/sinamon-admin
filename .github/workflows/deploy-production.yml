@@ -47,7 +47,7 @@ jobs:
         if: success()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          description: "🚀 수정과 관리자가 배포되었습니다! https://admin.sinamon.info"
+          description: "🚀 수정과 관리자가 배포되었습니다! https://admin.itsw.info"
 
       - name: Discord Alert Failure
         uses: sarisia/actions-status-discord@v1
