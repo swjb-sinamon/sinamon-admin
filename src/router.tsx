@@ -10,6 +10,7 @@ import CodePage from './pages/CodePage';
 import UserPage from './pages/UserPage';
 import TimetablePage from './pages/TimetablePage';
 import NoticePage from './pages/NoticePage';
+import AnonymousAdminPage from './pages/AnonymousAdminPage';
 
 const Router: React.FC = () => {
   return (
@@ -61,6 +62,13 @@ const Router: React.FC = () => {
           exact
           path="/notice"
           success={NoticePage}
+          failure={PermissionPage}
+          permissions={['admin', 'teacher', 'schoolunion']}
+        />
+        <PermissionRoute
+          exact
+          path="/anonymous"
+          success={AnonymousAdminPage}
           failure={PermissionPage}
           permissions={['admin', 'teacher', 'schoolunion']}
         />
