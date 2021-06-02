@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BodyItem, HeaderItem, SCREEN_SIZE, Table, TableHead } from 'sinamon-sikhye';
+import { BodyItem, ButtonGroup, HeaderItem, SCREEN_SIZE, Table, TableHead } from 'sinamon-sikhye';
 import swal from 'sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AnonymousReplyType, AnonymousType } from '../../types/Payload';
 
 const ScrollContainer = styled.div`
@@ -13,9 +15,9 @@ const ScrollContainer = styled.div`
   overflow-x: auto;
 `;
 
-const TableButton = styled.button`
-  width: 74px;
-  height: 32px;
+const TableButton = styled.button<{ size: 'small' | 'long' }>`
+  width: ${(props) => (props.size === 'small' ? '32px' : '74px')};
+  height: ${(props) => (props.size === 'small' ? '32px' : '32px')};
 
   border-radius: 3px;
   border: 1px solid var(--color-gray);
@@ -33,19 +35,45 @@ const TableButton = styled.button`
 
 interface TableProps {
   readonly list: AnonymousType[];
-  readonly onAddReplyClick?: () => void;
-  readonly onShowReplyClick?: () => void;
+  readonly onAddReplyClick: (id: number) => void;
+  readonly onShowReplyClick: (id: number) => void;
+  readonly onEditReplyClick: (id: number) => void;
+  readonly onDeleteReplyClick: (id: number) => void;
 }
 
-const AnonymousTable: React.FC<TableProps> = ({ list, onAddReplyClick, onShowReplyClick }) => {
+const AnonymousTable: React.FC<TableProps> = ({
+  list,
+  onAddReplyClick,
+  onShowReplyClick,
+  onEditReplyClick,
+  onDeleteReplyClick
+}) => {
   const onContentClick = (content: string) => swal('익명건의 내용', content);
 
-  const ReplyButton = (reply: AnonymousReplyType[]) => {
+  const ReplyButton = (id: number, content: string, reply: AnonymousReplyType[]) => {
     if (reply.length === 0) {
-      return <TableButton onClick={onAddReplyClick}>답변 달기</TableButton>;
+      return (
+        <TableButton size="long" onClick={() => onAddReplyClick(id)}>
+          답변 달기
+        </TableButton>
+      );
     }
 
-    return <TableButton onClick={onShowReplyClick}>답변 보기</TableButton>;
+    return (
+      <ButtonGroup>
+        <TableButton size="small" onClick={() => swal('답변 내용', content)}>
+          <FontAwesomeIcon icon={faComments} />
+        </TableButton>
+
+        <TableButton size="small" onClick={() => onEditReplyClick(id)}>
+          <FontAwesomeIcon icon={faEdit} />
+        </TableButton>
+
+        <TableButton size="small" onClick={() => onDeleteReplyClick(id)}>
+          <FontAwesomeIcon icon={faTrash} />
+        </TableButton>
+      </ButtonGroup>
+    );
   };
 
   return (
@@ -68,11 +96,11 @@ const AnonymousTable: React.FC<TableProps> = ({ list, onAddReplyClick, onShowRep
                   <td>{item.id}</td>
                   <td>{item.title}</td>
                   <td>
-                    <TableButton onClick={() => onContentClick(item.content)}>
+                    <TableButton size="long" onClick={() => onContentClick(item.content)}>
                       내용 보기
                     </TableButton>
                   </td>
-                  <td>{() => ReplyButton(item.reply)}</td>
+                  <td>{ReplyButton(item.id, item.reply[0].content, item.reply)}</td>
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                 </BodyItem>
               );
