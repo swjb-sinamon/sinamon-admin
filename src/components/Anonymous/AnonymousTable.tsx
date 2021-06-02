@@ -4,7 +4,7 @@ import { BodyItem, ButtonGroup, HeaderItem, SCREEN_SIZE, Table, TableHead } from
 import swal from 'sweetalert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { AnonymousReplyType, AnonymousType } from '../../types/Payload';
+import { AnonymousType } from '../../types/Payload';
 
 const ScrollContainer = styled.div`
   @media screen and (max-width: ${SCREEN_SIZE.SCREEN_TABLET}) {
@@ -50,7 +50,9 @@ const AnonymousTable: React.FC<TableProps> = ({
 }) => {
   const onContentClick = (content: string) => swal('익명건의 내용', content);
 
-  const ReplyButton = (id: number, content: string, reply: AnonymousReplyType[]) => {
+  const ReplyButton = (data: AnonymousType) => {
+    const { id, reply } = data;
+
     if (reply.length === 0) {
       return (
         <TableButton size="long" onClick={() => onAddReplyClick(id)}>
@@ -61,15 +63,15 @@ const AnonymousTable: React.FC<TableProps> = ({
 
     return (
       <ButtonGroup>
-        <TableButton size="small" onClick={() => swal('답변 내용', content)}>
+        <TableButton size="small" onClick={() => swal('답변 내용', reply[0].content)}>
           <FontAwesomeIcon icon={faComments} />
         </TableButton>
 
-        <TableButton size="small" onClick={() => onEditReplyClick(id)}>
+        <TableButton size="small" onClick={() => onEditReplyClick(reply[0].id)}>
           <FontAwesomeIcon icon={faEdit} />
         </TableButton>
 
-        <TableButton size="small" onClick={() => onDeleteReplyClick(id)}>
+        <TableButton size="small" onClick={() => onDeleteReplyClick(reply[0].id)}>
           <FontAwesomeIcon icon={faTrash} />
         </TableButton>
       </ButtonGroup>
@@ -100,7 +102,7 @@ const AnonymousTable: React.FC<TableProps> = ({
                       내용 보기
                     </TableButton>
                   </td>
-                  <td>{ReplyButton(item.id, item.reply[0].content, item.reply)}</td>
+                  <td>{ReplyButton(item)}</td>
                   <td>{new Date(item.createdAt).toLocaleDateString()}</td>
                 </BodyItem>
               );

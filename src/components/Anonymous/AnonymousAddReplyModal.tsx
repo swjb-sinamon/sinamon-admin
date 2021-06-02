@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { BlankLine, Heading2, MediumButton, Modal, SCREEN_SIZE, showToast } from 'sinamon-sikhye';
 import styled from 'styled-components';
 import swal from 'sweetalert';
@@ -7,6 +7,7 @@ import Api from '../../api';
 interface Props {
   readonly open: [boolean, Dispatch<SetStateAction<boolean>>];
   readonly id: number;
+  readonly onSuccess: () => void;
 }
 
 const ReplyForm = styled.textarea`
@@ -25,8 +26,16 @@ const ReplyForm = styled.textarea`
   }
 `;
 
-const AnonymousAddReplyModal: React.FC<Props> = ({ id, open }) => {
+const AnonymousAddReplyModal: React.FC<Props> = ({ id, open, onSuccess }) => {
   const [content, setContent] = useState<string>('');
+
+  useEffect(() => setContent(''), [open]);
+
+  const onEnterKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      onAddClick();
+    }
+  };
 
   const onAddClick = async () => {
     const confirm = await swal({
@@ -44,6 +53,8 @@ const AnonymousAddReplyModal: React.FC<Props> = ({ id, open }) => {
     open[1](false);
 
     showToast('답변이 등록되었습니다!', 'success');
+
+    onSuccess();
   };
 
   return (
@@ -57,6 +68,7 @@ const AnonymousAddReplyModal: React.FC<Props> = ({ id, open }) => {
         autoFocus
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        onKeyPress={onEnterKeyPress}
       />
 
       <BlankLine gap={30} />

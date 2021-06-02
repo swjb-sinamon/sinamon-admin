@@ -75,7 +75,7 @@ const AnonymousAdminPage: React.FC = () => {
         </StyledContent>
       </MainSideBarContainer>
 
-      <AnonymousAddReplyModal id={id} open={addReplyModalOpen} />
+      <AnonymousAddReplyModal id={id} open={addReplyModalOpen} onSuccess={() => fetchData()} />
     </>
   );
 };
