@@ -35,27 +35,25 @@ const TableButton = styled.button<{ size: 'small' | 'long' }>`
 
 interface TableProps {
   readonly list: AnonymousType[];
-  readonly onAddReplyClick: (id: number) => void;
-  readonly onShowReplyClick: (id: number) => void;
-  readonly onEditReplyClick: (id: number) => void;
-  readonly onDeleteReplyClick: (id: number) => void;
+  readonly onAddReplyClick: (data: AnonymousType) => void;
+  readonly onEditReplyClick: (data: AnonymousType) => void;
+  readonly onDeleteReplyClick: (data: AnonymousType) => void;
 }
 
 const AnonymousTable: React.FC<TableProps> = ({
   list,
   onAddReplyClick,
-  onShowReplyClick,
   onEditReplyClick,
   onDeleteReplyClick
 }) => {
   const onContentClick = (content: string) => swal('익명건의 내용', content);
 
   const ReplyButton = (data: AnonymousType) => {
-    const { id, reply } = data;
+    const { reply } = data;
 
     if (reply.length === 0) {
       return (
-        <TableButton size="long" onClick={() => onAddReplyClick(id)}>
+        <TableButton size="long" onClick={() => onAddReplyClick(data)}>
           답변 달기
         </TableButton>
       );
@@ -67,11 +65,11 @@ const AnonymousTable: React.FC<TableProps> = ({
           <FontAwesomeIcon icon={faComments} />
         </TableButton>
 
-        <TableButton size="small" onClick={() => onEditReplyClick(reply[0].id)}>
+        <TableButton size="small" onClick={() => onEditReplyClick(data)}>
           <FontAwesomeIcon icon={faEdit} />
         </TableButton>
 
-        <TableButton size="small" onClick={() => onDeleteReplyClick(reply[0].id)}>
+        <TableButton size="small" onClick={() => onDeleteReplyClick(data)}>
           <FontAwesomeIcon icon={faTrash} />
         </TableButton>
       </ButtonGroup>

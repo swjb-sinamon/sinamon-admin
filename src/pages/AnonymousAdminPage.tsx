@@ -8,6 +8,7 @@ import { AnonymousType } from '../types/Payload';
 import Api from '../api';
 import AnonymousTable from '../components/Anonymous/AnonymousTable';
 import AnonymousAddReplyModal from '../components/Anonymous/AnonymousAddReplyModal';
+import AnonymousEditReplyModal from '../components/Anonymous/AnonymousEditReplyModal';
 
 const StyledContent = styled.div`
   margin: 3rem;
@@ -17,8 +18,9 @@ const AnonymousAdminPage: React.FC = () => {
   const [data, setData] = useState<AnonymousType[]>([]);
 
   const addReplyModalOpen = useState<boolean>(false);
-  const showReplyModalOpen = useState<boolean>(false);
-  const [id, setId] = useState<number>(0);
+  const editReplyModalOpen = useState<boolean>(false);
+  const [focusAnonymousId, setFocusAnonymousId] = useState<number>(0);
+  const [focusReplyId, setFocusReplyId] = useState<number>(0);
 
   const fetchData = useCallback(() => {
     Api.get('/anonymous').then((res) => {
@@ -28,12 +30,17 @@ const AnonymousAdminPage: React.FC = () => {
 
   useEffect(() => fetchData(), [fetchData]);
 
-  const onTableButtonClick = (func: (v: boolean) => void) => (i: number) => {
-    setId(i);
-    func(true);
+  const onAddReplyClick = (anonymousData: AnonymousType) => {
+    setFocusAnonymousId(anonymousData.id);
+    addReplyModalOpen[1](true);
   };
 
-  const onDeleteClick = async (replyId: number) => {
+  const onEditReplyClick = (anonymousData: AnonymousType) => {
+    setFocusReplyId(anonymousData.reply[0].id);
+    editReplyModalOpen[1](true);
+  };
+
+  const onDeleteClick = async (anonymousData: AnonymousType) => {
     const state = await swal({
       title: '정말로 삭제하시겠습니까?',
       text: '삭제 시 복구할 수 없습니다.',
@@ -44,7 +51,7 @@ const AnonymousAdminPage: React.FC = () => {
 
     if (!state) return;
 
-    await Api.delete(`/anonymous/reply/${replyId}`);
+    await Api.delete(`/anonymous/reply/${anonymousData.reply[0].id}`);
     showToast('답변이 삭제되었습니다.', 'success');
 
     fetchData();
@@ -67,15 +74,23 @@ const AnonymousAdminPage: React.FC = () => {
 
           <AnonymousTable
             list={data}
-            onAddReplyClick={onTableButtonClick(addReplyModalOpen[1])}
-            onShowReplyClick={onTableButtonClick(showReplyModalOpen[1])}
-            onEditReplyClick={onTableButtonClick(showReplyModalOpen[1])}
+            onAddReplyClick={onAddReplyClick}
+            onEditReplyClick={onEditReplyClick}
             onDeleteReplyClick={onDeleteClick}
           />
         </StyledContent>
       </MainSideBarContainer>
 
-      <AnonymousAddReplyModal id={id} open={addReplyModalOpen} onSuccess={() => fetchData()} />
+      <AnonymousAddReplyModal
+        id={focusAnonymousId}
+        open={addReplyModalOpen}
+        onSuccess={() => fetchData()}
+      />
+      <AnonymousEditReplyModal
+        replyId={focusReplyId}
+        open={editReplyModalOpen}
+        onSuccess={() => fetchData()}
+      />
     </>
   );
 };
