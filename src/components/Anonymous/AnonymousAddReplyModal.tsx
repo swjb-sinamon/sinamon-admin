@@ -58,7 +58,7 @@ const AnonymousAddReplyModal: React.FC<Props> = ({ id, open, onSuccess }) => {
   };
 
   return (
-    <Modal width={600} height={500} name="AnonyousModal" state={open}>
+    <Modal width={600} height={500} name="AnonymousAddModal" state={open}>
       <Heading2>답변달기</Heading2>
       <BlankLine gap={10} />
 
