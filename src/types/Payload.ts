@@ -54,7 +54,7 @@ export interface AnonymousType {
   readonly updatedAt: Date;
 }
 
-interface AnonymousReplyType {
+export interface AnonymousReplyType {
   readonly id: string;
   readonly content: string;
   readonly author: string;
