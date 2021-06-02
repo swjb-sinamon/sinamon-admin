@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { BlankLine, Heading1, Heading3, MainSideBarContainer } from 'sinamon-sikhye';
+import { BlankLine, Heading1, Heading3, MainSideBarContainer, showToast } from 'sinamon-sikhye';
 import { Helmet } from 'react-helmet';
+import swal from 'sweetalert';
 import MainSideBar from '../components/MainSideBar';
 import { AnonymousType } from '../types/Payload';
 import Api from '../api';
@@ -19,15 +20,34 @@ const AnonymousAdminPage: React.FC = () => {
   const showReplyModalOpen = useState<boolean>(false);
   const [id, setId] = useState<number>(0);
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     Api.get('/anonymous').then((res) => {
       if (res && res.data.success) setData(res.data.data);
     });
   }, []);
 
+  useEffect(() => fetchData(), [fetchData]);
+
   const onTableButtonClick = (func: (v: boolean) => void) => (i: number) => {
     setId(i);
     func(true);
+  };
+
+  const onDeleteClick = async (replyId: number) => {
+    const state = await swal({
+      title: '정말로 삭제하시겠습니까?',
+      text: '삭제 시 복구할 수 없습니다.',
+      icon: 'warning',
+      buttons: ['취소', '삭제'],
+      dangerMode: true
+    });
+
+    if (!state) return;
+
+    await Api.delete(`/anonymous/reply/${replyId}`);
+    showToast('답변이 삭제되었습니다.', 'success');
+
+    fetchData();
   };
 
   return (
@@ -50,7 +70,7 @@ const AnonymousAdminPage: React.FC = () => {
             onAddReplyClick={onTableButtonClick(addReplyModalOpen[1])}
             onShowReplyClick={onTableButtonClick(showReplyModalOpen[1])}
             onEditReplyClick={onTableButtonClick(showReplyModalOpen[1])}
-            onDeleteReplyClick={onTableButtonClick(showReplyModalOpen[1])}
+            onDeleteReplyClick={onDeleteClick}
           />
         </StyledContent>
       </MainSideBarContainer>
