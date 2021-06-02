@@ -55,7 +55,7 @@ export interface AnonymousType {
 }
 
 export interface AnonymousReplyType {
-  readonly id: string;
+  readonly id: number;
   readonly content: string;
   readonly author: string;
   readonly user: ProfileType;
