@@ -44,3 +44,21 @@ export interface SubjectType {
   readonly teacher: string;
   readonly url: string;
 }
+
+export interface AnonymousType {
+  readonly id: number;
+  readonly title: string;
+  readonly content: string;
+  readonly reply: AnonymousReplyType[];
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+}
+
+export interface AnonymousReplyType {
+  readonly id: number;
+  readonly content: string;
+  readonly author: string;
+  readonly user: ProfileType;
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+}
